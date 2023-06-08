@@ -1,6 +1,8 @@
+/*root*/
+@import './root/root';
+@import './root/fonts';
+
 /*pages*/
 
 /*components*/
-
-/*root*/
-@import './root.scss';
+@import './components/header';

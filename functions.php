@@ -16,8 +16,9 @@ add_filter( 'login_errors', function () {
 /***************************** Enqueue Style And Scripts */
 
 function cyn_enqueue_files() {
-	wp_enqueue_style( 'final', get_stylesheet_directory_uri() . '/css/final.css', [], false, 'all' );
-	wp_enqueue_style( 'style', get_stylesheet_uri(), [], false, 'all' );
+	wp_enqueue_style( 'cyn-final', get_stylesheet_directory_uri() . '/css/final.css', [], false, 'all' );
+	wp_enqueue_style( 'cyn-icon', get_stylesheet_directory_uri() . '/fonts/icon/cyn-icon.css', [], false, 'all' );
+	wp_enqueue_style( 'cyn-style', get_stylesheet_uri(), [], false, 'all' );
 	wp_dequeue_style( 'wp-block-library' );
 
 	wp_enqueue_script( 'cyn-script', get_stylesheet_directory_uri() . '/js/dist/scripts.bundle.min.js', [], false, true );

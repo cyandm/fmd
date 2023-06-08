@@ -1,0 +1,23 @@
+header.site-header {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fdfdfd;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.34);
+  }
+
+  ul {
+    list-style: none;
+
+    &.menu {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    &.sub-menu {
+      display: none;
+    }
+  }
+}
