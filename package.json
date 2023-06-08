@@ -1,0 +1,17 @@
+{
+  "name": "fmd",
+  "version": "1.0.0",
+  "description": "Wordpress Theme",
+  "main": "index.php",
+  "scripts": {
+    "run-scss": "sass scss/normal.scss css/normal.css -w -s compressed",
+    "run-prefix": "./node_modules/.bin/grunt watch",
+    "run-js": "esbuild ./js/index.js --bundle --minify  --outfile=./js/dist/scripts.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --watch"
+  },
+  "dependencies": {
+    "esbuild": "0.17.19",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-cli": "^1.4.3",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
