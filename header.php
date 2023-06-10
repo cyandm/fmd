@@ -1,3 +1,7 @@
+<?php
+//$args = [];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,14 +15,25 @@
 <body>
 
 	<header class="site-header">
-		<div class="container">
-			<div>
-				<div class="search">
-					<i class="icon-search">
+		<div class="container <?php if ( $args && ! $args['border'] )
+			echo 'no-border' ?>">
+				<div>
+					<div class="search">
+						<i class="icon-search secondary">
 
-					</i>
+						</i>
+
+						<input class="" type="search" placeholder="search">
+					</div>
+					<div class="desktop-menu">
+					<?php wp_nav_menu( [ 'menu' => 'header-menu' ] ) ?>
 				</div>
-				<div class="menu">
+			</div>
+
+			<div class="mobile-menu">
+				<i class="icon-menu"></i>
+
+				<div class="sub-menu">
 					<?php wp_nav_menu( [ 'menu' => 'header-menu' ] ) ?>
 				</div>
 			</div>
