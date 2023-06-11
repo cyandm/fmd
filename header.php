@@ -1,7 +1,3 @@
-<?php
-//$args = [];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +22,7 @@
 						<input class="" type="search" placeholder="search">
 					</div>
 					<div class="desktop-menu">
-					<?php wp_nav_menu( [ 'menu' => 'header-menu' ] ) ?>
+					<?php wp_nav_menu( [ 'menu' => 'Header' ] ) ?>
 				</div>
 			</div>
 
@@ -34,7 +30,7 @@
 				<i class="icon-menu"></i>
 
 				<div class="sub-menu">
-					<?php wp_nav_menu( [ 'menu' => 'header-menu' ] ) ?>
+					<?php wp_nav_menu( [ 'menu' => 'Header' ] ) ?>
 				</div>
 			</div>
 

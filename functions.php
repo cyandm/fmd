@@ -38,7 +38,9 @@ function cyn_theme_setup() {
 
 	register_nav_menus( [ 
 		'header-menu' => 'Header',
-		'footer-menu' => 'Footer'
+		'footer-us-menu' => 'Footer - Us',
+		'footer-what-we-do-menu' => 'Footer - What We Do?',
+		'footer-know-more-menu' => 'Footer - Know More'
 	] );
 }
 add_action( 'after_setup_theme', 'cyn_theme_setup' );
