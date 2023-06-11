@@ -142,6 +142,7 @@ header.site-header {
       translate: 0 2rem;
       pointer-events: none;
       transition: 0.3s ease;
+      z-index: 10;
 
       &.show {
         opacity: 1;
@@ -197,12 +198,40 @@ header.site-header {
           }
         }
       }
+
+      .mobile-search {
+        background-color: #fdfdfd;
+        width: 100%;
+        margin-block-end: 2rem;
+        display: flex;
+        gap: 0.25rem;
+        border-radius: 10rem;
+        padding: 0 1rem;
+        overflow: hidden;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+        color: #939292;
+
+        input {
+          height: 100%;
+          width: 100%;
+          padding: 1rem 0.5rem;
+          background-color: transparent;
+          border: none;
+          outline: none;
+
+          &::placeholder {
+            color: #939292;
+            text-transform: capitalize;
+          }
+        }
+      }
     }
   }
 
   .search {
     i {
       cursor: pointer;
+      user-select: none;
     }
     &:has(input.show) + div.desktop-menu {
       margin-inline-start: 15rem;

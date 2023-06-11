@@ -1,6 +1,6 @@
 <?php
 /****************************** Required Files */
-
+require_once( __DIR__ . '/inc/classes/cyn-customize.php' );
 
 /***************************** User Login / Logut */
 function cyn_logout_user() {
@@ -54,3 +54,4 @@ add_action( 'init', 'cyn_theme_init' );
 
 
 /***************************** Instance Classes */
+$cyn_customize = new cyn_customize;

@@ -14,14 +14,15 @@
 		<div class="container <?php if ( $args && ! $args['border'] )
 			echo 'no-border' ?>">
 				<div>
-					<div class="search">
+					<form class="search" action="/" method="get">
 						<i class="icon-search secondary">
 
 						</i>
 
-						<input class="" type="search" placeholder="search">
-					</div>
-					<div class="desktop-menu">
+						<input class="" type="search" placeholder="search" value="<?php the_search_query(); ?>" name="s"
+						id="search" />
+				</form>
+				<div class="desktop-menu">
 					<?php wp_nav_menu( [ 'menu' => 'Header' ] ) ?>
 				</div>
 			</div>
@@ -30,6 +31,11 @@
 				<i class="icon-menu"></i>
 
 				<div class="sub-menu">
+					<form class="mobile-search" action="/" method="get">
+						<i class="icon-search"></i>
+						<input class="" type="search" placeholder="search" value="<?php the_search_query(); ?>" name="s"
+							id="search" />
+					</form>
 					<?php wp_nav_menu( [ 'menu' => 'Header' ] ) ?>
 				</div>
 			</div>
