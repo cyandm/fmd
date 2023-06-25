@@ -10,16 +10,16 @@
 
 <body>
 
-	<header class="site-header">
-		<div class="container <?php if ( $args && ! $args['border'] )
-			echo 'no-border' ?>">
-				<div>
-					<form class="search" action="/" method="get">
-						<i class="icon-search secondary">
+	<header class="site-header <?php if ( $args && ! $args['border'] )
+		echo 'no-border' ?>">
+		<div class="container ">
+			<div>
+				<form class="search" action="/" method="get">
+					<i class="icon-search secondary">
 
-						</i>
+					</i>
 
-						<input class="" type="search" placeholder="search" value="<?php the_search_query(); ?>" name="s"
+					<input class="" type="search" placeholder="search" value="<?php the_search_query(); ?>" name="s"
 						id="search" />
 				</form>
 				<div class="desktop-menu">

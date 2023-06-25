@@ -1,0 +1,16 @@
+.title-controller {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  background-image: url(../imgs/title-background.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 2rem;
+  > * {
+    translate: -0.5rem -1rem;
+  }
+}
+
+.purple-text {
+  color: #9e3768;
+}

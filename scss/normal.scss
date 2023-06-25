@@ -3,8 +3,12 @@
 @import './root/fonts';
 
 /*components*/
+@import './components/animations';
 @import './components/icons';
+@import './components/button';
+@import './components/design';
 @import './components/header';
 @import './components/footer';
 
 /*pages*/
+@import './pages/front-page';

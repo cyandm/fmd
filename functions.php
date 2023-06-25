@@ -1,8 +1,15 @@
 <?php
+/***************************** ACF Register */
+define( 'MY_ACF_PATH', get_stylesheet_directory() . '/inc/acf/' );
+define( 'MY_ACF_URL', get_stylesheet_directory_uri() . '/inc/acf/' );
+include_once( MY_ACF_PATH . 'acf.php' );
+
+
 /****************************** Required Files */
 require_once( __DIR__ . '/inc/classes/cyn-customize.php' );
+require_once( __DIR__ . '/inc/classes/cyn-acf.php' );
 
-/***************************** User Login / Logut */
+/***************************** User Login / Logout */
 function cyn_logout_user() {
 	wp_redirect( site_url() );
 	exit();
@@ -48,10 +55,14 @@ add_action( 'after_setup_theme', 'cyn_theme_setup' );
 /***************************** Theme initialize */
 
 function cyn_theme_init() {
-
+	add_filter( 'use_block_editor_for_post', '__return_false' );
 }
 add_action( 'init', 'cyn_theme_init' );
 
 
 /***************************** Instance Classes */
+
+$cyn_acf = new cyn_acf;
+$cyn_acf->cyn_acf_actions();
+
 $cyn_customize = new cyn_customize;
