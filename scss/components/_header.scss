@@ -270,3 +270,24 @@ header.site-header {
     }
   }
 }
+
+body {
+  main {
+    position: relative;
+    transition: 0.3s;
+    &::after {
+      content: '';
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      z-index: 10;
+      transition: inherit;
+      pointer-events: none;
+    }
+  }
+
+  &:has(.mobile-menu > .sub-menu.show) main::after {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}

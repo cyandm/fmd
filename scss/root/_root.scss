@@ -13,12 +13,14 @@ a {
 }
 
 //Common Styles
-body {
+body,
+::placeholder {
   font-family: 'Poppins';
   font-weight: 400;
   text-transform: capitalize;
   overflow-x: hidden;
   font-size: 1rem;
+  line-height: 1.625rem;
 }
 
 .container {
