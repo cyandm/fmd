@@ -48,3 +48,11 @@
 
 		</div>
 	</header>
+
+
+
+	<div class="preloader <?php echo ( $args && ! $args['preloader'] ) ? 'd-none' : ''; ?>">
+
+		<span class="title">Welcome To FMD</span>
+
+	</div>

@@ -5,9 +5,10 @@ const scrollTarget = document.querySelector('#scroll-target');
 
 if (scrollTarget && scrollToBottom) {
   scrollToBottom.addEventListener('click', () => {
-    scrollTarget.scrollIntoView({
+    window.scrollTo({
+      top: scrollTarget.offsetTop - 60,
+      left: 0,
       behavior: 'smooth',
-      block: 'start',
     });
   });
 }
@@ -30,54 +31,6 @@ if (productCatCards && firstCatCard) {
   });
 }
 
-/* --- Cyan Slider --- */
-
-const navigation = document.querySelector('.slider-navigation');
-const sliderWrappers = document.querySelectorAll('.cyn-slider-wrapper');
-
-if (navigation && sliderWrappers) {
-  const nextNav = navigation.querySelector('.icon-arrow-right');
-  const prevNav = navigation.querySelector('.icon-arrow-left');
-
-  sliderWrappers.forEach((wrapper) => {
-    const slides = wrapper.querySelectorAll('.cyn-slide');
-
-    nextNav.addEventListener('click', () => {
-      for (const [index, elm] of slides.entries()) {
-        if (elm.classList.contains('active')) {
-          if (index == slides.length - 1) {
-            //Go to First Slide
-            elm.classList.remove('active');
-            slides[0].classList.add('active');
-          } else {
-            //Go to Next Slide
-            elm.classList.remove('active');
-            slides[index + 1].classList.add('active');
-          }
-          break;
-        }
-      }
-    });
-
-    prevNav.addEventListener('click', () => {
-      for (const [index, elm] of slides.entries()) {
-        if (elm.classList.contains('active')) {
-          if (index == 0) {
-            //Go to Last Slide
-            elm.classList.remove('active');
-            slides[slides.length - 1].classList.add('active');
-          } else {
-            //Go to Prev Slide
-            elm.classList.remove('active');
-            slides[index - 1].classList.add('active');
-          }
-          break;
-        }
-      }
-    });
-  });
-}
-
 /* Ticker */
 const ticker = document.querySelector('.ticker');
 const tickerWrapperGroup = document.querySelectorAll('.ticker-wrapper');
@@ -91,7 +44,7 @@ if (ticker) {
     sampleTicker = tickerWrapperGroup[0].cloneNode(true);
     ticker.appendChild(sampleTicker);
     ticker.firstChild.remove();
-  }, 10000);
+  }, 8000);
 }
 
 /* Brand Ticker */
@@ -115,6 +68,6 @@ if (brandTickerGroup) {
       sampleBrand = brandWrapperGroup[0].cloneNode(true);
       brandTicker.appendChild(sampleBrand);
       brandTicker.firstChild.remove();
-    }, 10000);
+    }, 8000);
   });
 }

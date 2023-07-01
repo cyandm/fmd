@@ -8,8 +8,11 @@
 @import './components/button';
 @import './components/design';
 @import './components/card';
+@import './components/forms';
 @import './components/header';
 @import './components/footer';
+@import './components/page-loader';
 
 /*pages*/
 @import './pages/front-page';
+@import './pages/blog';

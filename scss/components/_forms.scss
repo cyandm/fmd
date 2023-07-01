@@ -1,0 +1,23 @@
+.search-container {
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  color: #939292;
+  padding: 0.25rem 1.25rem;
+  border-radius: 1.625rem;
+  overflow: hidden;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+
+  input[type='search'] {
+    padding: 0.75rem;
+    border: none;
+    outline: none;
+    width: 100%;
+    order: 2;
+  }
+
+  i.icon-search {
+    order: 1;
+  }
+}

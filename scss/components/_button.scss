@@ -5,4 +5,26 @@
   color: #fdfdfd;
   border-radius: 1.5rem;
   box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.14);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+
+  .design-before,
+  .design-after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    background-color: #9e3768;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    z-index: -1;
+    scale: 0;
+  }
+
+  .design-before {
+    background-color: rgba(#9e3768, 0.5);
+  }
 }

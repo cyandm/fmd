@@ -2,7 +2,7 @@
 /* Template Name: Front Page */
 ?>
 
-<?php get_header( null, [ 'border' => false ] ) ?>
+<?php get_header( null, [ 'border' => false, 'preloader' => true ] ) ?>
 
 <main class="front-page">
 	<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], 'full', false, [ 'class' => 'hero-image' ] ); ?>
@@ -79,8 +79,8 @@
 				</div>
 			</div>
 			<div class="slider-navigation">
-				<i class="icon-arrow-left"></i>
-				<i class="icon-arrow-right"></i>
+				<i id="cyn-prev-slide" class="icon-arrow-left"></i>
+				<i id="cyn-next-slide" class="icon-arrow-right"></i>
 			</div>
 		</div>
 		<div class="product-details">
@@ -412,7 +412,9 @@
 				</div>
 			</h2>
 
-			<a href="#" class="primary-btn except-mobile shape-btn">view all</a>
+			<div class="shape-btn">
+				<a href="#" class="primary-btn except-mobile">view all</a>
+			</div>
 		</div>
 
 		<div class="blog-wrapper">
@@ -524,7 +526,10 @@
 					<input type="checkbox" name="checkbox" id="">
 					i want you to inform me about new products and new offers
 				</label>
-				<input type="submit" value="Send" class="primary-btn">
+
+				<a href="#" class="primary-btn">
+					Submit
+				</a>
 			</form>
 
 		</div>

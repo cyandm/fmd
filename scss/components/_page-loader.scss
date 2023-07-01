@@ -1,0 +1,26 @@
+.preloader {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  background-color: #f0f0f0;
+  z-index: 1000;
+  transition: 0.7s ease-in-out;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  &.d-none {
+    display: none;
+  }
+
+  .title {
+    font-size: 4rem;
+    opacity: 0;
+    translate: 0 -100px;
+  }
+
+  .sub-title {
+    font-size: 2rem;
+  }
+}

@@ -34,6 +34,7 @@
   .card-information {
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 
     > div {
       color: #fdfdfd;
@@ -41,6 +42,13 @@
       .card-title {
         font-size: 1.25rem;
         font-weight: 600;
+        translate: 0 100%;
+        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .card-description {
+        translate: 0 200%;
+        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
     }
 
@@ -49,6 +57,7 @@
       padding: 1rem;
       border-radius: 1rem;
       transition: 0.3s;
+      display: flex;
     }
   }
 
@@ -61,6 +70,11 @@
       background: #9e3768;
       color: #fdfdfd;
       box-shadow: 0px 0px 8px 0px rgba(158, 55, 104, 0.26);
+    }
+
+    .card-title,
+    .card-description {
+      translate: 0 !important;
     }
   }
 }

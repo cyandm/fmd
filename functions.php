@@ -15,7 +15,7 @@ function cyn_logout_user() {
 	exit();
 }
 
-add_action( 'wp_logout', 'logout_user' );
+add_action( 'wp_logout', 'cyn_logout_user' );
 
 add_filter( 'login_errors', function () {
 	return null;
@@ -30,6 +30,7 @@ function cyn_enqueue_files() {
 	wp_dequeue_style( 'wp-block-library' );
 
 	wp_enqueue_script( 'cyn-swiper', get_stylesheet_directory_uri() . '/js/libs/swiper-bundle.min.js', [], false, true );
+	wp_enqueue_script( 'cyn-gsap', get_stylesheet_directory_uri() . '/js/libs/gsap.min.js', [], false, true );
 	wp_enqueue_script( 'cyn-script', get_stylesheet_directory_uri() . '/js/dist/scripts.bundle.min.js', [], false, true );
 	wp_dequeue_script( 'global-styles' );
 }
