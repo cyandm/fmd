@@ -12,7 +12,9 @@
 @import './components/header';
 @import './components/footer';
 @import './components/page-loader';
+@import './components/sidebar-blog';
 
 /*pages*/
 @import './pages/front-page';
 @import './pages/blog';
+@import './pages/single-blog';
