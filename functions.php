@@ -31,6 +31,7 @@ function cyn_enqueue_files() {
 
 	wp_enqueue_script( 'cyn-swiper', get_stylesheet_directory_uri() . '/js/libs/swiper-bundle.min.js', [], false, true );
 	wp_enqueue_script( 'cyn-gsap', get_stylesheet_directory_uri() . '/js/libs/gsap.min.js', [], false, true );
+	wp_enqueue_script( 'cyn-gsap-scroll-trigger', get_stylesheet_directory_uri() . '/js/libs/ScrollTrigger.min.js', [], false, true );
 	wp_enqueue_script( 'cyn-script', get_stylesheet_directory_uri() . '/js/dist/scripts.bundle.min.js', [], false, true );
 	wp_dequeue_script( 'global-styles' );
 }

@@ -4,9 +4,6 @@ $phone_number_1 = get_option( 'cyn_phone_number_one' );
 $phone_number_2 = get_option( 'cyn_phone_number_two' );
 $address_text = get_option( 'cyn_address_text' );
 $address_url = get_option( 'cyn_address_url' );
-
-
-
 ?>
 <footer class="site-footer">
 

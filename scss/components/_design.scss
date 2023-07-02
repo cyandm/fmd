@@ -155,3 +155,37 @@ body {
     }
   }
 }
+
+.ticker {
+  padding-block: 1rem;
+  margin-block: 2rem;
+  border: 1px solid #0f0f0f;
+  border-left: none;
+  border-right: none;
+  color: #9e3768;
+  display: flex;
+  overflow: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ticker-wrapper {
+    display: flex;
+    flex-shrink: 0;
+    .ticker-item {
+      &:after {
+        content: '';
+        width: 0.5rem;
+        aspect-ratio: 1;
+        background-color: #9e3768;
+        display: inline-block;
+        border-radius: 50%;
+        margin-inline: 1rem;
+      }
+    }
+  }
+}

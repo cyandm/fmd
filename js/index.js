@@ -3,3 +3,4 @@ import './modules/front-page.js';
 import './modules/button.js';
 import './modules/slider.js';
 import './modules/common.js';
+import './modules/about-us.js';
