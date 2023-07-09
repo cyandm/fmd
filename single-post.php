@@ -1,3 +1,24 @@
+<?php
+/* Data In This Page */
+$author_name = get_the_author_meta( 'display_name', get_post_field( 'post_author', get_the_ID() ) );
+
+$current_post_cats_id = [];
+foreach ( get_the_category() as $cat ) {
+	array_push( $current_post_cats_id, $cat->term_id );
+}
+
+$related_blog = new WP_Query( [ 
+	'post_type' => 'post',
+	'posts_per_page' => 3,
+	'category__in' => $current_post_cats_id,
+	'post__not_in' => [ get_the_ID() ],
+] );
+
+?>
+
+
+<!-- Start Page Template -->
+
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ) ?>
 
 <main class="single-post container">
@@ -9,7 +30,7 @@
 				<a href="" class="primary-btn">
 					<i class="icon-arrow-long-left"></i>
 				</a>
-				<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'feature-image' ] ) ?>
+				<?= wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, [ 'class' => 'feature-image' ] ) ?>
 				<div class="title">
 					<h1>
 						<?= get_the_title() ?>
@@ -19,7 +40,7 @@
 					<div class="post-meta-inner-wrapper">
 						<span>Author : </span>
 						<span>
-							<?= get_the_author() ?>
+							<?= $author_name ?>
 						</span>
 					</div>
 					<div class="post-meta-inner-wrapper">
@@ -35,50 +56,32 @@
 			</div>
 		</div>
 
-		<div class="related-blogs-container">
-			<h2>Related Blogs</h2>
-			<div class="related-blogs-wrapper">
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
+		<?php
+		if ( $related_blog->have_posts() ) : ?>
+			<div class="related-blogs-container">
+				<h2>Related Blogs</h2>
+				<div class="related-blogs-wrapper">
 
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
+					<?php
+					while ( $related_blog->have_posts() ) {
+						$related_blog->the_post();
 
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
+						get_template_part( '/templates/components/card', null, [ 
+							'url' => get_permalink(),
+							'card_class' => 'blog',
+							'image_id' => get_post_thumbnail_id(),
+							'image_size' => [ 400, 300 ],
+							'card_title' => get_the_title(),
+							'card_description' => get_the_excerpt()
+						] );
+					}
+					?>
 				</div>
 			</div>
-		</div>
+
+		<?php endif; ?>
+
+
 
 	</section>
 </main>

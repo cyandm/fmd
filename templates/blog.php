@@ -1,335 +1,129 @@
 <?php
 /* Template Name: Blog */
+
+$recommend_blogs = new WP_Query( [ 
+	'post_type' => 'post',
+	'tag' => 'recommend',
+	'posts_per_page' => 4
+] );
 ?>
 
-<?php get_header( null, [ 'border' => false, 'preloader' => false ] ) ?>
+<?php get_header( null, [ 'border' => ! $recommend_blogs->have_posts(), 'preloader' => false ] ) ?>
 
 <main class="blog">
 
-	<section class="feature-posts container ">
+	<?php if ( $recommend_blogs->have_posts() ) : ?>
+		<section class="feature-posts container ">
 
-		<div class="cyn-slider-wrapper">
-			<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-			<?= wp_get_attachment_image( 56, 'full', false, [ 'class' => 'hero-blog cyn-slide' ] ) ?>
-			<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide' ] ) ?>
-			<?= wp_get_attachment_image( 56, 'full', false, [ 'class' => 'hero-blog cyn-slide' ] ) ?>
-		</div>
-
-
-		<div class="slider-info">
-			<div class="slider-navigation">
-				<i id="cyn-prev-slide" class="icon-arrow-long-left"></i>
-				<i id="cyn-next-slide" class="icon-arrow-long-right"></i>
+			<div class="cyn-slider-wrapper">
+				<?php while ( $recommend_blogs->have_posts() ) : ?>
+					<?php $recommend_blogs->the_post() ?>
+					<?= wp_get_attachment_image( get_post_thumbnail_id(), [ 2000, 2000 ], false, [ 'class' => 'hero-blog cyn-slide' ] ) ?>
+				<?php endwhile; ?>
 			</div>
 
-			<div class="post-info">
-				<div class="post-content">
-					<div class="cyn-slider-wrapper mask-wrapper">
-						<h2 class="cyn-slide active">Which atmosphere do you want to have
-							in your home?</h2>
-						<h2 class="cyn-slide">Lorem ipsum, dolor sit amet consectetur adipisicing elit. </h2>
-						<h2 class="cyn-slide">Which atmosphere do you want to have
-							in your home?</h2>
-						<h2 class="cyn-slide">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </h2>
-					</div>
 
-					<div class="cyn-slider-wrapper mask-wrapper">
-						<p class="cyn-slide active">That is the most important question in designing a house. The
-							choice of colours, atmosphere and materials is determined on
-							this basis.in this article we focus on the materials and the
-							atmosphere they give out</p>
-						<p class="cyn-slide">That is the most important question in designing a house. The
-							choice of colours, atmosphere and materials is determined on
-							this basis.in this article we focus on the materials and the
-							atmosphere they give out</p>
-						<p class="cyn-slide">That is the most important question in designing a house. The
-							choice of colours, atmosphere and materials is determined on
-							this basis.in this article we focus on the materials and the
-							atmosphere they give out</p>
-						<p class="cyn-slide">That is the most important question in designing a house. The
-							choice of colours, atmosphere and materials is determined on
-							this basis.in this article we focus on the materials and the
-							atmosphere they give out</p>
-					</div>
-
+			<div class="slider-info">
+				<div class="slider-navigation">
+					<i id="cyn-prev-slide" class="icon-arrow-long-left"></i>
+					<i id="cyn-next-slide" class="icon-arrow-long-right"></i>
 				</div>
-				<div class="post-details">
-					<div class="post-meta">
-						<div class="post-meta-inner-wrapper">
-							<span>Author</span>
-							<div class="cyn-slider-wrapper mask-wrapper">
-								<span class="post-author cyn-slide active">Monica Jackson</span>
-								<span class="post-author cyn-slide">Amir Tanazzoh</span>
-								<span class="post-author cyn-slide">Monica Jackson</span>
-								<span class="post-author cyn-slide">Amir Tanazzoh</span>
-							</div>
-						</div>
-						<div class="post-meta-inner-wrapper">
-							<span>Date</span>
 
-							<div class="cyn-slider-wrapper mask-wrapper">
-								<span class="post-date cyn-slide active">2022/06/21</span>
-								<span class="post-date cyn-slide">2022/04/16</span>
-								<span class="post-date cyn-slide">2022/06/21</span>
-								<span class="post-date cyn-slide">2022/04/16</span>
-							</div>
+				<div class="post-info">
+					<div class="post-content">
+						<div class="cyn-slider-wrapper mask-wrapper">
+							<?php while ( $recommend_blogs->have_posts() ) : ?>
+								<?php $recommend_blogs->the_post() ?>
+								<h2 class="cyn-slide">
+									<?= get_the_title() ?>
+								</h2>
+							<?php endwhile; ?>
 						</div>
+
+						<div class="cyn-slider-wrapper mask-wrapper">
+							<?php while ( $recommend_blogs->have_posts() ) : ?>
+								<?php $recommend_blogs->the_post() ?>
+								<p class="cyn-slide">
+									<?= get_the_excerpt() ?>
+								</p>
+							<?php endwhile; ?>
+
+						</div>
+
 					</div>
+					<div class="post-details">
+						<div class="post-meta">
+							<div class="post-meta-inner-wrapper">
+								<span>Author</span>
+								<div class="cyn-slider-wrapper mask-wrapper">
+									<?php while ( $recommend_blogs->have_posts() ) : ?>
+										<?php $recommend_blogs->the_post() ?>
+										<span class="post-author cyn-slide">
+											<?= get_the_author() ?>
+										</span>
+									<?php endwhile; ?>
+								</div>
+							</div>
+							<div class="post-meta-inner-wrapper">
+								<span>Date</span>
 
-					<a href="#" class="primary-btn">
-						<i class="icon-arrow-down-right"></i>
-					</a>
+								<div class="cyn-slider-wrapper mask-wrapper">
+									<?php while ( $recommend_blogs->have_posts() ) : ?>
+										<?php $recommend_blogs->the_post() ?>
+										<span class="post-date cyn-slide">
+											<?= get_the_date() ?>
+										</span>
+									<?php endwhile; ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="cyn-slider-wrapper">
+							<?php while ( $recommend_blogs->have_posts() ) : ?>
+								<?php $recommend_blogs->the_post() ?>
+								<a href="<?= get_the_permalink() ?>" class="primary-btn cyn-slide">
+									<i class="icon-arrow-down-right"></i>
+								</a>
+							<?php endwhile; ?>
+						</div>
+
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-
+		</section>
+	<?php endif; ?>
 
 	<section class="blog-container container">
 
 		<?php get_template_part( 'templates/components/sidebar', 'blog' ) ?>
 
-		<div class="blog-content">
-			<div class="title-blog">
-				All Blog
+		<?php if ( have_posts() ) : ?>
+			<div class="blog-content">
+				<div class="title-blog">
+					<?php
+					if ( get_the_archive_title() == 'Archives' ) {
+						echo 'All Blog';
+					} else {
+						echo get_the_archive_title();
+					}
+					?>
+				</div>
+				<section class="blog-content-cards">
+					<?php
+					while ( have_posts() ) {
+						the_post();
+						get_template_part( 'templates/components/card', null, [ 
+							'url' => get_permalink(),
+							'image_size' => 400,
+							'image_id' => get_post_thumbnail_id(),
+							'card_title' => get_the_title(),
+							'card_description' => get_the_excerpt()
+						] );
+					}
+					?>
+				</section>
 			</div>
-			<section class="blog-content-cards">
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="blog-item card">
-					<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'hero-blog cyn-slide active' ] ) ?>
-					<div class="card-information">
-						<div>
-							<p class="card-title">Columns</p>
-							<p class="card-description"> 140 items</p>
-						</div>
-
-						<a href="#">
-							<i class="icon-arrow-down-right"></i>
-						</a>
-					</div>
-				</div>
-			</section>
-		</div>
+		<?php endif; ?>
 	</section>
 </main>
 

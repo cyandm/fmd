@@ -22,6 +22,7 @@ aside.sidebar-blog {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      position: relative;
 
       &.mobile {
         display: none;
@@ -34,6 +35,47 @@ aside.sidebar-blog {
 
         &.mobile {
           display: block;
+
+          i {
+            transition: 0.3s;
+            cursor: pointer;
+          }
+
+          &:has(.blog-opener.active) {
+            i {
+              rotate: 180deg;
+              color: #9e3768;
+            }
+          }
+        }
+      }
+
+      .blog-opener {
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #9e3768;
+        width: 100%;
+        border-radius: 1rem;
+        z-index: 100;
+        top: 3.5rem;
+        translate: 0 -50%;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: 0.3s;
+
+        .category-info,
+        .category-info.active {
+          border: none;
+          background-color: transparent;
+          color: #000;
+        }
+
+        &.active {
+          opacity: 1;
+          translate: 0;
+          pointer-events: all;
+          visibility: visible;
         }
       }
 

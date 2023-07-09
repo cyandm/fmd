@@ -8,6 +8,7 @@ if (navigation && sliderWrappers) {
 
   sliderWrappers.forEach((wrapper) => {
     const slides = wrapper.querySelectorAll('.cyn-slide');
+    slides[0].classList.add('active');
 
     nextNav.addEventListener('click', () => {
       for (const [index, elm] of slides.entries()) {

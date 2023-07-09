@@ -52,14 +52,33 @@ main.single-post {
       }
 
       .post-content {
-        > *:not(:first-child) {
-          margin-block-start: 1em;
+        > * {
+          margin-block: 0.7em;
         }
 
         img {
           max-width: 100%;
           height: auto;
           border-radius: 1.625rem;
+        }
+
+        ul,
+        li,
+        ol {
+          margin-inline: 1rem;
+        }
+
+        a {
+          color: #9e3768;
+          text-decoration: underline;
+          font-weight: 600;
+        }
+
+        blockquote {
+          padding-inline: 1rem;
+          border-inline-start: 4px solid #9e3768;
+          background-color: rgba(#9e3768, 0.1);
+          padding-block: 1rem;
         }
       }
     }

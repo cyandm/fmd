@@ -6,3 +6,4 @@ import './modules/common.js';
 import './modules/about-us.js';
 import './modules/single-product.js';
 import './modules/sidebar-product.js';
+import './modules/sidebar-blog.js';
