@@ -25,11 +25,16 @@ body,
 html,
 body,
 main {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
 }
 
 .container {
   max-width: 1440px;
   margin-inline: auto;
   padding-inline: 1rem;
+}
+
+::selection {
+  background-color: #9e3768;
+  color: #f0f0f0;
 }

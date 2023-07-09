@@ -1,0 +1,30 @@
+.product-card {
+  display: flex;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(0deg, rgba(#000, 0.7), rgba(#000, 0) 45%);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .product-content {
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+  }
+}

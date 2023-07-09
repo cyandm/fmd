@@ -9,6 +9,8 @@
   isolation: isolate;
   overflow: hidden;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
 
   .design-before,
   .design-after {
@@ -31,10 +33,27 @@
 
 .secondary-btn {
   background-color: #9e3768;
+  color: #f0f0f0;
   padding: 0.75rem 2.125rem;
   border-radius: 0.875rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+}
+
+.white-btn {
+  background-color: #f0f0f0;
+  color: #0f0f0f;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  display: flex;
+}
+
+.disable-btn {
+  background-color: #939292;
+  color: #f0f0f0;
+  padding: 0.75rem 1.625rem;
+  border-radius: 1.625rem;
 }

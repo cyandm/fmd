@@ -8,11 +8,13 @@
 @import './components/button';
 @import './components/design';
 @import './components/card';
+@import './components/product-card';
 @import './components/forms';
 @import './components/header';
 @import './components/footer';
 @import './components/page-loader';
 @import './components/sidebar-blog';
+@import './components/sidebar-product';
 
 /*pages*/
 @import './pages/front-page';
@@ -20,3 +22,7 @@
 @import './pages/single-blog';
 @import './pages/contact-us';
 @import './pages/about-us';
+@import './pages/single-product';
+@import './pages/home-shop';
+@import './pages/404';
+@import './pages/archive-product';

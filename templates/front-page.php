@@ -2,7 +2,7 @@
 /* Template Name: Front Page */
 ?>
 
-<?php get_header( null, [ 'border' => false, 'preloader' => true ] ) ?>
+<?php get_header( null, [ 'border' => false, 'preloader' => false ] ) ?>
 
 <main class="front-page">
 	<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], 'full', false, [ 'class' => 'hero-image' ] ); ?>
@@ -418,7 +418,7 @@
 		</div>
 
 		<div class="blog-wrapper">
-			<div class="product-category-item card">
+			<div class=" card">
 				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
 				<div class="card-information">
 					<div>
@@ -431,7 +431,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="product-category-item card">
+			<div class=" card">
 				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
 				<div class="card-information">
 					<div>
@@ -444,7 +444,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="product-category-item card">
+			<div class=" card">
 				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
 				<div class="card-information">
 					<div>
@@ -457,7 +457,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="product-category-item card">
+			<div class=" card">
 				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
 				<div class="card-information">
 					<div>
@@ -470,7 +470,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="product-category-item card">
+			<div class=" card">
 				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
 				<div class="card-information">
 					<div>
@@ -483,7 +483,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="product-category-item card">
+			<div class=" card">
 				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
 				<div class="card-information">
 					<div>

@@ -1,7 +1,7 @@
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ) ?>
 
 <main class="single-post container">
-	<?php get_template_part( 'templates/parts/sidebar', 'blog' ) ?>
+	<?php get_template_part( 'templates/components/sidebar', 'blog' ) ?>
 
 	<section class="main-content">
 		<div class="post-wrapper">

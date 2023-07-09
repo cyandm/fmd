@@ -21,3 +21,34 @@
     order: 1;
   }
 }
+
+input[type='checkbox'] {
+  width: 1.25rem;
+  height: 1.25rem;
+  translate: -5%;
+  outline: 1px solid #9e3768;
+  appearance: initial;
+  cursor: pointer;
+  background-color: #fdfdfd;
+  border-radius: 0.25rem;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    font-family: 'cyan-icon' !important;
+    background-color: #9e3768;
+    position: absolute;
+    inset: 0;
+    background-image: url(../imgs/check.svg);
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  &:checked {
+    background-color: #9e3768;
+
+    &:after {
+      opacity: 1;
+    }
+  }
+}

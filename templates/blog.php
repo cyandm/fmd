@@ -87,7 +87,7 @@
 
 	<section class="blog-container container">
 
-		<?php get_template_part( 'templates/parts/sidebar', 'blog' ) ?>
+		<?php get_template_part( 'templates/components/sidebar', 'blog' ) ?>
 
 		<div class="blog-content">
 			<div class="title-blog">

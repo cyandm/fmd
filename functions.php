@@ -8,6 +8,9 @@ include_once( MY_ACF_PATH . 'acf.php' );
 /****************************** Required Files */
 require_once( __DIR__ . '/inc/classes/cyn-customize.php' );
 require_once( __DIR__ . '/inc/classes/cyn-acf.php' );
+require_once( __DIR__ . '/inc/classes/cyn-register.php' );
+require_once( __DIR__ . '/inc/classes/cyn-admin.php' );
+require_once( __DIR__ . '/inc/classes/cyn-hook.php' );
 
 /***************************** User Login / Logout */
 function cyn_logout_user() {
@@ -67,6 +70,7 @@ add_action( 'init', 'cyn_theme_init' );
 /***************************** Instance Classes */
 
 $cyn_acf = new cyn_acf;
-$cyn_acf->cyn_acf_actions();
-
 $cyn_customize = new cyn_customize;
+$cyn_register = new cyn_register;
+$cyn_admin = new cyn_admin;
+$cyn_hook = new cyn_hook;

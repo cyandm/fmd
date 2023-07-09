@@ -1,8 +1,6 @@
 <aside class="sidebar-blog">
-	<div class="search-container">
-		<input type="search" class="search" placeholder="search">
-		<i class="icon-search"></i>
-	</div>
+	<?php get_template_part( 'templates/components/search-form' ) ?>
+
 
 	<div class="categories-container">
 		<h3 class="sidebar-title">Categories</h3>

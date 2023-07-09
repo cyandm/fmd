@@ -39,7 +39,7 @@
         flex-direction: column;
         gap: 0.625rem;
 
-        input,
+        input:not(input[type='checkbox']),
         textarea {
           padding: 1.125rem 1.25rem;
           border: none;

@@ -1,0 +1,41 @@
+main.archive-product {
+  display: flex;
+  gap: 2rem;
+
+  @media (width<=900px) {
+    flex-direction: column;
+  }
+
+  aside {
+    max-width: 25rem;
+  }
+
+  .product-container {
+    .filter-chips {
+      display: flex;
+      gap: 0.625rem;
+      padding-block: 1rem;
+
+      .filter-item {
+        background-color: #939292;
+        color: #fff;
+        display: flex;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        gap: 0.625rem;
+        font-size: 0.75rem;
+        font-weight: 400;
+      }
+    }
+    .product-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+
+      .product-card {
+        flex: 1;
+        min-width: 17.5rem;
+      }
+    }
+  }
+}

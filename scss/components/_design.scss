@@ -18,6 +18,7 @@
 .title-section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-block: 1rem;
 
   .title {
@@ -52,10 +53,6 @@
   color: transparent;
   background-color: transparent;
   box-shadow: none;
-
-  @media (width<=600px) {
-    display: none;
-  }
 
   &::after {
     content: '';

@@ -594,6 +594,12 @@ main.front-page {
         margin-block-start: 2rem;
       }
 
+      .primary-btn {
+        @media (width<=600px) {
+          display: none;
+        }
+      }
+
       .title-controller {
         background-size: contain;
         padding-right: 4rem;
