@@ -17,63 +17,40 @@
 	</div>
 
 	<section class="ticker">
-		<div class="ticker-wrapper">
-			<div class="ticker-item">largest selection of building supplies</div>
-			<div class="ticker-item">Lowest Prices</div>
-			<div class="ticker-item">Exceptional Customer Service</div>
-			<div class="ticker-item">Biggest Selection of Brands</div>
-			<div class="ticker-item">In Stock material</div>
-		</div>
-		<div class="ticker-wrapper">
-			<div class="ticker-item">largest selection of building supplies</div>
-			<div class="ticker-item">Lowest Prices</div>
-			<div class="ticker-item">Exceptional Customer Service</div>
-			<div class="ticker-item">Biggest Selection of Brands</div>
-			<div class="ticker-item">In Stock material</div>
-		</div>
-		<div class="ticker-wrapper">
-			<div class="ticker-item">largest selection of building supplies</div>
-			<div class="ticker-item">Lowest Prices</div>
-			<div class="ticker-item">Exceptional Customer Service</div>
-			<div class="ticker-item">Biggest Selection of Brands</div>
-			<div class="ticker-item">In Stock material</div>
-		</div>
+
+		<?php for ( $i = 0; $i < 3; $i++ ) : ?>
+			<div class="ticker-wrapper">
+				<div class="ticker-item">largest selection of building supplies</div>
+				<div class="ticker-item">Lowest Prices</div>
+				<div class="ticker-item">Exceptional Customer Service</div>
+				<div class="ticker-item">Biggest Selection of Brands</div>
+				<div class="ticker-item">In Stock material</div>
+			</div>
+		<?php endfor; ?>
 	</section>
 
 	<section class="image-slogan">
-		<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'image' ] ); ?>
+		<?= wp_get_attachment_image( get_field( 'feature_image' ), 'full', false, [ 'class' => 'image' ] ); ?>
 
 		<div class="ribbon">
-			we are the biggest in the industry
+			<?php the_field( 'slogan' ) ?>
 		</div>
 	</section>
 
 	<section class="content-middle container">
 		<div class="content">
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
+			<?php the_field( 'left-text-paragraph' ) ?>
 		</div>
 		<div class="image grid">
-			<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => '' ] ); ?>
-			<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => '' ] ); ?>
-			<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => '' ] ); ?>
+
+			<?php
+			$images_right = get_field( 'images_right' );
+
+			foreach ( $images_right as $image ) {
+				echo wp_get_attachment_image( $image, 'full', false, [ 'class' => '' ] );
+			}
+
+			?>
 		</div>
 	</section>
 	<section class="call-to-action">
@@ -87,23 +64,13 @@
 
 	<section class="content-middle container">
 		<div class="image">
-			<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => '' ] ); ?>
+			<?= wp_get_attachment_image( get_field( 'image_left' ), 'full', false, [ 'class' => '' ] ); ?>
 		</div>
 
 		<div class="content">
 
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, facilis sit. Iste beatae magnam
-				consectetur quam quidem totam vitae ipsam ratione corrupti! Cumque sapiente accusantium blanditiis at
-				fugit libero sequi.</p>
+			<?php the_field( 'right-text-paragraph' ) ?>
+
 		</div>
 
 	</section>

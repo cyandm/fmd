@@ -17,7 +17,7 @@ $address_url = get_option( 'cyn_address_url' );
 			<div class="title-controller">
 				<h2>Get in <span class="purple-text">Touch</span></h2>
 			</div>
-			<?= wp_get_attachment_image( 55, 'full', false, [ 'class' => 'feature-image' ] ) ?>
+			<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], 'full', false, [ 'class' => 'feature-image' ] ) ?>
 		</div>
 		<div class="contact-form">
 

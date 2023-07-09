@@ -104,6 +104,7 @@ footer.site-footer {
   .address {
     > div {
       margin-block-start: 0.5rem;
+      max-inline-size: 13rem;
     }
     iframe {
       max-width: 16rem;
