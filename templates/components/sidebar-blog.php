@@ -2,9 +2,10 @@
 
 $all_blog_category_websites = get_categories();
 
-/* Current Url */
-global $wp;
-$current_url = home_url( $wp->request ) . '/';
+
+global $wp_query;
+isset( $wp_query->query['pagename'] ) && $blogCondition = $wp_query->query['pagename'];
+isset( $wp_query->query['category_name'] ) && $categoryCondition = $wp_query->query['category_name'];
 
 /* Recommend Query */
 $recommend_blogs = new WP_Query( [ 
@@ -12,7 +13,6 @@ $recommend_blogs = new WP_Query( [
 	'tag' => 'recommend',
 	'posts_per_page' => 4
 ] );
-
 ?>
 
 
@@ -25,8 +25,11 @@ $recommend_blogs = new WP_Query( [
 			<h3 class="sidebar-title">Categories</h3>
 			<div class="categories-wrapper desktop">
 
-				<a href="/blog" class="category-info 
-				<?php echo ( site_url() . '/blog/' == $current_url ? 'active' : '' ) ?>">
+				<a href="/blog" link="nofollow" class="category-info 
+				<?php
+				if ( $blogCondition && $blogCondition == 'blog' ) {
+					echo 'active';
+				} ?>">
 					<span class="category-name">All</span>
 					<span class="category-count">
 						<?= wp_count_posts( 'post' )->publish ?>
@@ -35,8 +38,12 @@ $recommend_blogs = new WP_Query( [
 
 				<?php foreach ( $all_blog_category_websites as $blog_category ) : ?>
 					<?php $category_link = get_category_link( $blog_category ) ?>
-					<a href="<?= $category_link ?>"
-						class="category-info <?php echo ( $category_link == $current_url ? 'active' : '' ) ?>">
+					<a href="<?= $category_link ?>" class="category-info <?php
+
+					  if ( $categoryCondition && $categoryCondition == $blog_category->slug ) {
+						  echo 'active';
+					  }
+					  ?>">
 						<span class="category-name">
 							<?= $blog_category->name ?>
 						</span>
@@ -73,7 +80,7 @@ $recommend_blogs = new WP_Query( [
 
 					<?php foreach ( $all_blog_category_websites as $blog_category ) : ?>
 						<?php $category_link = get_category_link( $blog_category ) ?>
-						<a href="<?= $category_link ?>"
+						<a rel="nofollow" href="<?= $category_link ?>"
 							class="category-info <?php echo ( $category_link == $current_url ? 'active' : '' ) ?>">
 							<span class="category-name">
 								<?= $blog_category->name ?>
@@ -99,7 +106,7 @@ $recommend_blogs = new WP_Query( [
 
 				<?php while ( $recommend_blogs->have_posts() ) : ?>
 					<?php $recommend_blogs->the_post() ?>
-					<a href="<?= get_permalink() ?>" class="recommend-item">
+					<a rel="nofollow" href="<?= get_permalink() ?>" class="recommend-item">
 						<?= wp_get_attachment_image( get_post_thumbnail_id(), [ 300, 300 ], false, [ 'class' => '' ] ) ?>
 						<div class="info">
 							<span class="title">
@@ -117,3 +124,5 @@ $recommend_blogs = new WP_Query( [
 
 	</div>
 </aside>
+
+<?php wp_reset_postdata(); ?>

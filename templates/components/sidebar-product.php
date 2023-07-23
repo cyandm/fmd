@@ -10,7 +10,7 @@
 		<?php get_template_part( 'templates/components/search-form' ) ?>
 	</div>
 
-	<form class="filter-container">
+	<form class="filter-container" action="/products">
 		<div class="filter-actions">
 			<input type="submit" href="#" class="primary-btn" value="Apply Filter" />
 			<a href="#" class="disable-btn">Clear</a>

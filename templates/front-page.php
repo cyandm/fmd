@@ -1,14 +1,25 @@
 <?php
+
 /* Template Name: Front Page */
+$product_cat_middle_group = get_field( 'category_on_middle' );
+$product_cat_top_group = get_field( 'category_on_top' );
+$brands_ltr = get_field( 'brands_ltr' );
+$brands_rtl = get_field( 'brands_rtl' );
+$blog_posts = new WP_Query( [ 
+	'tag' => 'front-page-posts',
+	'posts_per_page' => '6'
+] );
+
+
 ?>
 
 <?php get_header( null, [ 'border' => false, 'preloader' => false ] ) ?>
 
 <main class="front-page">
-	<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], 'full', false, [ 'class' => 'hero-image' ] ); ?>
+	<?= wp_get_attachment_image( get_field( 'feature_image' ), 'full', false, [ 'class' => 'hero-image' ] ); ?>
 	<div class="hero-container container">
 		<h1>
-			<?= get_field( 'hero_title' ) ?>
+			<?= get_field( 'home_page_title' ) ?>
 		</h1>
 
 		<div class="subtract">
@@ -36,32 +47,28 @@
 		</div>
 
 	</div>
-	<div class="container product-cat-section">
+	<section class="container product-cat-section">
 		<div class="product-cat-group">
-			<div class="product-cat-card hover">
-				<img src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-				<div>
-					<p>Flooring</p>
-					<i class="icon-arrow-top-right"></i>
-				</div>
-			</div>
-			<div class="product-cat-card">
-				<img src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-				<div>
-					<p>Flooring</p>
-					<i class="icon-arrow-top-right"></i>
-				</div>
-			</div>
-			<div class="product-cat-card">
-				<img src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-				<div>
-					<p>Flooring</p>
-					<i class="icon-arrow-top-right"></i>
-				</div>
-			</div>
 
+			<?php
+			if ( $product_cat_top_group ) :
+
+				foreach ( $product_cat_top_group as $product_cat ) :
+
+					$product_cat_img_id = get_field( 'custom_thumbnail', $product_cat->taxonomy . '_' . $product_cat->term_id );
+					?>
+					<a href="<?= get_term_link( $product_cat ) ?>" class="product-cat-card">
+						<?= wp_get_attachment_image( $product_cat_img_id, 'thumbnail', false, [ 'class' => '' ] ); ?>
+						<div>
+							<p>
+								<?= $product_cat->name ?>
+							</p>
+							<i class="icon-arrow-top-right"></i>
+						</div>
+					</a>
+				<?php endforeach; endif; ?>
 		</div>
-	</div>
+	</section>
 	<section id="scroll-target" class="today-offer container">
 		<div class="feature-image">
 			<div class="title-controller">
@@ -192,320 +199,123 @@
 			<div class="ticker-item">In Stock material</div>
 		</div>
 	</section>
-	<section class="product-categories container">
-		<div class="title-section">
-			<h2 class="title">
-				Product Categories
-			</h2>
 
-			<a href="#" class="primary-btn except-mobile"> View all</a>
-		</div>
+	<?php if ( $product_cat_middle_group ) : ?>
+		<section class="product-categories container">
+			<div class="title-section">
+				<h2 class="title">
+					Product Categories
+				</h2>
 
-		<div class="product-categories-wrapper">
-			<div class="product-category-item card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
+				<a href="/products" class="primary-btn except-mobile"> View all</a>
+			</div>
+
+			<div class="product-categories-wrapper">
+
+				<?php foreach ( $product_cat_middle_group as $product_cat ) {
+
+					get_template_part( '/templates/components/card', null, [ 
+						'url' => get_term_link( $product_cat ),
+						'card_class' => 'product-category-item',
+						'image_id' => get_field( 'custom_thumbnail', $product_cat->taxonomy . '_' . $product_cat->term_id ),
+						'card_title' => $product_cat->name,
+						'card_description' => $product_cat->count . ' item',
+					] );
+				} ?>
+			</div>
+			<a href="/products" class="primary-btn only-mobile"> View all</a>
+		</section>
+	<?php endif; ?>
+
+	<?php if ( $brands_ltr || $brands_rtl ) : ?>
+		<section class="brands ">
+			<div class="title-section container">
+				<h2 class="title">
+					Brands We Carry
+				</h2>
+
+				<a href="/brands" class="primary-btn except-mobile"> View All </a>
+			</div>
+
+			<?php if ( $brands_ltr ) : ?>
+				<div class="brand-ticker">
+					<?php for ( $i = 0; $i < 2; $i++ ) : ?>
+						<div class="brand-wrapper">
+
+							<?php foreach ( $brands_ltr as $brand ) : ?>
+								<a href="<?= get_term_link( $brand ) ?>" class="ticker-item">
+									<?= wp_get_attachment_image( get_field( 'custom_thumbnail', $brand->taxonomy . '_' . $brand->term_id ), 'full', false, [ 'class' => 'single-brand' ] ) ?>
+								</a>
+							<?php endforeach; ?>
+
+						</div>
+					<?php endfor; ?>
+				</div>
+			<?php endif; ?>
+
+			<?php if ( $brands_rtl ) : ?>
+				<div dir="rtl" class="brand-ticker rtl">
+					<?php for ( $i = 0; $i < 2; $i++ ) : ?>
+						<div class="brand-wrapper">
+
+							<?php foreach ( $brands_rtl as $brand ) : ?>
+								<a href="<?= get_term_link( $brand ) ?>" class="ticker-item">
+									<?= wp_get_attachment_image( get_field( 'custom_thumbnail', $brand->taxonomy . '_' . $brand->term_id ), 'full', false, [ 'class' => 'single-brand' ] ) ?>
+								</a>
+							<?php endforeach; ?>
+
+						</div>
+					<?php endfor; ?>
+				</div>
+			<?php endif; ?>
+
+			<a href="/brands" class="primary-btn only-mobile"> View all</a>
+
+		</section>
+	<?php endif; ?>
+
+	<?php if ( $blog_posts->have_posts() ) : ?>
+		<section class="blog container">
+
+			<div class="title-section">
+				<h2 class="title">
+					<div class="title-controller">
+						<h2>let’s learn <br> <span class="purple-text">something new</span></h2>
 					</div>
+				</h2>
 
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class="product-category-item card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class="product-category-item card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class="product-category-item card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
+				<div class="shape-btn">
+					<a href="/blog" class="primary-btn except-mobile">view all</a>
 				</div>
 			</div>
 
-		</div>
-		<a href="#" class="primary-btn only-mobile"> View all</a>
-	</section>
-	<section class="brands ">
-		<div class="title-section container">
-			<h2 class="title">
-				Brands We Carry
-			</h2>
+			<div class="blog-wrapper">
+				<?php
+				while ( $blog_posts->have_posts() ) {
+					$blog_posts->the_post();
+					get_template_part( 'templates/components/card', null, [ 
+						'url' => get_the_permalink(),
+						'image_id' => get_post_thumbnail_id(),
+						'card_title' => get_the_title(),
+						'card_description' => get_the_excerpt(),
 
-			<a href="#" class="primary-btn except-mobile"> View All </a>
-		</div>
+					] );
+				}
 
-
-		<div class="brand-ticker">
-			<div class="brand-wrapper">
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
+				wp_reset_postdata();
+				?>
 			</div>
-			<div class="brand-wrapper">
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-			</div>
-		</div>
-		<div dir="rtl" class="brand-ticker rtl">
-			<div class="brand-wrapper">
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-			</div>
-			<div class="brand-wrapper">
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-				<div class="ticker-item">
-					<img class="single-brand" src="<?= get_stylesheet_directory_uri() . '/imgs/brand.png' ?>" alt="">
-				</div>
-			</div>
-		</div>
-		<a href="#" class="primary-btn only-mobile"> View all</a>
+			<a href="/blog" class="primary-btn only-mobile"> View all</a>
 
-	</section>
-	<section class="blog container">
+		</section>
+	<?php endif; ?>
 
-		<div class="title-section">
-			<h2 class="title">
-				<div class="title-controller">
-					<h2>let’s learn <br> <span class="purple-text">something new</span></h2>
-				</div>
-			</h2>
-
-			<div class="shape-btn">
-				<a href="#" class="primary-btn except-mobile">view all</a>
-			</div>
-		</div>
-
-		<div class="blog-wrapper">
-			<div class=" card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class=" card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class=" card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class=" card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class=" card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-			<div class=" card">
-				<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '1440', '0' ], false, [ 'class' => '' ] ); ?>
-				<div class="card-information">
-					<div>
-						<p class="card-title">Columns</p>
-						<p class="card-description"> 140 items</p>
-					</div>
-
-					<a href="#">
-						<i class="icon-arrow-down-right"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-		<a href="#" class="primary-btn only-mobile"> View all</a>
-
-	</section>
 	<section class="contact-us container">
 		<div class="contact-image">
 			<div class="title-controller">
 				<h2>Get in <span class="purple-text">Touch</span></h2>
 			</div>
-			<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '680', '0' ], false, [ 'class' => '' ] ); ?>
+			<?= wp_get_attachment_image( get_field( 'contact_us_image' ), [ '680', '0' ], false, [ 'class' => '' ] ); ?>
 		</div>
 		<div class="contact-form">
 

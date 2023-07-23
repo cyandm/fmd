@@ -16,17 +16,18 @@ if (scrollTarget && scrollToBottom) {
 /* product hover */
 
 const productCatCards = document.querySelectorAll('.product-cat-card');
-const firstCatCard = document.querySelector('.product-cat-card.hover');
 
-if (productCatCards && firstCatCard) {
+if (productCatCards[0]) {
+  productCatCards[0].classList.add('hover');
+
   productCatCards.forEach((productCatCard) => {
     productCatCard.addEventListener('mouseenter', () => {
-      firstCatCard.classList.remove('hover');
+      productCatCards[0].classList.remove('hover');
       productCatCard.classList.add('hover');
     });
     productCatCard.addEventListener('mouseleave', () => {
       productCatCard.classList.remove('hover');
-      firstCatCard.classList.add('hover');
+      productCatCards[0].classList.add('hover');
     });
   });
 }
@@ -65,7 +66,7 @@ if (brandTickerGroup) {
     }
 
     setInterval(() => {
-      sampleBrand = brandWrapperGroup[0].cloneNode(true);
+      sampleBrand = brandTicker.firstElementChild.cloneNode(true);
       brandTicker.appendChild(sampleBrand);
       brandTicker.firstChild.remove();
     }, 8000);

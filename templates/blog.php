@@ -2,10 +2,11 @@
 /* Template Name: Blog */
 
 $recommend_blogs = new WP_Query( [ 
-	'post_type' => 'post',
 	'tag' => 'recommend',
 	'posts_per_page' => 4
 ] );
+
+
 ?>
 
 <?php get_header( null, [ 'border' => ! $recommend_blogs->have_posts(), 'preloader' => false ] ) ?>
@@ -91,6 +92,7 @@ $recommend_blogs = new WP_Query( [
 				</div>
 			</div>
 		</section>
+		<?php wp_reset_postdata(); ?>
 	<?php endif; ?>
 
 	<section class="blog-container container">
@@ -122,6 +124,15 @@ $recommend_blogs = new WP_Query( [
 					}
 					?>
 				</section>
+				<?php
+				echo "<div class='pagination-links'>" . paginate_links(
+					array(
+						'total' => $wp_query->max_num_pages,
+						'prev_text' => __( '<i class="icon-arrow-left"></i>' ),
+						'next_text' => __( '<i class="icon-arrow-right"></i>' )
+					)
+				) . "</div>";
+				?>
 			</div>
 		<?php endif; ?>
 	</section>
