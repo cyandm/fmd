@@ -7,7 +7,7 @@
     "run-scss": "sass scss/normal.scss css/normal.css -w -s compressed",
     "run-js": "esbuild ./js/index.js --bundle --minify  --outfile=./js/dist/scripts.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --watch"
   },
-  "dependencies": {
-    "esbuild": "0.17.19"
+  "devDependencies": {
+    "esbuild": "^0.18.16"
   }
 }

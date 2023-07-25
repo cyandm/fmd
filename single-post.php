@@ -27,7 +27,7 @@ $related_blog = new WP_Query( [
 	<section class="main-content">
 		<div class="post-wrapper">
 			<div class="post-info">
-				<a href="" class="primary-btn">
+				<a href="javascript:window.history.back();" class="primary-btn">
 					<i class="icon-arrow-long-left"></i>
 				</a>
 				<?= wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, [ 'class' => 'feature-image' ] ) ?>

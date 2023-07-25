@@ -1,12 +1,14 @@
 <?php
 
-if ( ! class_exists( 'cyn_acf' ) ) {
-	class cyn_acf {
-		function __construct() {
-			add_filter( 'acf/settings/url', function ($url) {
+if (!class_exists('cyn_acf')) {
+	class cyn_acf
+	{
+		function __construct()
+		{
+			add_filter('acf/settings/url', function ($url) {
 				return MY_ACF_URL;
-			} );
-			add_filter( 'acf/settings/show_updates', '__return_false', 100 );
+			});
+			add_filter('acf/settings/show_updates', '__return_false', 100);
 			//add_filter( 'acf/settings/show_admin', '__return_false' );
 
 			/* acf actions */
@@ -14,254 +16,370 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 		}
 
 
-		public function cyn_acf_actions() {
-			add_action( 'acf/init', [ $this, 'cyn_front_page' ] );
-			add_action( 'acf/init', [ $this, 'cyn_single_product' ] );
-			add_action( 'acf/init', [ $this, 'cyn_contact_us_page' ] );
-			add_action( 'acf/init', [ $this, 'cyn_about_us_page' ] );
+		public function cyn_acf_actions()
+		{
+			add_action('acf/init', [$this, 'cyn_product_post_type']);
+			add_action('acf/init', [$this, 'cyn_contact_us_page']);
+			add_action('acf/init', [$this, 'cyn_about_us_page']);
 		}
 
-		public function cyn_front_page() {
+		public function cyn_product_post_type()
+		{
+			$productGalleryGroup = array(
+				[
+					'key' => 'gallery_img_key_0',
+					'label' => 'Gallery Cover Image',
+					'name' => 'gallery_cover_img',
+					'instructions' => 'Shown in home page layout',
+					'type' => 'image',
+					'return_format' => 'url',
+					'wrapper' => [
+						'width' => '100',
+					],
+				],
+			);
 
-		}
+			for ($i = 0; $i < 12; $i++) {
+				$j = $i;
+				$j++;
+				$productGalleryGroup[] = [
+					'key' => 'gallery_img_key_' . $j,
+					'label' => 'Gallery Image ' . $j,
+					'name' => 'gallery_img_' . $j,
+					'type' => 'image',
+					'return_format' => 'url',
+					'wrapper' => [
+						'width' => '50',
+					],
+				];
+			}
 
-		public function cyn_single_product() {
-			acf_add_local_field_group( [ 
-				'key' => 'single_product_information_key',
-				'title' => 'Product information',
-				'fields' => [ 
-					[ 
+			acf_add_local_field_group([
+				'key' => 'product_post_type_key',
+				'title' => 'Product Details',
+				'fields' => [
+					[
 						'key' => 'specification_tab_key',
 						'name' => 'specification_tab',
 						'label' => 'Specification',
 						'type' => 'tab',
 						'endpoint' => 1,
 					],
-					[ 
-						'key' => 'specification_tab_group_key',
-						'name' => 'specification_tab_group',
-						'type' => 'group',
-						'layout' => 'row',
-						'sub_fields' => [ 
-							[ 
-								'key' => 'product_code_key',
-								'label' => 'Product Code',
-								'name' => 'product_code',
-								'type' => 'text',
-							],
-							[ 
-								'key' => 'Finish_key',
-								'label' => 'Finish',
-								'name' => 'Finish',
-								'type' => 'text',
-							],
-							[ 
-								'key' => 'Installation_key',
-								'label' => 'Installation',
-								'name' => 'Installation',
-								'type' => 'text',
-							],
-							[ 
-								'key' => 'brand_key',
-								'label' => 'Brand',
-								'name' => 'brand',
-								'type' => 'taxonomy',
-								'taxonomy' => 'brand',
-								'field_type' => 'multi_select',
-								'add_term' => 1,
-								'return_format' => 'object',
-								'allow_null' => 0,
-							],
-							[ 
-								'key' => 'product_cat_key',
-								'label' => 'Product Category',
-								'name' => 'product_cat',
-								'type' => 'taxonomy',
-								'taxonomy' => 'product-cat',
-								'field_type' => 'multi_select',
-								'add_term' => true,
-								'return_format' => 'object',
-								'allow_null' => 0,
-							],
+
+					[
+						'key' => 'product_sid_key',
+						'label' => 'Product SID',
+						'name' => 'product_sid',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
+						]
+
+					],
+					[
+						'key' => 'product_code_key',
+						'label' => 'Product Code',
+						'name' => 'product_code',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
+						]
+
+					],
+					[
+						'key' => 'product_color_code_key',
+						'label' => 'Product Color Code',
+						'name' => 'product_color_code',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
 						]
 					],
-					[ 
+					[
+						'key' => 'product_finish_key',
+						'label' => 'Product Finish',
+						'name' => 'product_finish',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
+						]
+					],
+					[
+						'key' => 'product_installation_key',
+						'label' => 'Product Installation',
+						'name' => 'product_installation',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
+						]
+					],
+					[
+						'key' => 'product_sqft_box_key',
+						'label' => 'Product Sqft/Box',
+						'name' => 'product_sqft_box',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
+						]
+					],
+					[
+						'key' => 'product_sqft_pallet_key',
+						'label' => 'Product Sqft/Pallet',
+						'name' => 'product_sqft_pallet',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
+						]
+					],
+					[
+						'key' => 'product_box_pallet_key',
+						'label' => 'Product Box/Pallet',
+						'name' => 'product_box_pallet',
+						'type' => 'text',
+						'wrapper' => [
+							'width' => '25'
+						]
+					],
+					[
+						'key' => 'product_price_key',
+						'label' => 'Product Price',
+						'name' => 'product_price',
+						'instructions' => 'ONLY FOR HOME-PAGE LAYOUT ',
+						'type' => 'number',
+						'wrapper' => [
+							'width' => '100'
+						]
+					],
+
+					[
 						'key' => 'product_details_tab_key',
 						'name' => 'product_details_tab',
-						'label' => 'Product Details',
+						'label' => 'Details',
 						'type' => 'tab',
 						'endpoint' => 0,
 					],
-					[ 
-						'key' => 'product_details_group_key',
-						'name' => 'product_details_group',
-						'type' => 'group',
-						'layout' => 'row',
-						'sub_fields' => [ 
-							[ 
-								'key' => 'product_details_key',
-								'name' => 'product_details',
-								'label' => 'Product Details',
-								'type' => 'wysiwyg',
-							],
-							[ 
-								'key' => 'product_technical_key',
-								'name' => 'product_technical',
-								'label' => 'Product Technical',
-								'type' => 'wysiwyg',
-							]
+
+					[
+						'key' => 'product_desc_key',
+						'label' => 'Product Description',
+						'name' => 'product_desc',
+						'type' => 'wysiwyg',
+						'wrapper' => [
+							'width' => '50'
 						]
 					],
-					[ 
-						'key' => 'product_related_tab_key',
-						'name' => 'product_related_tab',
-						'label' => 'Related',
+					[
+						'key' => 'product_technical_key',
+						'label' => 'Product Technical',
+						'name' => 'product_tech',
+						'type' => 'wysiwyg',
+						'wrapper' => [
+							'width' => '50'
+						]
+					],
+
+					[
+						'key' => 'slider_tab_key',
+						'label' => 'Gallery',
+						'name' => '',
 						'type' => 'tab',
 						'endpoint' => 0
 					],
-					[ 
-						'key' => 'product_related_group_key',
-						'name' => 'product_related_group',
-						'type' => 'group',
-						'layout' => 'row',
-						'sub_fields' => [ 
-							[ 
-								'key' => 'related_product_key',
-								'name' => 'related_products',
-								'label' => 'Related Products',
-								'type' => 'post_object',
-								'multiple' => 1,
-								'post_type' => 'product',
-								'post_status' => 'publish',
-								'allow_null' => 0
-							],
-							[ 
-								'key' => 'related_post_key',
-								'name' => 'related_posts',
-								'label' => 'Related Posts',
-								'type' => 'post_object',
-								'multiple' => 1,
-								'post_type' => 'post',
-								'post_status' => 'publish',
-								'allow_null' => 0
-							]
-						]
-					]
-				],
-				'location' => [ 
-					[ 
-						[ 
-							'param' => 'post_type',
-							'operator' => '==',
-							'value' => 'product'
-						]
-					]
-				],
-				'hide_on_screen' => [ 
-					1 => 'the_content',
-					2 => 'excerpt',
-					3 => 'discussion',
-					4 => 'comments',
-					5 => 'revisions',
-					6 => 'slug',
-					7 => 'author',
-					8 => 'format',
-					9 => 'page_attributes',
-					10 => 'send-trackbacks',
-				]
-			] );
 
-			acf_add_local_field_group( [ 
-				'key' => 'single_product_gallery_key',
-				'title' => 'Product Gallery',
-				'fields' => [ 
-					[ 
-						'key' => 'product_gallery_key',
-						'name' => 'product_gallery',
+					[
+						'key' => 'product_gallery_group_key',
+						'label' => 'Product Gallery',
+						'name' => 'product_gallery_group',
 						'type' => 'group',
-						'sub_fields' => [ 
-							[ 
-								'key' => 'image_1_key',
-								'name' => 'image_1',
-								'type' => 'image',
-								'return_format' => 'object'
+						'layout' => 'block',
+						'sub_fields' => $productGalleryGroup,
+					],
+
+					[
+						'key' => 'related_tab_key',
+						'label' => 'Related',
+						'name' => '',
+						'type' => 'tab',
+						'endpoint' => 0
+					],
+
+					[
+						'key' => 'related_group_key',
+						'label' => 'Related',
+						'name' => 'related_group',
+						'type' => 'group',
+						'sub_fields' => [
+							[
+								'key' => 'related_products_key',
+								'label' => 'Related Products',
+								'name' => 'related_products',
+								'type' => 'post_object',
+								'return_format' => 'id',
+								'post_type' => [
+									0 => 'product',
+								],
+								'post_status' => [
+									0 => 'publish'
+								],
+								'multiple' => 1,
+								'ui' => 1,
+								'wrapper' => [
+									'width' => '50'
+								]
 							],
-							[ 
-								'key' => 'image_2_key',
-								'name' => 'image_2',
-								'type' => 'image',
-								'return_format' => 'object'
+							[
+								'key' => 'related_articles_key',
+								'label' => 'Related Articles',
+								'name' => 'related_articles',
+								'type' => 'post_object',
+								'return_format' => 'id',
+								'post_type' => [
+									0 => 'post',
+								],
+								'post_status' => [
+									0 => 'publish'
+								],
+								'multiple' => 1,
+								'ui' => 1,
+								'wrapper' => [
+									'width' => '50'
+								]
 							],
-							[ 
-								'key' => 'image_3_key',
-								'name' => 'image_3',
-								'type' => 'image',
-								'return_format' => 'object'
+							[
+								'key' => 'product_brand_tax_key',
+								'label' => 'Brands',
+								'name' => 'product_brand_tax',
+								'type' => 'taxonomy',
+								'required' => 0,
+								'conditional_logic' => 0,
+								'wrapper' => array(
+									'width' => '50',
+								),
+								'taxonomy' => 'brand',
+								'add_term' => 1,
+								'save_terms' => 1,
+								'load_terms' => 1,
+								'return_format' => 'id',
+								'field_type' => 'multi_select',
+								'allow_null' => 1,
+								'multiple' => 0,
 							],
-							[ 
-								'key' => 'image_4_key',
-								'name' => 'image_4',
-								'type' => 'image',
-								'return_format' => 'object'
-							],
-							[ 
-								'key' => 'image_5_key',
-								'name' => 'image_5',
-								'type' => 'image',
-								'return_format' => 'object'
-							],
-							[ 
-								'key' => 'image_6_key',
-								'name' => 'image_6',
-								'type' => 'image',
-								'return_format' => 'object'
-							],
-							[ 
-								'key' => 'image_7_key',
-								'name' => 'image_7',
-								'type' => 'image',
-								'return_format' => 'object'
-							],
-							[ 
-								'key' => 'image_8_key',
-								'name' => 'image_8',
-								'type' => 'image',
-								'return_format' => 'object'
+							[
+								'key' => 'product_filters_tax_key',
+								'label' => 'Filters',
+								'name' => 'product_filters_tax',
+								'type' => 'taxonomy',
+								'required' => 0,
+								'conditional_logic' => 0,
+								'wrapper' => array(
+									'width' => '50',
+								),
+								'taxonomy' => 'filters',
+								'add_term' => 1,
+								'save_terms' => 1,
+								'load_terms' => 1,
+								'return_format' => 'id',
+								'field_type' => 'multi_select',
+								'allow_null' => 1,
+								'multiple' => 0,
 							],
 						]
-					]
+					],
+
 				],
-				'location' => [ 
-					[ 
-						[ 
+				'location' => [
+					[
+						[
 							'param' => 'post_type',
 							'operator' => '==',
 							'value' => 'product'
 						]
-					]
-				],
-				'hide_on_screen' => [ 
-					1 => 'the_content',
-					2 => 'excerpt',
-					3 => 'discussion',
-					4 => 'comments',
-					5 => 'revisions',
-					6 => 'slug',
-					7 => 'author',
-					8 => 'format',
-					9 => 'page_attributes',
-					10 => 'send-trackbacks',
-				],
-				'position' => 'side'
-			] );
+					],
+				]
+			]);
+
+			/** specials post type **/
+			acf_add_local_field_group(array(
+				'key' => 'specials_post_type_key',
+				'title' => 'Specials Details',
+				'fields' => array(
+					[
+						'key' => 'slider_tab_key',
+						'label' => 'Gallery',
+						'name' => '',
+						'type' => 'tab',
+						'endpoint' => 1
+					],
+
+					[
+						'key' => 'specials_gallery_group_key',
+						'label' => 'Specials Gallery',
+						'name' => 'specials_gallery_group',
+						'type' => 'group',
+						'layout' => 'block',
+						'sub_fields' => array(
+							[
+								'key' => 'special_gallery_img_key_0',
+								'label' => 'Gallery Image 1',
+								'name' => 'special_gallery_img_0',
+								'type' => 'image',
+								'return_format' => 'id',
+								'wrapper' => [
+									'width' => '50',
+								],
+							],
+							[
+								'key' => 'special_gallery_img_key_1',
+								'label' => 'Gallery Image 2',
+								'name' => 'special_gallery_img_1',
+								'type' => 'image',
+								'return_format' => 'id',
+								'wrapper' => [
+									'width' => '50',
+								],
+							],
+							[
+								'key' => 'special_gallery_img_key_2',
+								'label' => 'Gallery Image 3',
+								'name' => 'special_gallery_img_2',
+								'type' => 'image',
+								'return_format' => 'id',
+								'wrapper' => [
+									'width' => '50',
+								],
+							],
+							[
+								'key' => 'special_gallery_img_key_3',
+								'label' => 'Gallery Image 4',
+								'name' => 'special_gallery_img_3',
+								'type' => 'image',
+								'return_format' => 'id',
+								'wrapper' => [
+									'width' => '50',
+								],
+							],
+						),
+					],
+				),
+				'location' => array(
+					[
+						[
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'specials'
+						]
+					],
+				)
+			));
 		}
 
-		public function cyn_contact_us_page() {
-			acf_add_local_field_group( [ 
+		public function cyn_contact_us_page()
+		{
+			acf_add_local_field_group([
 				'key' => 'cyn-contact-us-key',
 				'title' => 'Page Settings',
-				'fields' => [ 
-					[ 
+				'fields' => [
+					[
 						'label' => 'Hero Image',
 						'name' => 'hero_image',
 						'key' => 'hero_image_key',
@@ -270,16 +388,16 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 						'preview_size' => 'thumbnail',
 					],
 				],
-				'location' => [ 
-					[ 
-						[ 
+				'location' => [
+					[
+						[
 							'param' => 'page_template',
 							'operator' => '==',
 							'value' => 'templates/contact-us.php'
 						]
 					]
 				],
-				'hide_on_screen' => [ 
+				'hide_on_screen' => [
 					1 => 'the_content',
 					2 => 'excerpt',
 					3 => 'discussion',
@@ -291,10 +409,11 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 					9 => 'page_attributes',
 					10 => 'send-trackbacks',
 				]
-			] );
+			]);
 		}
 
-		public function cyn_about_us_page() {
+		public function cyn_about_us_page()
+		{
 			acf_add_local_field_group(
 				array(
 					'key' => 'group_64aad273646ce',
@@ -537,7 +656,8 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 					'active' => true,
 					'description' => '',
 					'show_in_rest' => 0,
-				) );
+				)
+			);
 		}
 	}
 }
