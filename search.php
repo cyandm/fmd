@@ -91,8 +91,12 @@ $formUrl     = "./";
         <?php endif; ?>
       <?php endforeach; ?>
     </div>
-
-    <?php if ($searchWpQuery->have_posts()) : ?>
+    <?php if (count($searchQueryArgs['post__in']) <= 0) : ?>
+      <div class="not-find">
+        <p>sorry ! we could’nt find anything</p>
+        <img src="<?php echo get_stylesheet_directory_uri() . '/imgs/not-found.png' ?>">
+      </div>
+    <?php elseif ($searchWpQuery->have_posts()) : ?>
       <div class="title">
         <h1 class="h1">search results for: <?php the_search_query(); ?></h1>
       </div>
@@ -129,11 +133,6 @@ $formUrl     = "./";
         )
       ) . "</div>";
       ?>
-    <?php else : ?>
-      <div class="">
-        <p>sorry ! we could’nt find anything</p>
-        <img src="<?php echo get_stylesheet_directory_uri() . '/imgs/not-found.png' ?>">
-      </div>
     <?php endif; ?>
   </div>
 </main>

@@ -11,6 +11,8 @@ main.archive-product {
   }
 
   .product-container {
+    flex: 1 1 auto;
+
     .filter-chips {
       display: flex;
       gap: 0.625rem;
@@ -27,6 +29,7 @@ main.archive-product {
         font-weight: 400;
       }
     }
+
     .product-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -35,6 +38,24 @@ main.archive-product {
       .product-card {
         flex: 1;
         min-width: 17.5rem;
+      }
+    }
+
+    .not-find {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .title {
+      margin-bottom: 2.25rem;
+
+      .description {
+        &+p {
+          margin-top: .5rem;
+        }
       }
     }
   }

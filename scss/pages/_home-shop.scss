@@ -10,60 +10,66 @@ main.home-shop {
     display: flex;
     width: 100%;
 
-    .products-cat-wrapper {
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-block-end: 1rem;
-        margin-block-start: 1.825rem;
+    .products-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
 
-        .h2 {
-          font-size: 1.5rem;
-        }
+      .products-cat-wrapper {
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-block-end: 1rem;
 
-        a {
-          @media (width<=600px) {
-            display: none;
+          .h2 {
+            font-size: 1.5rem;
+          }
+
+          a {
+            @media (width<=600px) {
+              display: none;
+            }
           }
         }
-      }
 
-      main {
-        display: flex;
-        gap: 1.25rem;
-
-        @media (width<=600px) {
-          flex-direction: column-reverse;
-          gap: 0.5rem;
-        }
-
-        > div {
-          flex: 1;
-        }
-
-        .sample-products {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          grid-auto-rows: 1fr;
+        main {
+          display: flex;
           gap: 1.25rem;
+
           @media (width<=600px) {
-            gap: 1rem;
+            flex-direction: column-reverse;
+            gap: 0.5rem;
           }
 
-          img {
-            width: 100%;
-            height: 100%;
-            border-radius: 1.25rem;
+          >div {
+            flex: 1;
           }
-        }
 
-        .product-category-image {
-          img {
-            border-radius: 1.625rem;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+          .sample-products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 1.25rem;
+
+            @media (width<=600px) {
+              gap: 1rem;
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              border-radius: 1.25rem;
+            }
+          }
+
+          .product-category-image {
+            img {
+              border-radius: 1.625rem;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
         }
       }

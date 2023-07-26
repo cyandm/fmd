@@ -43,7 +43,7 @@ $formUrl     = get_term_link($thisTerm);
       <div class="title">
         <h1 class="h1"><?php echo get_the_archive_title(); ?></h1>
         <p class="description">
-          <?php echo term_description($thisTerm->term_id) ?>
+          <?= term_description($thisTerm->term_id); ?>
         </p>
       </div>
 
@@ -74,7 +74,7 @@ $formUrl     = get_term_link($thisTerm);
         ) . "</div>";
         ?>
       <?php else : ?>
-        <div class="">
+        <div class="not-find">
           <p>sorry ! we could’nt find anything</p>
           <img src="<?php echo get_stylesheet_directory_uri() . '/imgs/not-found.png' ?>">
         </div>

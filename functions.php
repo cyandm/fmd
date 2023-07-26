@@ -32,7 +32,7 @@ function cyn_enqueue_files()
 {
 	wp_enqueue_style('cyn-swiper', get_stylesheet_directory_uri() . '/css/swiper.min.css', [], false, 'all');
 	wp_enqueue_style('cyn-icon', get_stylesheet_directory_uri() . '/fonts/icon/cyn-icon.css', [], false, 'all');
-	wp_enqueue_style('cyn-final', get_stylesheet_directory_uri() . '/css/normal.css', [], false, 'all');
+	wp_enqueue_style('cyn-final', get_stylesheet_directory_uri() . '/css/theme-bundle.css', [], false, 'all');
 	wp_enqueue_style('cyn-style', get_stylesheet_uri(), [], false, 'all');
 	wp_dequeue_style('wp-block-library');
 
