@@ -12,35 +12,65 @@ if ( isset( $_GET['sp'] ) ) {
 } else {
 	$wpQuery = $wp_query;
 }
+
+$id = get_queried_object()->term_id;
+;
+
+$brands = get_field( 'gallery', 'special-cat_' . $id );
+
 ?>
 
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ); ?>
 
 <main class="archive-specials container">
+
+	<?php if ( $brands ) : ?>
+		<section class="brands ">
+			<div class="title-section container">
+				<h2 class="title">
+					Brands We Carry
+				</h2>
+			</div>
+
+			<?php if ( $brands ) : ?>
+				<div class="brand-wrapper">
+
+					<?php foreach ( $brands as $brand ) : ?>
+						<?= wp_get_attachment_image( $brand, 'full', false, [ 'class' => 'single-brand' ] ) ?>
+					<?php endforeach; ?>
+
+				</div>
+			<?php endif; ?>
+
+
+
+		</section>
+	<?php endif; ?>
+
+
 	<?php if ( $wpQuery->have_posts() ) : ?>
 		<div class="specials-archive-wrapper">
 			<?php while ( $wpQuery->have_posts() ) :
 				$wpQuery->the_post(); ?>
-				<?php
-				$postId = get_the_ID();
-				?>
+				<?php $postId = get_the_ID(); ?>
+
 				<article class="specials-article">
 					<header class="title">
 						<div>
-							<p class="h2">
+							<h3 class="h2">
 								<?php echo get_the_title() ?>
-							</p>
+							</h3>
 						</div>
-						<a href="tel:<?= $phone_number_1 ?>" class="primary-btn">Call now</a>
+						<a href="tel:<?= $phone_number_1 ?>" class="secondary-btn except-mobile">Call now</a>
 					</header>
 
 					<main>
 						<div class="gallery-group">
-							<div>
+							<div class="l">
 								<?= wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, [ 'class' => '' ] ) ?>
 							</div>
 
-							<div>
+							<div class="r">
 								<?php
 								$galleryGroup = get_field( 'specials_gallery_group', $postId );
 								if ( isset( $galleryGroup ) )
@@ -54,7 +84,8 @@ if ( isset( $_GET['sp'] ) ) {
 							<?php the_content() ?>
 						</div>
 					</main>
-					<a href="tel:<?= $phone_number_1 ?>" class="only-mobile primary-btn">Call now</a>
+
+					<a href="tel:<?= $phone_number_1 ?>" class="only-mobile secondary-btn">Call now</a>
 				</article>
 			<?php endwhile; ?>
 		</div>

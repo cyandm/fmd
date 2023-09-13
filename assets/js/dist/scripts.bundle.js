@@ -6393,7 +6393,7 @@
     }
   });
 
-  // js/pages/front-page.js
+  // assets/js/pages/front-page.js
   var scrollToBottom = document.querySelector("#scroll-to-bottom");
   var scrollTarget = document.querySelector("#scroll-target");
   if (scrollTarget && scrollToBottom) {
@@ -12990,7 +12990,7 @@
   };
   _getGSAP3() && gsap3.registerPlugin(ScrollTrigger2);
 
-  // js/pages/about-us.js
+  // assets/js/pages/about-us.js
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   if (document.querySelector("main.about-us")) {
     const aboutTimeLine = gsapWithCSS.timeline({
@@ -22117,7 +22117,7 @@
   var modules = [Virtual, Keyboard, Mousewheel, Navigation, Pagination, Scrollbar, Parallax, Zoom, Controller, A11y, History, HashNavigation, Autoplay, Thumb, freeMode, Grid, Manipulation, EffectFade, EffectCube, EffectFlip, EffectCoverflow, EffectCreative, EffectCards];
   Swiper.use(modules);
 
-  // js/pages/single-product.js
+  // assets/js/pages/single-product.js
   var productThumbnails = new Swiper(".product-thumbnails", {
     slidesPerView: 4,
     spaceBetween: 16,
@@ -22172,7 +22172,7 @@
     });
   }
 
-  // js/modules/slider.js
+  // assets/js/modules/slider.js
   var sliderWrappers = document.querySelectorAll(".cyn-slider-wrapper");
   var navigation = document.querySelector(".slider-navigation");
   if (navigation && sliderWrappers) {
@@ -22215,7 +22215,7 @@
   if (mainBlog) {
   }
 
-  // js/modules/common.js
+  // assets/js/modules/common.js
   var maskWrapperGroup = document.querySelectorAll(".mask-wrapper");
   function cynSetProperty(element, property, value) {
     element.style.setProperty(property, value + "px");
@@ -22239,7 +22239,7 @@
     }
   });
 
-  // js/modules/ajax-form.js
+  // assets/js/modules/ajax-form.js
   var import_jquery = __toESM(require_jquery());
   function objectifyFormArray(formArray) {
     var returnArray = {};
@@ -22283,7 +22283,7 @@
     });
   });
 
-  // js/components/sidebar-product.js
+  // assets/js/components/sidebar-product.js
   var sidebarProduct = document.querySelector("aside.sidebar-products");
   if (sidebarProduct) {
     let setFilterVal = function() {
@@ -22353,7 +22353,7 @@
   }
   var setFilterVal2;
 
-  // js/components/sidebar-blog.js
+  // assets/js/components/sidebar-blog.js
   if (document.querySelector("aside.sidebar-blog")) {
     blogCategoryHandler = document.querySelector(".mobile-category-handler");
     blogCategory = document.querySelector(".blog-opener");
@@ -22362,7 +22362,7 @@
     });
   }
 
-  // js/components/button.js
+  // assets/js/components/button.js
   var primaryBtns = document.querySelectorAll(".primary-btn");
   primaryBtns.forEach((btn) => {
     var btnTl = gsapWithCSS.timeline({});
@@ -22382,7 +22382,7 @@
     });
   });
 
-  // js/components/header.js
+  // assets/js/components/header.js
   var searchIcon = document.querySelector("form.search i");
   if (searchIcon) {
     searchIcon.addEventListener("click", () => {

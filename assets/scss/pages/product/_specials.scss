@@ -43,17 +43,17 @@ main.archive-specials {
           .r {
             display: flex;
             flex-wrap: wrap;
-            padding-right: .5rem;
+            padding-right: 0.5rem;
             gap: 1rem;
 
             img {
-              width: calc(50% - .5rem);
-              height: calc(50% - .5rem);
+              width: calc(50% - 0.5rem);
+              height: calc(50% - 0.5rem);
             }
           }
 
           .l {
-            padding-left: .5rem;
+            padding-left: 0.5rem;
 
             img {
               height: 100%;
@@ -76,7 +76,8 @@ main.archive-specials {
           }
         }
 
-        .content {}
+        .content {
+        }
       }
     }
   }

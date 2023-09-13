@@ -1,4 +1,5 @@
 <?php
+var_dump( get_queried_object() );
 
 if ( $wp_query->posts ) {
 

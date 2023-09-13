@@ -52,7 +52,7 @@ $allChips = array_merge( $productCats, $brandsCats, $filtersCats );
 			<?php else : ?>
 				<div class="not-find">
 					<p>sorry ! we could’nt find anything</p>
-					<img src="<?php echo get_stylesheet_directory_uri() . '/imgs/not-found.png' ?>">
+					<img src="<?php echo get_stylesheet_directory_uri() . '/assets/imgs/not-found.png' ?>">
 				</div>
 			<?php endif; ?>
 		<?php else : ?>

@@ -8,11 +8,11 @@
 	<div class="changes-in-scroll container">
 		<div class="slide-1">
 			<h2 data-content="it was just an idea">it was just an idea</h2>
-			<img src="<?= get_stylesheet_directory_uri() . '/imgs/about-us-sketch.png' ?>" alt="">
+			<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/about-us-sketch.png' ?>" alt="">
 		</div>
 		<div class="slide-2">
 			<h2 data-content="until we made it real">until we made it real</h2>
-			<img src="<?= get_stylesheet_directory_uri() . '/imgs/about-us-real.png' ?>" alt="">
+			<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/about-us-real.png' ?>" alt="">
 		</div>
 	</div>
 

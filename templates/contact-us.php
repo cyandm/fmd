@@ -83,7 +83,7 @@ $address_url = get_option( 'cyn_address_url' );
 		</div>
 
 		<div class="image">
-			<img src="<?= get_stylesheet_directory_uri() . '/imgs/contact-us.png' ?>" alt="">
+			<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/contact-us.png' ?>" alt="">
 		</div>
 	</section>
 </main>

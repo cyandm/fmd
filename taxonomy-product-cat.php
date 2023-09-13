@@ -59,7 +59,7 @@ $formUrl = get_term_link( $thisTerm );
 		<?php else : ?>
 			<div class="">
 				<p>sorry ! we could’nt find anything</p>
-				<img src="<?php echo get_stylesheet_directory_uri() . '/imgs/not-found.png' ?>">
+				<img src="<?php echo get_stylesheet_directory_uri() . '/assets/imgs/not-found.png' ?>">
 			</div>
 		<?php endif; ?>
 	</div>

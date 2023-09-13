@@ -25,7 +25,7 @@ $feature_products = get_field( 'feature_products' );
 
 		<div class="subtract">
 			<div class="inner-subtract">
-				<img src="<?= get_stylesheet_directory_uri() . '/imgs/Subtract.png' ?>" alt="">
+				<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/Subtract.png' ?>" alt="">
 
 				<div id="scroll-to-bottom" class="spinner">
 					<svg viewBox="0 0 112 112">
@@ -139,28 +139,36 @@ $feature_products = get_field( 'feature_products' );
 
 				<div class="product-gallery">
 					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+						<img class="cyn-slide active"
+							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
 							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
+							alt="">
 					</div>
 					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+						<img class="cyn-slide active"
+							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
 							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
+							alt="">
 					</div>
 					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+						<img class="cyn-slide active"
+							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
 							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
+							alt="">
 					</div>
 					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+						<img class="cyn-slide active"
+							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
 							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
+							alt="">
 					</div>
 				</div>
 			</div>

@@ -186,23 +186,23 @@ $related = get_field( 'related_group', $productId );
 
 		<div class="transitions-wrapper">
 			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/imgs/End_Cap_1.png' ?> " alt="">
+				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/End_Cap_1.png' ?> " alt="">
 				<p>End Cap</p>
 			</div>
 			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/imgs/Quarter_Round_1.png' ?> " alt="">
+				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Quarter_Round_1.png' ?> " alt="">
 				<p>Quarter Round</p>
 			</div>
 			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/imgs/Reducer_1.png' ?> " alt="">
+				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Reducer_1.png' ?> " alt="">
 				<p>Reducer</p>
 			</div>
 			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/imgs/Stair_Nose_1.png' ?> " alt="">
+				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Stair_Nose_1.png' ?> " alt="">
 				<p>Stair Nose</p>
 			</div>
 			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/imgs/T-Molding_1.png' ?> " alt="">
+				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/T-Molding_1.png' ?> " alt="">
 				<p>T-Molding</p>
 			</div>
 		</div>

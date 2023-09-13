@@ -7,7 +7,7 @@ $featureImg = wp_get_attachment_image( get_post_thumbnail_id( $args['product'] )
 	<?php if ( $featureImg > 0 ) : ?>
 		<?= $featureImg ?>
 	<?php else : ?>
-		<img width="400" height="400" src=<?= get_stylesheet_directory_uri() . '/imgs/placeholder.png' ?>>
+		<img width="400" height="400" src=<?= get_stylesheet_directory_uri() . '/assets/imgs/placeholder.png' ?>>
 	<?php endif; ?>
 	<div class="product-content">
 		<span>
