@@ -28,7 +28,7 @@
 
 .only-mobile {
   @media (width>=600px) {
-    display: none;
+    display: none !important;
   }
   @media (width<=600px) {
     display: block;

@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+
 const primaryBtns = document.querySelectorAll('.primary-btn');
 
 primaryBtns.forEach((btn) => {

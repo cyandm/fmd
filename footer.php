@@ -87,9 +87,9 @@ $address_url = get_option( 'cyn_address_url' );
 	</div>
 
 </footer>
-<wpscripts>
+<div>
 	<?php wp_footer() ?>
-</wpscripts>
+</div>
 </body>
 
 </html>
