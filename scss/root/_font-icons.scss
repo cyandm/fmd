@@ -1,16 +1,10 @@
-/*
- * Theme Name: FMD
- * Theme Url: 
- * Author Name: Cyan Digital Marketing Agency
- * Author Url: https://cyandm.com
- * Version: 1.0.0
-*/
 @font-face {
   font-family: 'cyan-icon';
-  src: url('./cyan-icon.eot');
-  src: url('./cyan-icon.eot') format('embedded-opentype'),
-    url('./cyan-icon.ttf') format('truetype'),
-    url('./cyan-icon.woff') format('woff'), url('./cyan-icon.svg') format('svg');
+  src: url('../fonts/icon/cyan-icon.eot');
+  src: url('../fonts/icon/cyan-icon.eot') format('embedded-opentype'),
+    url('../fonts/icon/cyan-icon.ttf') format('truetype'),
+    url('../fonts/icon/cyan-icon.woff') format('woff'),
+    url('../fonts/icon/cyan-icon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;

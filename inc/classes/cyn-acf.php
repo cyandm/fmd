@@ -1,64 +1,64 @@
 <?php
 
-if (!class_exists('cyn_acf')) {
-	class cyn_acf
-	{
-		function __construct()
-		{
-			add_filter('acf/settings/url', function ($url) {
-				return MY_ACF_URL;
-			});
-			add_filter('acf/settings/show_updates', '__return_false', 100);
-			//add_filter( 'acf/settings/show_admin', '__return_false' );
+if ( ! class_exists( 'cyn_acf' ) ) {
+	class cyn_acf {
+		function __construct() {
+			define( 'MY_ACF_PATH', get_stylesheet_directory() . '/inc/acf/' );
+			define( 'MY_ACF_URL', get_stylesheet_directory_uri() . '/inc/acf/' );
+			include_once( MY_ACF_PATH . 'acf.php' );
 
-			/* acf actions */
+			add_filter( 'acf/settings/url', function ($url) {
+				return MY_ACF_URL;
+			} );
+			add_filter( 'acf/settings/show_updates', '__return_false', 100 );
+			// add_filter('acf/settings/show_admin', '__return_false');
+
 			$this->cyn_acf_actions();
 		}
 
 
-		public function cyn_acf_actions()
-		{
-			add_action('acf/init', [$this, 'cyn_product_post_type']);
-			add_action('acf/init', [$this, 'cyn_contact_us_page']);
-			add_action('acf/init', [$this, 'cyn_about_us_page']);
+
+		public function cyn_acf_actions() {
+			add_action( 'acf/init', [ $this, 'cyn_product_post_type' ] );
+			add_action( 'acf/init', [ $this, 'cyn_contact_us_page' ] );
+			add_action( 'acf/init', [ $this, 'cyn_about_us_page' ] );
 		}
 
-		public function cyn_product_post_type()
-		{
+		public function cyn_product_post_type() {
 			$productGalleryGroup = array(
-				[
+				[ 
 					'key' => 'gallery_img_key_0',
 					'label' => 'Gallery Cover Image',
 					'name' => 'gallery_cover_img',
 					'instructions' => 'Shown in home page layout',
 					'type' => 'image',
 					'return_format' => 'url',
-					'wrapper' => [
+					'wrapper' => [ 
 						'width' => '100',
 					],
 				],
 			);
 
-			for ($i = 0; $i < 12; $i++) {
+			for ( $i = 0; $i < 12; $i++ ) {
 				$j = $i;
 				$j++;
-				$productGalleryGroup[] = [
+				$productGalleryGroup[] = [ 
 					'key' => 'gallery_img_key_' . $j,
 					'label' => 'Gallery Image ' . $j,
 					'name' => 'gallery_img_' . $j,
 					'type' => 'image',
 					'return_format' => 'url',
-					'wrapper' => [
+					'wrapper' => [ 
 						'width' => '50',
 					],
 				];
 			}
 
-			acf_add_local_field_group([
+			acf_add_local_field_group( [ 
 				'key' => 'product_post_type_key',
 				'title' => 'Product Details',
-				'fields' => [
-					[
+				'fields' => [ 
+					[ 
 						'key' => 'specification_tab_key',
 						'name' => 'specification_tab',
 						'label' => 'Specification',
@@ -66,92 +66,92 @@ if (!class_exists('cyn_acf')) {
 						'endpoint' => 1,
 					],
 
-					[
+					[ 
 						'key' => 'product_sid_key',
 						'label' => 'Product SID',
 						'name' => 'product_sid',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 
 					],
-					[
+					[ 
 						'key' => 'product_code_key',
 						'label' => 'Product Code',
 						'name' => 'product_code',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 
 					],
-					[
+					[ 
 						'key' => 'product_color_code_key',
 						'label' => 'Product Color Code',
 						'name' => 'product_color_code',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 					],
-					[
+					[ 
 						'key' => 'product_finish_key',
 						'label' => 'Product Finish',
 						'name' => 'product_finish',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 					],
-					[
+					[ 
 						'key' => 'product_installation_key',
 						'label' => 'Product Installation',
 						'name' => 'product_installation',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 					],
-					[
+					[ 
 						'key' => 'product_sqft_box_key',
 						'label' => 'Product Sqft/Box',
 						'name' => 'product_sqft_box',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 					],
-					[
+					[ 
 						'key' => 'product_sqft_pallet_key',
 						'label' => 'Product Sqft/Pallet',
 						'name' => 'product_sqft_pallet',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 					],
-					[
+					[ 
 						'key' => 'product_box_pallet_key',
 						'label' => 'Product Box/Pallet',
 						'name' => 'product_box_pallet',
 						'type' => 'text',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '25'
 						]
 					],
-					[
+					[ 
 						'key' => 'product_price_key',
 						'label' => 'Product Price',
 						'name' => 'product_price',
 						'instructions' => 'ONLY FOR HOME-PAGE LAYOUT ',
 						'type' => 'number',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '100'
 						]
 					],
 
-					[
+					[ 
 						'key' => 'product_details_tab_key',
 						'name' => 'product_details_tab',
 						'label' => 'Details',
@@ -159,26 +159,26 @@ if (!class_exists('cyn_acf')) {
 						'endpoint' => 0,
 					],
 
-					[
+					[ 
 						'key' => 'product_desc_key',
 						'label' => 'Product Description',
 						'name' => 'product_desc',
 						'type' => 'wysiwyg',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '50'
 						]
 					],
-					[
+					[ 
 						'key' => 'product_technical_key',
 						'label' => 'Product Technical',
 						'name' => 'product_tech',
 						'type' => 'wysiwyg',
-						'wrapper' => [
+						'wrapper' => [ 
 							'width' => '50'
 						]
 					],
 
-					[
+					[ 
 						'key' => 'slider_tab_key',
 						'label' => 'Gallery',
 						'name' => '',
@@ -186,7 +186,7 @@ if (!class_exists('cyn_acf')) {
 						'endpoint' => 0
 					],
 
-					[
+					[ 
 						'key' => 'product_gallery_group_key',
 						'label' => 'Product Gallery',
 						'name' => 'product_gallery_group',
@@ -195,7 +195,7 @@ if (!class_exists('cyn_acf')) {
 						'sub_fields' => $productGalleryGroup,
 					],
 
-					[
+					[ 
 						'key' => 'related_tab_key',
 						'label' => 'Related',
 						'name' => '',
@@ -203,49 +203,49 @@ if (!class_exists('cyn_acf')) {
 						'endpoint' => 0
 					],
 
-					[
+					[ 
 						'key' => 'related_group_key',
 						'label' => 'Related',
 						'name' => 'related_group',
 						'type' => 'group',
-						'sub_fields' => [
-							[
+						'sub_fields' => [ 
+							[ 
 								'key' => 'related_products_key',
 								'label' => 'Related Products',
 								'name' => 'related_products',
 								'type' => 'post_object',
 								'return_format' => 'id',
-								'post_type' => [
+								'post_type' => [ 
 									0 => 'product',
 								],
-								'post_status' => [
+								'post_status' => [ 
 									0 => 'publish'
 								],
 								'multiple' => 1,
 								'ui' => 1,
-								'wrapper' => [
+								'wrapper' => [ 
 									'width' => '50'
 								]
 							],
-							[
+							[ 
 								'key' => 'related_articles_key',
 								'label' => 'Related Articles',
 								'name' => 'related_articles',
 								'type' => 'post_object',
 								'return_format' => 'id',
-								'post_type' => [
+								'post_type' => [ 
 									0 => 'post',
 								],
-								'post_status' => [
+								'post_status' => [ 
 									0 => 'publish'
 								],
 								'multiple' => 1,
 								'ui' => 1,
-								'wrapper' => [
+								'wrapper' => [ 
 									'width' => '50'
 								]
 							],
-							[
+							[ 
 								'key' => 'product_brand_tax_key',
 								'label' => 'Brands',
 								'name' => 'product_brand_tax',
@@ -264,7 +264,7 @@ if (!class_exists('cyn_acf')) {
 								'allow_null' => 1,
 								'multiple' => 0,
 							],
-							[
+							[ 
 								'key' => 'product_filters_tax_key',
 								'label' => 'Filters',
 								'name' => 'product_filters_tax',
@@ -287,99 +287,100 @@ if (!class_exists('cyn_acf')) {
 					],
 
 				],
-				'location' => [
-					[
-						[
+				'location' => [ 
+					[ 
+						[ 
 							'param' => 'post_type',
 							'operator' => '==',
 							'value' => 'product'
 						]
 					],
 				]
-			]);
+			] );
 
 			/** specials post type **/
-			acf_add_local_field_group(array(
-				'key' => 'specials_post_type_key',
-				'title' => 'Specials Details',
-				'fields' => array(
-					[
-						'key' => 'slider_tab_key',
-						'label' => 'Gallery',
-						'name' => '',
-						'type' => 'tab',
-						'endpoint' => 1
-					],
+			acf_add_local_field_group(
+				array(
+					'key' => 'specials_post_type_key',
+					'title' => 'Specials Details',
+					'fields' => array(
+						[ 
+							'key' => 'slider_tab_key',
+							'label' => 'Gallery',
+							'name' => '',
+							'type' => 'tab',
+							'endpoint' => 1
+						],
 
-					[
-						'key' => 'specials_gallery_group_key',
-						'label' => 'Specials Gallery',
-						'name' => 'specials_gallery_group',
-						'type' => 'group',
-						'layout' => 'block',
-						'sub_fields' => array(
-							[
-								'key' => 'special_gallery_img_key_0',
-								'label' => 'Gallery Image 1',
-								'name' => 'special_gallery_img_0',
-								'type' => 'image',
-								'return_format' => 'id',
-								'wrapper' => [
-									'width' => '50',
+						[ 
+							'key' => 'specials_gallery_group_key',
+							'label' => 'Specials Gallery',
+							'name' => 'specials_gallery_group',
+							'type' => 'group',
+							'layout' => 'block',
+							'sub_fields' => array(
+								[ 
+									'key' => 'special_gallery_img_key_0',
+									'label' => 'Gallery Image 1',
+									'name' => 'special_gallery_img_0',
+									'type' => 'image',
+									'return_format' => 'id',
+									'wrapper' => [ 
+										'width' => '50',
+									],
 								],
-							],
-							[
-								'key' => 'special_gallery_img_key_1',
-								'label' => 'Gallery Image 2',
-								'name' => 'special_gallery_img_1',
-								'type' => 'image',
-								'return_format' => 'id',
-								'wrapper' => [
-									'width' => '50',
+								[ 
+									'key' => 'special_gallery_img_key_1',
+									'label' => 'Gallery Image 2',
+									'name' => 'special_gallery_img_1',
+									'type' => 'image',
+									'return_format' => 'id',
+									'wrapper' => [ 
+										'width' => '50',
+									],
 								],
-							],
-							[
-								'key' => 'special_gallery_img_key_2',
-								'label' => 'Gallery Image 3',
-								'name' => 'special_gallery_img_2',
-								'type' => 'image',
-								'return_format' => 'id',
-								'wrapper' => [
-									'width' => '50',
+								[ 
+									'key' => 'special_gallery_img_key_2',
+									'label' => 'Gallery Image 3',
+									'name' => 'special_gallery_img_2',
+									'type' => 'image',
+									'return_format' => 'id',
+									'wrapper' => [ 
+										'width' => '50',
+									],
 								],
-							],
-							[
-								'key' => 'special_gallery_img_key_3',
-								'label' => 'Gallery Image 4',
-								'name' => 'special_gallery_img_3',
-								'type' => 'image',
-								'return_format' => 'id',
-								'wrapper' => [
-									'width' => '50',
+								[ 
+									'key' => 'special_gallery_img_key_3',
+									'label' => 'Gallery Image 4',
+									'name' => 'special_gallery_img_3',
+									'type' => 'image',
+									'return_format' => 'id',
+									'wrapper' => [ 
+										'width' => '50',
+									],
 								],
-							],
-						),
-					],
-				),
-				'location' => array(
-					[
-						[
-							'param' => 'post_type',
-							'operator' => '==',
-							'value' => 'specials'
-						]
-					],
+							),
+						],
+					),
+					'location' => array(
+						[ 
+							[ 
+								'param' => 'post_type',
+								'operator' => '==',
+								'value' => 'specials'
+							]
+						],
+					)
 				)
-			));
+			);
 		}
 
-		public function cyn_contact_us_page()
-		{
-			acf_add_local_field_group([
+		public function cyn_contact_us_page() {
+			acf_add_local_field_group( [ 
 				'key' => 'cyn-contact-us-key',
 				'title' => 'Page Settings',
-				'fields' => [
-					[
+				'fields' => [ 
+					[ 
 						'label' => 'Hero Image',
 						'name' => 'hero_image',
 						'key' => 'hero_image_key',
@@ -388,16 +389,16 @@ if (!class_exists('cyn_acf')) {
 						'preview_size' => 'thumbnail',
 					],
 				],
-				'location' => [
-					[
-						[
+				'location' => [ 
+					[ 
+						[ 
 							'param' => 'page_template',
 							'operator' => '==',
 							'value' => 'templates/contact-us.php'
 						]
 					]
 				],
-				'hide_on_screen' => [
+				'hide_on_screen' => [ 
 					1 => 'the_content',
 					2 => 'excerpt',
 					3 => 'discussion',
@@ -409,11 +410,10 @@ if (!class_exists('cyn_acf')) {
 					9 => 'page_attributes',
 					10 => 'send-trackbacks',
 				]
-			]);
+			] );
 		}
 
-		public function cyn_about_us_page()
-		{
+		public function cyn_about_us_page() {
 			acf_add_local_field_group(
 				array(
 					'key' => 'group_64aad273646ce',

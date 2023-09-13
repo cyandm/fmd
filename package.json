@@ -1,15 +1,20 @@
 {
   "name": "fmd",
-  "version": "1.0.0",
-  "description": "Wordpress Theme",
-  "main": "index.php",
+  "version": "1.1.0",
+  "description": "",
+  "author": "",
   "scripts": {
-    "run-scss": "sass scss/normal.scss css/normal.css -w -s compressed",
-    "run-js": "esbuild ./js/index.js --bundle --outfile=./js/dist/scripts.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --watch",
-    "build-css": "postcss css/normal.css -o ./css/theme-bundle.css --use autoprefixer -m",
-    "build-js": "esbuild ./js/index.js --bundle --minify --outfile=./js/dist/scripts.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --sourcemap"
+    "install-pkg": "npm i sass postcss postcss-cli autoprefixer esbuild -g",
+    "w-scss": "sass ./scss/index.scss ./css/compiled.css -w",
+    "b-scss": "sass ./scss/index.scss ./css/compiled.css -s compressed",
+    "b-pre-css": "postcss ./css/compressed.css -o ./css/final.css --use autoprefixer -m",
+    "build-css": "npm run b-scss && npm run b-pre-css",
+    "w-js": "esbuild ./js/index.js --outfile=./js/dist/scripts.bundle.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --watch",
+    "build-js": "esbuild ./js/index.js --outfile=./js/dist/scripts.bundle.min.js --target=es6,chrome58,edge18,firefox54,safari11 --bundle --minify --sourcemap"
   },
-  "devDependencies": {
-    "esbuild": "^0.18.16"
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.12.2",
+    "swiper": "^10.2.0"
   }
 }
