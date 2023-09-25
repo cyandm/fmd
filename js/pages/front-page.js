@@ -38,8 +38,11 @@ const tickerWrapperGroup = document.querySelectorAll('.ticker-wrapper');
 
 if (ticker) {
   setInterval(() => {
-    ticker.scrollLeft += 1;
-  }, 20);
+    ticker.scrollTo({
+      left: ticker.scrollLeft + 5,
+      behavior: 'smooth',
+    });
+  }, 50);
 
   setInterval(() => {
     sampleTicker = tickerWrapperGroup[0].cloneNode(true);

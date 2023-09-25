@@ -12,17 +12,17 @@ $address_url = get_option( 'cyn_address_url' );
 		<div class="menus">
 			<div class="us-menu">
 				<span> us</span>
-				<?php wp_nav_menu( [ 'menu' => 'Footer - Us' ] ) ?>
+				<?php wp_nav_menu( [ 'theme_location' => 'footer-us' ] ) ?>
 			</div>
 			<div class="what-we-do-menu">
 				<span> what we do?</span>
 
 
-				<?php wp_nav_menu( [ 'menu' => 'Footer - What We Do?' ] ) ?>
+				<?php wp_nav_menu( [ 'theme_location' => 'footer-what-we-do' ] ) ?>
 			</div>
 			<div class="know-more-menu">
 				<span>know more</span>
-				<?php wp_nav_menu( [ 'menu' => 'Footer - Know More' ] ) ?>
+				<?php wp_nav_menu( [ 'theme_location' => 'footer-know-more' ] ) ?>
 			</div>
 		</div>
 

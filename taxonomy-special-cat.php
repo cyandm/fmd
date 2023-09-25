@@ -1,2 +1,6 @@
+<?= 'this is tax specials' ?>
+
+
 <?php
-get_template_part('/archive-specials', null, []);
+get_template_part( '/templates/wordpress/archive-specials', null, [] );
+?>

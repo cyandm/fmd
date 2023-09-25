@@ -5,9 +5,15 @@ $recommend_blogs = new WP_Query( [
 	'tag' => 'recommend',
 	'posts_per_page' => 4
 ] );
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$all_posts = new WP_Query( [ 
+	'post_type' => 'post',
+	'posts_per_page' => '9',
+	'paged' => $paged
+] )
 
 
-?>
+	?>
 
 <?php get_header( null, [ 'border' => ! $recommend_blogs->have_posts(), 'preloader' => false ] ) ?>
 
@@ -99,7 +105,7 @@ $recommend_blogs = new WP_Query( [
 
 		<?php get_template_part( 'templates/components/sidebar', 'blog' ) ?>
 
-		<?php if ( have_posts() ) : ?>
+		<?php if ( $all_posts->have_posts() ) : ?>
 			<div class="blog-content">
 				<div class="title-blog">
 					<?php
@@ -112,8 +118,8 @@ $recommend_blogs = new WP_Query( [
 				</div>
 				<section class="blog-content-cards">
 					<?php
-					while ( have_posts() ) {
-						the_post();
+					while ( $all_posts->have_posts() ) {
+						$all_posts->the_post();
 						get_template_part( 'templates/components/card', null, [ 
 							'url' => get_permalink(),
 							'image_size' => 400,
@@ -127,7 +133,7 @@ $recommend_blogs = new WP_Query( [
 				<?php
 				echo "<div class='pagination-links'>" . paginate_links(
 					array(
-						'total' => $wp_query->max_num_pages,
+						'total' => $all_posts->max_num_pages,
 						'prev_text' => __( '<i class="icon-arrow-left"></i>' ),
 						'next_text' => __( '<i class="icon-arrow-right"></i>' )
 					)

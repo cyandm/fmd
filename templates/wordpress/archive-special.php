@@ -21,25 +21,26 @@ if ( isset( $_GET['sp'] ) ) {
 		<div class="specials-archive-wrapper">
 			<?php while ( $wpQuery->have_posts() ) :
 				$wpQuery->the_post(); ?>
-				<?php $postId = get_the_ID(); ?>
-
+				<?php
+				$postId = get_the_ID();
+				?>
 				<article class="specials-article">
 					<header class="title">
 						<div>
-							<h3 class="h2">
+							<p class="h2">
 								<?php echo get_the_title() ?>
-							</h3>
+							</p>
 						</div>
-						<a href="tel:<?= $phone_number_1 ?>" class="secondary-btn except-mobile">Call now</a>
+						<a href="tel:<?= $phone_number_1 ?>" class="primary-btn">Call now</a>
 					</header>
 
 					<main>
 						<div class="gallery-group">
-							<div class="l">
+							<div>
 								<?= wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, [ 'class' => '' ] ) ?>
 							</div>
 
-							<div class="r">
+							<div>
 								<?php
 								$galleryGroup = get_field( 'specials_gallery_group', $postId );
 								if ( isset( $galleryGroup ) )
@@ -53,8 +54,7 @@ if ( isset( $_GET['sp'] ) ) {
 							<?php the_content() ?>
 						</div>
 					</main>
-
-					<a href="tel:<?= $phone_number_1 ?>" class="only-mobile secondary-btn">Call now</a>
+					<a href="tel:<?= $phone_number_1 ?>" class="only-mobile primary-btn">Call now</a>
 				</article>
 			<?php endwhile; ?>
 		</div>

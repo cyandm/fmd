@@ -1,13 +1,13 @@
 <?php
 $options = new cyn_options();
-$productConditions = !(isset($args['products']) && $args['products'] == false);
+$productConditions = ! ( isset( $args['products'] ) && $args['products'] == false );
 
-if ($productConditions)
-	$productCats = $options->cyn_getProdactTerms(0, false, 'product-cat');
-$brandsCats  = $options->cyn_getProdactTerms(false, false, 'brand');
-$filtersCats = $options->cyn_getProdactTerms(false, false, 'filters');
+if ( $productConditions )
+	$productCats = $options->cyn_getProductTerms( 0, false, 'product-cat' );
+$brandsCats = $options->cyn_getProductTerms( false, false, 'brand' );
+$filtersCats = $options->cyn_getProductTerms( false, false, 'filters' );
 
-$formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_link('product');
+$formUrl = isset( $args['form-url'] ) ? $args['form-url'] : get_post_type_archive_link( 'product' );
 ?>
 
 <aside class="sidebar-products">
@@ -19,7 +19,7 @@ $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_
 		<span>
 			<?= $args['title'] ?>
 		</span>
-		<?php get_template_part('templates/components/search-form') ?>
+		<?php get_template_part( 'templates/components/search-form' ) ?>
 	</div>
 
 	<form class="filter-container" id="filter-container" action="<?php echo $formUrl; ?>">
@@ -28,7 +28,7 @@ $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_
 			<button type="button" id="filter-actions-clear" class="disable-btn">Clear</button>
 		</div>
 
-		<?php if (isset($productCats)) : ?>
+		<?php if ( isset( $productCats ) ) : ?>
 			<div class="filter-wrapper">
 				<div class="title ">
 					<span>Products</span>
@@ -37,11 +37,13 @@ $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_
 
 				<div class="filter-item-container">
 					<div class="filter-item-wrapper">
-						<?php foreach ($productCats as $key => $cat) : ?>
-							<?php if ($cat['count'] > 0) : ?>
-								<?php $checked = isset($_GET['cat-' . $key]); ?>
+						<?php foreach ( $productCats as $key => $cat ) : ?>
+							<?php if ( $cat['count'] > 0 ) : ?>
+								<?php $checked = isset( $_GET[ 'cat-' . $key ] ); ?>
 								<div class="filter-item">
-									<span><?php echo $cat['name'] ?></span>
+									<span>
+										<?php echo $cat['name'] ?>
+									</span>
 									<input name="<?php echo 'cat-' . $key ?>" value="on" type="checkbox" <?php echo $checked ? 'checked' : "" ?>>
 								</div>
 							<?php endif; ?>
@@ -51,7 +53,7 @@ $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_
 			</div>
 		<?php endif; ?>
 
-		<?php if (isset($brandsCats)) : ?>
+		<?php if ( isset( $brandsCats ) ) : ?>
 			<div class="filter-wrapper">
 				<div class="title ">
 					<span>Brands</span>
@@ -60,10 +62,12 @@ $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_
 
 				<div class="filter-item-container">
 					<div class="filter-item-wrapper">
-						<?php foreach ($brandsCats as $key => $cat) : ?>
-							<?php $checked = isset($_GET['cat-' . $key]); ?>
+						<?php foreach ( $brandsCats as $key => $cat ) : ?>
+							<?php $checked = isset( $_GET[ 'cat-' . $key ] ); ?>
 							<div class="filter-item">
-								<span><?php echo $cat['name'] ?></span>
+								<span>
+									<?php echo $cat['name'] ?>
+								</span>
 								<input name="<?php echo 'cat-' . $key ?>" value="on" type="checkbox" <?php echo $checked ? 'checked' : "" ?>>
 							</div>
 						<?php endforeach; ?>
@@ -72,26 +76,30 @@ $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_
 			</div>
 		<?php endif; ?>
 
-		<?php if (isset($filtersCats)) : ?>
-			<?php foreach ($filtersCats as $filtersCat) : ?>
+		<?php if ( isset( $filtersCats ) ) : ?>
+			<?php foreach ( $filtersCats as $filtersCat ) : ?>
 				<?php
 				$filtersId = $filtersCat['id'];
 				$parent = $filtersCat['parent'];
 				?>
-				<?php if ($parent == 0) : ?>
+				<?php if ( $parent == 0 ) : ?>
 					<div class="filter-wrapper">
 						<div class="title ">
-							<span><?php echo $filtersCat['name'] ?></span>
+							<span>
+								<?php echo $filtersCat['name'] ?>
+							</span>
 							<i class="icon-arrow-down"></i>
 						</div>
 
 						<div class="filter-item-container">
 							<div class="filter-item-wrapper">
-								<?php foreach ($filtersCats as $key => $cat) : ?>
-									<?php if ($filtersId == $cat['parent']) : ?>
-										<?php $checked = isset($_GET['cat-' . $key]); ?>
+								<?php foreach ( $filtersCats as $key => $cat ) : ?>
+									<?php if ( $filtersId == $cat['parent'] ) : ?>
+										<?php $checked = isset( $_GET[ 'cat-' . $key ] ); ?>
 										<div class="filter-item">
-											<span><?php echo $cat['name'] ?></span>
+											<span>
+												<?php echo $cat['name'] ?>
+											</span>
 											<input name="<?php echo 'cat-' . $key ?>" value="on" type="checkbox" <?php echo $checked ? 'checked' : "" ?>>
 										</div>
 									<?php endif; ?>
@@ -103,7 +111,7 @@ $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_
 			<?php endforeach; ?>
 		<?php endif; ?>
 
-		<?php if (is_search()) : ?>
+		<?php if ( is_search() ) : ?>
 			<input type="hidden" name="s" value="<?php the_search_query(); ?>">
 		<?php endif; ?>
 		<input type="hidden" name="filter" value="on">

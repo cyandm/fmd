@@ -14,8 +14,11 @@ if ( ! class_exists( 'cyn-theme-init' ) ) {
 			add_action( 'admin_enqueue_scripts', [ $this, 'cyn_admin_files' ] );
 			add_action( 'wp_logout', [ $this, 'cyn_logout_user' ] );
 			add_action( 'after_setup_theme', [ $this, 'cyn_theme_setup' ] );
+			add_action( 'wp_head', [ $this, 'cyn_enqueue_head' ] );
+
 			add_filter( 'wp_check_filetype_and_ext', [ $this, 'cyn_allow_svg' ], 10, 4 );
 			add_filter( 'upload_mimes', [ $this, 'cyn_mime_types' ] );
+			add_filter( 'wp_mail', [ $this, 'email_filter' ], 10, 1 );
 		}
 
 
@@ -66,7 +69,9 @@ if ( ! class_exists( 'cyn-theme-init' ) ) {
 
 			register_nav_menus( [ 
 				'header' => 'Header',
-				'footer' => 'Footer'
+				'footer-us' => 'Footer | Us',
+				'footer-what-we-do' => 'Footer | What We Do?',
+				'footer-know-more' => 'Footer | Know More'
 			] );
 		}
 
@@ -92,6 +97,23 @@ if ( ! class_exists( 'cyn-theme-init' ) ) {
 		public function cyn_mime_types( $mimes ) {
 			$mimes['svg'] = 'image/svg+xml';
 			return $mimes;
+		}
+
+		public function cyn_enqueue_head() {
+			echo "<script>";
+			echo "
+				var cyn_head_script = {
+					url: '" . admin_url( 'admin-ajax.php' ) . "',
+					nonce: '" . wp_create_nonce( 'ajax-nonce' ) . "'
+				}
+			";
+			echo "</script>";
+		}
+
+		public function email_filter( $args ) {
+			add_filter( 'wp_mail_content_type', function () {
+				return "text/html";
+			} );
 		}
 
 
