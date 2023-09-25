@@ -5,13 +5,14 @@ $product_cat_middle_group = get_field( 'category_on_middle' );
 $product_cat_top_group = get_field( 'category_on_top' );
 $brands_ltr = get_field( 'brands_ltr' );
 $brands_rtl = get_field( 'brands_rtl' );
-$blog_posts = new WP_Query( [ 
-	'tag' => 'front-page-posts',
-	'posts_per_page' => '6'
-] );
+$blog_posts = new WP_Query( [ 'tag' => 'front-page-posts', 'posts_per_page' => '6' ] );
+
+$feature_products = get_field( 'feature_products' );
 
 
 ?>
+
+
 
 <?php get_header( null, [ 'border' => false, 'preloader' => false ] ) ?>
 
@@ -69,135 +70,142 @@ $blog_posts = new WP_Query( [
 				<?php endforeach; endif; ?>
 		</div>
 	</section>
-	<section id="scroll-target" class="today-offer container">
-		<div class="feature-image">
-			<div class="title-controller">
-				<h2>Today's <span class="purple-text">Offer</span></h2>
-			</div>
-			<div class="feature-image-controller cyn-slider-wrapper">
-				<div class="img-mask cyn-slide active">
-					<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '680', '0' ], false, [ 'class' => 'image' ] ); ?>
-				</div>
-				<div class="img-mask cyn-slide">
-					<?= wp_get_attachment_image( 52, [ '680', '0' ], false, [ 'class' => 'image' ] ); ?>
-				</div>
-				<div class="img-mask cyn-slide">
-					<?= wp_get_attachment_image( get_field( 'hero_image' )['id'], [ '680', '0' ], false, [ 'class' => 'image' ] ); ?>
-				</div>
-			</div>
-			<div class="slider-navigation">
-				<i id="cyn-prev-slide" class="icon-arrow-left"></i>
-				<i id="cyn-next-slide" class="icon-arrow-right"></i>
-			</div>
-		</div>
-		<div class="product-details">
 
-			<div class="product-content">
+	<?php if ( $product_cat ) : ?>
+		<section id="scroll-target" class="today-offer container">
+			<div class="feature-image">
+				<div class="title-controller">
+					<h2>Today's <span class="purple-text">Offer</span></h2>
+				</div>
+				<div class="feature-image-controller cyn-slider-wrapper">
 
-				<div class="cyn-slider-wrapper header-wrapper">
-					<div class="cyn-slide active">
-						<h3>Minimal Parquet flooring</h3>
+					<?php foreach ( $feature_products as $product_ID ) : ?>
+						<div class="img-mask cyn-slide">
+							<a href=<?= get_permalink( $product_ID ) ?>>
+								<?= wp_get_attachment_image( get_field( 'product_gallery_group', $product_ID )['gallery_cover_img'], [ '680', '0' ], false, [ 'class' => 'image' ] ); ?>
+							</a>
+						</div>
+					<?php endforeach; ?>
+				</div>
+				<div class="slider-navigation">
+					<i id="cyn-prev-slide" class="icon-arrow-left"></i>
+					<i id="cyn-next-slide" class="icon-arrow-right"></i>
+				</div>
+			</div>
+			<div class="product-details">
+
+				<div class="product-content">
+
+					<div class="cyn-slider-wrapper header-wrapper">
+						<?php foreach ( $feature_products as $product_ID ) : ?>
+							<div class="cyn-slide">
+								<h3>
+									<?= get_the_title( $product_ID ) ?>
+								</h3>
+							</div>
+						<?php endforeach; ?>
 					</div>
-					<div class="cyn-slide">
-						<h3>Minimal yellow flooring</h3>
+
+					<div class="cyn-slider-wrapper desc-wrapper">
+						<?php foreach ( $feature_products as $product_ID ) : ?>
+							<p class="cyn-slide">
+								<?= get_the_content( null, false, $product_ID ) ?>
+							</p>
+						<?php endforeach; ?>
 					</div>
-					<div class="cyn-slide">
-						<h3>Minimal blue flooring</h3>
+
+
+				</div>
+				<div class="product-controller">
+					<div class="product-info">
+						<span>only for a limited time</span>
+						<div class="cyn-slider-wrapper price-wrapper">
+							<?php foreach ( $feature_products as $product_ID ) : ?>
+								<span class="cyn-slide">
+									<span class="price">
+										<?= '$' . get_field( 'product_price', $product_ID ) ?>
+									</span>
+								</span>
+							<?php endforeach; ?>
+						</div>
 					</div>
-				</div>
 
-				<div class="cyn-slider-wrapper desc-wrapper">
-					<p class="cyn-slide active">Solid wood flooring is made of one piece of wood from
-						top to bottom and can be used in any room that is on
-						or above ground. One of the many benefits of solid wood
-						flooring is it can be sanded and refinished many times.
-					</p>
-					<p class="cyn-slide">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium qui
-						ducimus tempora doloribus ea eum quae dolorem minima pariatur, quaerat perspiciatis. Recusandae
-						optio fuga nihil nobis a id at quasi.
-					</p>
-					<p class="cyn-slide">Solid wood flooring is made of one piece of wood from
-						top to bottom and can be used in any room that is on
-						or above ground. One of the many benefits of solid wood
-						flooring is it can be sanded and refinished many times.
-					</p>
-				</div>
-
-
-			</div>
-			<div class="product-controller">
-				<div class="product-info">
-					<span>only for a limited time</span>
-					<div class="cyn-slider-wrapper price-wrapper">
-						<span class="cyn-slide active">
-							<span class="price">260$</span>
-						</span>
-						<span class="cyn-slide">
-							<span class="price">270$</span>
-						</span>
-						<span class="cyn-slide">
-							<span class="price">310$</span>
-						</span>
+					<div class="cyn-slider-wrapper button-wrapper">
+						<?php foreach ( $feature_products as $product_ID ) : ?>
+							<a href=<?= get_permalink( $product_ID ) ?> class="primary-btn cyn-slide">View</a>
+						<?php endforeach; ?>
 					</div>
 				</div>
 
-				<div class="cyn-slider-wrapper button-wrapper">
-					<a href="#" class="primary-btn cyn-slide active">View product 1</a>
-					<a href="#" class="primary-btn cyn-slide">View product 2</a>
-					<a href="#" class="primary-btn cyn-slide">View product 3</a>
+				<div class="product-gallery">
+					<div class="cyn-slider-wrapper product-gallery-item">
+						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+							alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+					</div>
+					<div class="cyn-slider-wrapper product-gallery-item">
+						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+							alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+					</div>
+					<div class="cyn-slider-wrapper product-gallery-item">
+						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+							alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+					</div>
+					<div class="cyn-slider-wrapper product-gallery-item">
+						<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
+							alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
+						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
+					</div>
 				</div>
 			</div>
+		</section>
+	<?php endif; ?>
 
-			<div class="product-gallery">
-				<div class="cyn-slider-wrapper product-gallery-item">
-					<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
-						alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
-				</div>
-				<div class="cyn-slider-wrapper product-gallery-item">
-					<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
-						alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
-				</div>
-				<div class="cyn-slider-wrapper product-gallery-item">
-					<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
-						alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
-				</div>
-				<div class="cyn-slider-wrapper product-gallery-item">
-					<img class="cyn-slide active" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>"
-						alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail.png' ?>" alt="">
-					<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/imgs/thumbnail-2.png' ?>" alt="">
-				</div>
+	<section>
+		<div class="ticker">
+			<div class="ticker-wrapper">
+				<div class="ticker-item">largest selection of building supplies</div>
+				<div class="ticker-item">Lowest Prices</div>
+				<div class="ticker-item">Exceptional Customer Service</div>
+				<div class="ticker-item">Biggest Selection of Brands</div>
+				<div class="ticker-item">In Stock material</div>
+			</div>
+			<div class="ticker-wrapper">
+				<div class="ticker-item">largest selection of building supplies</div>
+				<div class="ticker-item">Lowest Prices</div>
+				<div class="ticker-item">Exceptional Customer Service</div>
+				<div class="ticker-item">Biggest Selection of Brands</div>
+				<div class="ticker-item">In Stock material</div>
+			</div>
+			<div class="ticker-wrapper">
+				<div class="ticker-item">largest selection of building supplies</div>
+				<div class="ticker-item">Lowest Prices</div>
+				<div class="ticker-item">Exceptional Customer Service</div>
+				<div class="ticker-item">Biggest Selection of Brands</div>
+				<div class="ticker-item">In Stock material</div>
+			</div>
+			<div class="ticker-wrapper">
+				<div class="ticker-item">largest selection of building supplies</div>
+				<div class="ticker-item">Lowest Prices</div>
+				<div class="ticker-item">Exceptional Customer Service</div>
+				<div class="ticker-item">Biggest Selection of Brands</div>
+				<div class="ticker-item">In Stock material</div>
+			</div>
+			<div class="ticker-wrapper">
+				<div class="ticker-item">largest selection of building supplies</div>
+				<div class="ticker-item">Lowest Prices</div>
+				<div class="ticker-item">Exceptional Customer Service</div>
+				<div class="ticker-item">Biggest Selection of Brands</div>
+				<div class="ticker-item">In Stock material</div>
 			</div>
 		</div>
-	</section>
-	<section class="ticker">
-		<div class="ticker-wrapper">
-			<div class="ticker-item">largest selection of building supplies</div>
-			<div class="ticker-item">Lowest Prices</div>
-			<div class="ticker-item">Exceptional Customer Service</div>
-			<div class="ticker-item">Biggest Selection of Brands</div>
-			<div class="ticker-item">In Stock material</div>
-		</div>
-		<div class="ticker-wrapper">
-			<div class="ticker-item">largest selection of building supplies</div>
-			<div class="ticker-item">Lowest Prices</div>
-			<div class="ticker-item">Exceptional Customer Service</div>
-			<div class="ticker-item">Biggest Selection of Brands</div>
-			<div class="ticker-item">In Stock material</div>
-		</div>
-		<div class="ticker-wrapper">
-			<div class="ticker-item">largest selection of building supplies</div>
-			<div class="ticker-item">Lowest Prices</div>
-			<div class="ticker-item">Exceptional Customer Service</div>
-			<div class="ticker-item">Biggest Selection of Brands</div>
-			<div class="ticker-item">In Stock material</div>
-		</div>
+
 	</section>
 
 	<?php if ( $product_cat_middle_group ) : ?>
@@ -315,11 +323,11 @@ $blog_posts = new WP_Query( [
 			<div class="title-controller">
 				<h2>Get in <span class="purple-text">Touch</span></h2>
 			</div>
-			<?= wp_get_attachment_image( get_field( 'contact_us_image' ), [ '680', '0' ], false, [ 'class' => '' ] ); ?>
+			<?= wp_get_attachment_image( get_field( 'contact_us_image' ), [ '1400', '0' ], false, [ 'class' => '' ] ); ?>
 		</div>
 		<div class="contact-form">
 
-			<form action="#">
+			<form action="#" id="contact-us-form">
 				<label for="phone-number">
 					phone number
 					<input type="tel" name="phone-number" placeholder="phone number">
@@ -337,9 +345,9 @@ $blog_posts = new WP_Query( [
 					i want you to inform me about new products and new offers
 				</label>
 
-				<a href="#" class="primary-btn">
-					Submit
-				</a>
+				<button type="submit" id="contact-us-form-submit" class="primary-btn">
+					Send
+				</button>
 			</form>
 
 		</div>

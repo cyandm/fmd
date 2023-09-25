@@ -1,11 +1,8 @@
+@forward './product/_index';
+
 @forward './front-page';
 @forward './blog';
 @forward './single-blog';
 @forward './contact-us';
 @forward './about-us';
-@forward './single-product';
-@forward './home-shop';
 @forward './404';
-@forward './archive-product';
-@forward './brands';
-@forward './specials';

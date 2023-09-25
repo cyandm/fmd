@@ -32,7 +32,7 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 					'name' => 'gallery_cover_img',
 					'instructions' => 'Shown in home page layout',
 					'type' => 'image',
-					'return_format' => 'url',
+					'return_format' => 'id',
 					'wrapper' => [ 
 						'width' => '100',
 					],
@@ -47,7 +47,7 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 					'label' => 'Gallery Image ' . $j,
 					'name' => 'gallery_img_' . $j,
 					'type' => 'image',
-					'return_format' => 'url',
+					'return_format' => '',
 					'wrapper' => [ 
 						'width' => '50',
 					],

@@ -1,22 +1,31 @@
+import Swiper from 'swiper/bundle';
+
+const productThumbnails = new Swiper('.product-thumbnails', {
+  slidesPerView: 4,
+  spaceBetween: 16,
+  navigation: {
+    nextEl: '.slider-navigation .icon-arrow-long-right',
+    prevEl: '.slider-navigation .icon-arrow-long-left',
+  },
+});
+
+const productSlider = new Swiper('.product-slider', {
+  slidesPerView: 1,
+  spaceBetween: 16,
+
+  thumbs: {
+    swiper: productThumbnails,
+  },
+
+  navigation: {
+    nextEl: '.slider-navigation .icon-arrow-long-right',
+    prevEl: '.slider-navigation .icon-arrow-long-left',
+  },
+});
+
 if (document.querySelector('main.single-product')) {
   /* Slider Start */
-  const productThumbnails = new Swiper('.product-thumbnails', {
-    slidesPerView: 4,
-    spaceBetween: 16,
-  });
 
-  const productSlider = new Swiper('.product-slider', {
-    spaceBetween: 16,
-
-    thumbs: {
-      swiper: productThumbnails,
-    },
-
-    navigation: {
-      nextEl: '.icon-arrow-long-right',
-      prevEl: '.icon-arrow-long-left',
-    },
-  });
   /* Slider End */
 
   /* Tabs Start */
