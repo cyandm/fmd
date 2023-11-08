@@ -15950,7 +15950,7 @@
       ".filter-chips .filter-item .icon-close"
     );
     const filterContainer = sidebarProduct.querySelector("#filter-container");
-    const checkboxInps = sidebarProduct.querySelector(
+    const checkboxInps = sidebarProduct.querySelectorAll(
       ".filter-item-wrapper .filter-item input[type=checkbox]"
     );
     const filterClear = filterContainer.querySelector("#filter-actions-clear");
@@ -15971,7 +15971,9 @@
     }
     filterClear.addEventListener("click", function(e) {
       e.preventDefault();
-      checkboxInps.removeAttribute("checked");
+      checkboxInps.forEach((el) => {
+        el.checked = false;
+      });
       filterHidden.value = "off";
       filterContainer.submit();
     });

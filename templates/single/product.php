@@ -15,12 +15,14 @@ if ( is_array( $brandTerm ) && count( $brandTerm ) > 0 ) {
 }
 
 $typeTerm = get_the_terms( $productId, 'product-cat' );
-foreach ( $typeTerm as $tTerm ) {
-	if ( $tTerm->parent > 0 ) {
-		$parent = get_term( $tTerm->parent );
-		$specification['Type'] = $parent->name;
-		$specification['Collection'] = $tTerm->name;
-		break;
+if($typeTerm){
+	foreach ( $typeTerm as $tTerm ) {
+		if ( $tTerm->parent > 0 ) {
+			$parent = get_term( $tTerm->parent );
+			$specification['Type'] = $parent->name;
+			$specification['Collection'] = $tTerm->name;
+			break;
+		}
 	}
 }
 
@@ -68,12 +70,11 @@ $related = get_field( 'related_group', $productId );
 
 
 /***************** Check cats for being moulding */
-$is_moulding = array_search( 'moulding', array_column( $typeTerm, 'slug' ) );
+
+ $is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 'slug' ) ) : false;
 
 
-// echo '<pre dir=ltr>';
-// var_dump(  );
-// wp_die();
+
 
 
 ?>

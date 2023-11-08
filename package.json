@@ -17,5 +17,8 @@
     "gsap": "^3.12.2",
     "jquery": "^3.7.1",
     "swiper": "^10.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.5"
   }
 }
