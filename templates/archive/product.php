@@ -1,5 +1,17 @@
 <?php
 global $wp_query;
+
+if ( isset( $args ) && isset( $args['custom_q'] ) ) {
+	$wp_query = new WP_Query( $args['custom_q'] );
+}
+
+
+
+echo '<pre dir=ltr>';
+var_export( $wp_query->found_posts );
+wp_die();
+
+
 $options = new cyn_options();
 
 $thisTerm = get_term_by( "slug", get_query_var( 'term' ), get_query_var( 'taxonomy' ) );

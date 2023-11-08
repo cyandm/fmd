@@ -21,7 +21,7 @@ $address_url = get_option( 'cyn_address_url' );
 		</div>
 		<div class="contact-form">
 
-			<form action="#">
+			<form action="#" id="contact-us-form">
 				<label for="phone-number">
 					phone number
 					<input type="tel" name="phone-number" placeholder="phone number">
@@ -39,9 +39,9 @@ $address_url = get_option( 'cyn_address_url' );
 					i want you to inform me about new products and new offers
 				</label>
 
-				<a href="#" class="primary-btn">
+				<button type="submit" href="#" class="primary-btn" id="contact-us-form-submit">
 					Submit
-				</a>
+				</button>
 			</form>
 
 		</div>

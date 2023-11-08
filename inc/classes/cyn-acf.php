@@ -47,7 +47,7 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 					'label' => 'Gallery Image ' . $j,
 					'name' => 'gallery_img_' . $j,
 					'type' => 'image',
-					'return_format' => '',
+					'return_format' => 'id',
 					'wrapper' => [ 
 						'width' => '50',
 					],

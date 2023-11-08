@@ -1,16 +1,10 @@
 <?php
-var_dump( get_queried_object() );
+global $wp_query;
+$post_type = $wp_query->post->post_type;
 
-if ( $wp_query->posts ) {
-
-	if ( $wp_query->posts[0]->post_type == 'post' ) {
-		get_template_part( '/templates/blog' );
-	} else if ( $wp_query->posts[0]->post_type == 'product' ) {
-		get_template_part( '/archive-product' );
-	} else if ( $wp_query->posts[0]->post_type == 'product' ) {
-		get_template_part( '/archive-product' );
-	}
-
+if ( $post_type ) {
+	get_template_part( 'templates/archive/' . $post_type );
 } else {
-	get_template_part( '/404' );
+	echo 'not template found!';
 }
+

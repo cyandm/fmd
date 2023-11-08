@@ -37,7 +37,7 @@ main.archive-product {
 
       .product-card {
         flex: 1;
-        flex-basis: 32%;
+        flex-basis: 23%;
       }
     }
 
@@ -53,8 +53,8 @@ main.archive-product {
       margin-bottom: 2.25rem;
 
       .description {
-        &+p {
-          margin-top: .5rem;
+        & + p {
+          margin-top: 0.5rem;
         }
       }
     }

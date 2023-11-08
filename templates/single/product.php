@@ -1,9 +1,9 @@
 <?php
 $front_page_id = get_option( 'page_on_front' );
-$productId = get_the_ID();
+$productId = get_queried_object_id();
 
 /************* Specification */
-$specification = array();
+$specification = [];
 
 $brandTerm = get_the_terms( $productId, 'brand' );
 $brandImg = null;
@@ -57,17 +57,25 @@ if ( ! empty( $gallery ) ) {
 	}
 }
 
-function render_slides() {
-	global $imgs;
-	foreach ( $imgs as $imgID ) : ?>
-		<div class="swiper-slide">
-			<?= wp_get_attachment_image( $imgID, [ '700', '' ], false, [ 'class' => '' ] ) ?>
-		</div>
-	<?php endforeach;
+function render_slides( $imgs ) {
+	foreach ( $imgs as $imgID ) {
+		printf( '<div class="swiper-slide">%s</div>', wp_get_attachment_image( $imgID, [ '700', '' ] ) );
+	}
 }
 
 /************* Related */
 $related = get_field( 'related_group', $productId );
+
+
+/***************** Check cats for being moulding */
+$is_moulding = array_search( 'moulding', array_column( $typeTerm, 'slug' ) );
+
+
+// echo '<pre dir=ltr>';
+// var_dump(  );
+// wp_die();
+
+
 ?>
 
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ) ?>
@@ -148,7 +156,7 @@ $related = get_field( 'related_group', $productId );
 
 			<div class="product-slider swiper">
 				<div class="swiper-wrapper">
-					<?php render_slides() ?>
+					<?php render_slides( $imgs ) ?>
 				</div>
 
 				<div class="slider-navigation">
@@ -159,7 +167,7 @@ $related = get_field( 'related_group', $productId );
 
 			<div class="product-thumbnails swiper" style="width: 100%;">
 				<div class="swiper-wrapper">
-					<?php render_slides() ?>
+					<?php render_slides( $imgs ) ?>
 				</div>
 			</div>
 		</div>
@@ -179,34 +187,36 @@ $related = get_field( 'related_group', $productId );
 		</div>
 	</section>
 
-	<section class="transitions container">
-		<span class='title'>
-			transitions that comes with this product
-		</span>
+	<?php if ( $is_moulding === false ) : ?>
+		<section class="transitions container">
+			<span class='title'>
+				transitions that comes with this product
+			</span>
 
-		<div class="transitions-wrapper">
-			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/End_Cap_1.png' ?> " alt="">
-				<p>End Cap</p>
+			<div class="transitions-wrapper">
+				<div class="image-wrapper">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/End_Cap_1.png' ?> " alt="">
+					<p>End Cap</p>
+				</div>
+				<div class="image-wrapper">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Quarter_Round_1.png' ?> " alt="">
+					<p>Quarter Round</p>
+				</div>
+				<div class="image-wrapper">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Reducer_1.png' ?> " alt="">
+					<p>Reducer</p>
+				</div>
+				<div class="image-wrapper">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Stair_Nose_1.png' ?> " alt="">
+					<p>Stair Nose</p>
+				</div>
+				<div class="image-wrapper">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/T-Molding_1.png' ?> " alt="">
+					<p>T-Molding</p>
+				</div>
 			</div>
-			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Quarter_Round_1.png' ?> " alt="">
-				<p>Quarter Round</p>
-			</div>
-			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Reducer_1.png' ?> " alt="">
-				<p>Reducer</p>
-			</div>
-			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Stair_Nose_1.png' ?> " alt="">
-				<p>Stair Nose</p>
-			</div>
-			<div class="image-wrapper">
-				<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/T-Molding_1.png' ?> " alt="">
-				<p>T-Molding</p>
-			</div>
-		</div>
-	</section>
+		</section>
+	<?php endif; ?>
 
 	<?php if ( isset( $related['related_products'] ) && $related['related_products'] != false ) : ?>
 		<section class="related-products container">

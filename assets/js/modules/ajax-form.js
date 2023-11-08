@@ -1,5 +1,3 @@
-import jQuery from 'jquery';
-
 function objectifyFormArray(formArray) {
   var returnArray = {};
   for (var i = 0; i < formArray.length; i++) {
@@ -13,6 +11,7 @@ jQuery(document).ready(($) => {
   const contactUsFormSubmit = $('#contact-us-form #contact-us-form-submit');
 
   $(contactUsForm).on('submit', (e) => {
+    console.log('first');
     e.preventDefault();
     $(contactUsFormSubmit).addClass('pending');
 
@@ -24,11 +23,12 @@ jQuery(document).ready(($) => {
       url: cyn_head_script.url,
       type: 'post',
       data: {
-        action: 'send_contactus_form',
+        action: 'send_contact_us_form',
         _nonce: cyn_head_script.nonce,
         data: formData,
       },
       success: (res) => {
+        console.warn(res);
         $(contactUsFormSubmit).removeClass('pending');
         $(contactUsFormSubmit).addClass('success');
         $(contactUsFormSubmit).text("Thank You, We'll Call You Soon");
@@ -39,8 +39,10 @@ jQuery(document).ready(($) => {
         }, 2500);
       },
       error: (err) => {
+        console.error(err);
         $(contactUsFormSubmit).removeClass('pending');
         $(contactUsFormSubmit).addClass('error');
+        $(contactUsFormSubmit).text('An Error Has Accrued!');
       },
     });
   });

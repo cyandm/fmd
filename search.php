@@ -2,7 +2,7 @@
 global $wp_query;
 global $wpdb;
 $cynOptions = new cyn_options();
-$cynRegister = new cyn_register( false );
+$cynRegister = new cyn_register();
 
 $searchQueryS = get_search_query();
 

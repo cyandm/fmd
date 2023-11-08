@@ -13,7 +13,7 @@ require_once( __DIR__ . '/inc/classes/cyn-form.php' );
 
 
 /***************************** Instance Classes */
-$cyn_theme_init = new cyn_theme_init( false, '0,0,0' );
+$cyn_theme_init = new cyn_theme_init( false, '1.3.0' );
 $cyn_customize = new cyn_customize;
 $cyn_register = new cyn_register;
 $cyn_admin = new cyn_admin;

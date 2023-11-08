@@ -3,8 +3,8 @@
 if ( ! class_exists( 'cyn_form' ) ) {
 	class cyn_form {
 		function __construct() {
-			add_action( 'wp_ajax_send_contactus_form', [ $this, 'cyn_send_form' ] );
-			add_action( 'wp_ajax_nopriv_send_contactus_form', [ $this, 'cyn_send_form' ] );
+			add_action( 'wp_ajax_send_contact_us_form', [ $this, 'cyn_send_form' ] );
+			add_action( 'wp_ajax_nopriv_send_contact_us_form', [ $this, 'cyn_send_form' ] );
 		}
 
 		public function cyn_send_form() {

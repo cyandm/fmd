@@ -12,7 +12,6 @@ $all_posts = new WP_Query( [
 	'paged' => $paged
 ] )
 
-
 	?>
 
 <?php get_header( null, [ 'border' => ! $recommend_blogs->have_posts(), 'preloader' => false ] ) ?>

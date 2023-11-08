@@ -10,7 +10,23 @@ $blog_posts = new WP_Query( [ 'tag' => 'front-page-posts', 'posts_per_page' => '
 $feature_products = get_field( 'feature_products' );
 
 
-?>
+$about_content = get_field( 'about_content' );
+$about_link = get_field( 'about_link' );
+$about_video_url = get_field( 'about_video_url' );
+$about_cover_img_url = get_field( 'about_cover_img_url' );
+
+$work_hours = [ 
+	'monday' => '7am - 5:30pm',
+	'tuesday' => '7am - 5:30pm',
+	'wednesday' => '7am - 5:30pm',
+	'thursday' => '7am - 5:30pm',
+	'friday' => '7am - 5:30pm',
+	'saturday' => '8am - 5pm',
+	'sunday' => 'closed',
+]
+
+
+	?>
 
 
 
@@ -75,7 +91,7 @@ $feature_products = get_field( 'feature_products' );
 		<section id="scroll-target" class="today-offer container">
 			<div class="feature-image">
 				<div class="title-controller">
-					<h2>Today's <span class="purple-text">Offer</span></h2>
+					<h2>Monthly <span class="purple-text">Offer</span></h2>
 				</div>
 				<div class="feature-image-controller cyn-slider-wrapper">
 
@@ -138,38 +154,16 @@ $feature_products = get_field( 'feature_products' );
 				</div>
 
 				<div class="product-gallery">
-					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active"
-							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
-							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
-							alt="">
-					</div>
-					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active"
-							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
-							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
-							alt="">
-					</div>
-					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active"
-							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
-							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
-							alt="">
-					</div>
-					<div class="cyn-slider-wrapper product-gallery-item">
-						<img class="cyn-slide active"
-							src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>" alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail.png' ?>"
-							alt="">
-						<img class="cyn-slide" src="<?= get_stylesheet_directory_uri() . '/assets/imgs/thumbnail-2.png' ?>"
-							alt="">
-					</div>
+					<?php for ( $i = 1; $i < 5; $i++ ) : ?>
+						<div class="cyn-slider-wrapper product-gallery-item">
+							<?php foreach ( $feature_products as $product_ID ) {
+								$img_id = get_field( 'product_gallery_group', $product_ID )[ 'gallery_img_' . $i ];
+								echo $img_id ?
+									wp_get_attachment_image( $img_id, 'full', false, [ 'class' => 'cyn-slide' ] )
+									: '<img class="cyn-slide" src= ' . get_stylesheet_directory_uri() . '/assets/imgs/placeholder.png />';
+							} ?>
+						</div>
+					<?php endfor; ?>
 				</div>
 			</div>
 		</section>
@@ -177,43 +171,16 @@ $feature_products = get_field( 'feature_products' );
 
 	<section>
 		<div class="ticker">
-			<div class="ticker-wrapper">
-				<div class="ticker-item">largest selection of building supplies</div>
-				<div class="ticker-item">Lowest Prices</div>
-				<div class="ticker-item">Exceptional Customer Service</div>
-				<div class="ticker-item">Biggest Selection of Brands</div>
-				<div class="ticker-item">In Stock material</div>
-			</div>
-			<div class="ticker-wrapper">
-				<div class="ticker-item">largest selection of building supplies</div>
-				<div class="ticker-item">Lowest Prices</div>
-				<div class="ticker-item">Exceptional Customer Service</div>
-				<div class="ticker-item">Biggest Selection of Brands</div>
-				<div class="ticker-item">In Stock material</div>
-			</div>
-			<div class="ticker-wrapper">
-				<div class="ticker-item">largest selection of building supplies</div>
-				<div class="ticker-item">Lowest Prices</div>
-				<div class="ticker-item">Exceptional Customer Service</div>
-				<div class="ticker-item">Biggest Selection of Brands</div>
-				<div class="ticker-item">In Stock material</div>
-			</div>
-			<div class="ticker-wrapper">
-				<div class="ticker-item">largest selection of building supplies</div>
-				<div class="ticker-item">Lowest Prices</div>
-				<div class="ticker-item">Exceptional Customer Service</div>
-				<div class="ticker-item">Biggest Selection of Brands</div>
-				<div class="ticker-item">In Stock material</div>
-			</div>
-			<div class="ticker-wrapper">
-				<div class="ticker-item">largest selection of building supplies</div>
-				<div class="ticker-item">Lowest Prices</div>
-				<div class="ticker-item">Exceptional Customer Service</div>
-				<div class="ticker-item">Biggest Selection of Brands</div>
-				<div class="ticker-item">In Stock material</div>
-			</div>
+			<?php for ( $i = 0; $i < 5; $i++ ) : ?>
+				<div class="ticker-wrapper">
+					<div class="ticker-item">largest selection of finishing supplies</div>
+					<div class="ticker-item">Lowest Prices</div>
+					<div class="ticker-item">Exceptional Customer Service</div>
+					<div class="ticker-item">Biggest Selection of Brands</div>
+					<div class="ticker-item">In Stock material</div>
+				</div>
+			<?php endfor; ?>
 		</div>
-
 	</section>
 
 	<?php if ( $product_cat_middle_group ) : ?>
@@ -290,6 +257,29 @@ $feature_products = get_field( 'feature_products' );
 		</section>
 	<?php endif; ?>
 
+	<?php if ( $about_content ) : ?>
+		<section class="about container">
+
+			<div class="title-controller">
+				<h2>About <span class="purple-text">Company</span></h2>
+			</div>
+
+
+			<div class="content-container">
+				<div class="video-wrapper">
+					<video src="<?= $about_video_url ?>" poster="<?= $about_cover_img_url ?>" controls />
+				</div>
+				<div class="content-wrapper">
+					<h3>About Fmd Distributor</h3>
+					<p class="content">
+						<?= $about_content ?>
+					</p>
+					<a href=<?= $about_link ?> class="primary-btn">More</a>
+				</div>
+			</div>
+		</section>
+	<?php endif; ?>
+
 	<?php if ( $blog_posts->have_posts() ) : ?>
 		<section class="blog container">
 
@@ -358,6 +348,33 @@ $feature_products = get_field( 'feature_products' );
 				</button>
 			</form>
 
+		</div>
+	</section>
+
+	<section class="work-hours container">
+		<h2 class="title">
+			Work <span class="purple-text">hours</span>
+		</h2>
+
+		<div class="work-hours-con">
+			<div class="img-wrapper">
+				<?= wp_get_attachment_image( get_field( 'work_hours_img' ), 'full' ) ?>
+			</div>
+
+			<div class="table-con">
+				<table>
+					<?php foreach ( $work_hours as $day => $time ) : ?>
+						<tr>
+							<td>
+								<?= $day ?>
+							</td>
+							<td>
+								<?= $time ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
+			</div>
 		</div>
 	</section>
 </main>
