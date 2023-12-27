@@ -2,6 +2,12 @@
 /* Template Name: About Us */
 ?>
 
+<!-- @change start -->
+<?php
+$phone_number_1 = get_option( 'cyn_phone_number_one' );
+?>
+<!-- @change end -->
+
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ) ?>
 
 <main class="about-us ">
@@ -20,7 +26,9 @@
 
 		<?php for ( $i = 0; $i < 3; $i++ ) : ?>
 			<div class="ticker-wrapper">
-				<div class="ticker-item">largest selection of building supplies</div>
+				<!-- @change start -->
+				<div class="ticker-item">largest selection of finishing supplies</div>
+				<!-- @change end -->
 				<div class="ticker-item">Lowest Prices</div>
 				<div class="ticker-item">Exceptional Customer Service</div>
 				<div class="ticker-item">Biggest Selection of Brands</div>
@@ -54,7 +62,10 @@
 		</div>
 	</section>
 	<section class="call-to-action">
-		<a href="" class="secondary-btn">
+		<!-- @change start -->
+		<a href="<?= 'tel:' . $phone_number_1 ?>" class="secondary-btn">
+		<!-- @change end -->
+			
 			<i class="icon-phone"></i>
 			<span>call us now</span>
 		</a>

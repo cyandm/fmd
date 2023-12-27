@@ -1,8 +1,9 @@
 <?php
 global $wp_query;
 
+
 if (isset($wp_query->post->post_type)) {
-	get_template_part('templates/archive/' . $post_type);
+	get_template_part('templates/archive/' . $wp_query->post->post_type);
 } else {
 	$query_array = explode(' ', $wp_query->request);
 	$query_array = array_splice($query_array, 0);

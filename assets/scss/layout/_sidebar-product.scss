@@ -27,7 +27,7 @@ aside.sidebar-products {
       gap: 0.625rem;
       margin-block-end: 1.25rem;
 
-      > * {
+      >* {
         flex: 1;
         display: inline-flex;
         justify-content: center;
@@ -45,7 +45,7 @@ aside.sidebar-products {
         padding: 0.625rem;
         cursor: pointer;
 
-        > * {
+        >* {
           transition: 0.3s ease-in-out;
         }
       }
@@ -57,17 +57,43 @@ aside.sidebar-products {
         display: grid;
         grid-template-rows: 0fr;
         transition: 0.3s;
+        max-height: 60vh;
 
         .filter-item-wrapper {
           overflow: hidden;
           gap: 1.25rem;
           display: grid;
+          padding-left: 0.5rem;
+
+          & {
+            direction: rtl;
+            scrollbar-color: #797979 transparent;
+            scrollbar-width: thin;
+
+            &::-webkit-scrollbar {
+              width: 4px;
+            }
+
+            &::-webkit-scrollbar-track {
+              border-radius: 2px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background: #939292;
+              border-radius: 2px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+              background: #797979;
+            }
+          }
 
           .filter-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            direction: ltr;
           }
         }
       }
@@ -80,10 +106,16 @@ aside.sidebar-products {
             rotate: 180deg;
           }
         }
+
         .filter-item-container {
           background-color: #f4f4f4;
           grid-template-rows: 1fr;
           padding-block: 0.625rem;
+
+          .filter-item-wrapper {
+            max-height: calc(60vh - 1.25rem);
+            overflow-y: auto;
+          }
         }
       }
     }

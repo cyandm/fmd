@@ -1,8 +1,20 @@
 <?php
 
 /* Template Name: Front Page */
-$product_cat_middle_group = get_field( 'category_on_middle' );
-$product_cat_top_group = get_field( 'category_on_top' );
+// @change start
+$product_cat_top_group_1 = get_field( 'category_on_top_1' );
+$product_cat_top_group_2 = get_field( 'category_on_top_2' );
+
+$product_cat_top_group = array_merge($product_cat_top_group_1 , $product_cat_top_group_2);
+
+
+$product_cat_middle_group_1 = get_field( 'category_on_middle_1' );
+$product_cat_middle_group_2 = get_field( 'category_on_middle_2' );
+
+$product_cat_middle_group = array_merge($product_cat_middle_group_1 , $product_cat_middle_group_2);
+
+// @change end
+
 $brands_ltr = get_field( 'brands_ltr' );
 $brands_rtl = get_field( 'brands_rtl' );
 $blog_posts = new WP_Query( [ 'tag' => 'front-page-posts', 'posts_per_page' => '6' ] );

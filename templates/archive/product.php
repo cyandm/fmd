@@ -5,10 +5,14 @@ if (isset($args) && isset($args['custom_q'])) {
 	$wp_query = new WP_Query($args['custom_q']);
 }
 
+$thisTerm = get_term_by("slug", get_query_var('term'), get_query_var('taxonomy'));
+
+$redirect_url = $thisTerm ? get_field('redirect_url', 'product-cat_' . $thisTerm->term_id) : null;
+if (isset($redirect_url))
+	wp_redirect($redirect_url);
 
 $options = new cyn_options();
 
-// $thisTerm     = get_term_by("slug", get_query_var('term'), get_query_var('taxonomy'));
 // $parentTermId = wp_get_term_taxonomy_parent_id($thisTerm->term_id, get_query_var('taxonomy'));
 // $parentTerm   = false;
 // $parentTermConditions = !($parentTermId > 0 && $parentTermId != false);
@@ -25,9 +29,10 @@ $allChips    = array_merge($productCats, $brandsCats, $filtersCats);
 
 <main class="archive-product container">
 	<?php get_template_part('/templates/components/sidebar', 'product', [
-		'title'    => get_the_archive_title(),
-		'products' => false,
-		'form-url' => $formUrl
+		'title'     => get_the_archive_title(),
+		'products'  => false,
+		'form-url'  => $formUrl,
+		'this-term' => $thisTerm
 	]); ?>
 
 	<div class="product-container">

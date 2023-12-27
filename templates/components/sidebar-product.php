@@ -1,6 +1,7 @@
 <?php
 $options = new cyn_options();
 $productConditions = !(isset($args['products']) && $args['products'] == false);
+$thisTerm = isset($args['this-term']) ? $args['this-term'] : get_term_by("slug", get_query_var('term'), get_query_var('taxonomy'));
 
 if ($productConditions)
 	$productCats = $options->cyn_getProductTerms(0, false, 'product-cat');
@@ -32,6 +33,19 @@ usort($filtersCats, function ($a, $b) {
 });
 
 $formUrl = isset($args['form-url']) ? $args['form-url'] : get_post_type_archive_link('product');
+
+$mouldingCats = array(
+	"casing",
+	"baseboard",
+	"crown-moulding"
+);
+$isMouldingCat = $thisTerm != false && in_array($thisTerm->slug, $mouldingCats);
+$mouldingFilters = array(
+	"thickness",
+	"width",
+	"height"
+);
+
 
 function boxChecks($items)
 {
@@ -65,7 +79,7 @@ function boxChecks($items)
 			<button type="button" id="filter-actions-clear" class="disable-btn">Clear</button>
 		</div>
 
-		<?php if (isset($productTypes) && count($productTypes) > 0) : ?>
+		<?php if (isset($productTypes) && count($productTypes) > 0 && !$isMouldingCat) : ?>
 			<div class="filter-wrapper">
 				<div class="title ">
 					<span>Types</span>
@@ -137,6 +151,9 @@ function boxChecks($items)
 				$filtersId  = $filtersCat['id'];
 				$parent     = $filtersCat['parent'];
 				$filterSlug = $filtersCat['slug'];
+
+				if ($isMouldingCat && !in_array($filterSlug, $mouldingFilters))
+					continue;
 				?>
 				<?php if ($parent == 0 && $filterSlug != 'type') : ?>
 					<div class="filter-wrapper">
