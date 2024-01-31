@@ -24,7 +24,7 @@ if ( ! class_exists( 'cyn-theme-init' ) ) {
 
 		public function cyn_enqueue_files() {
 
-			wp_enqueue_style( 'cyn-style', get_stylesheet_directory_uri() );
+			wp_enqueue_style( 'cyn-style', get_stylesheet_directory_uri() . '/style.css' );
 
 			if ( $this->deploy ) {
 				wp_enqueue_style( 'cyn-compiled', get_stylesheet_directory_uri() . '/assets/css/final.css', [], $this->ver );

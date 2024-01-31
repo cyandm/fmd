@@ -88,7 +88,9 @@ $formUrl = "./";
 						<span class="filter-title">
 							<?php echo $chip['name'] ?>
 						</span>
-						<i class="icon-close" style="cursor: pointer;" data-filter="<?php echo 'cat-' . $chip['id']; ?>"></i>
+						<i class="icon-close"
+						   style="cursor: pointer;"
+						   data-filter="<?php echo 'cat-' . $chip['id']; ?>"></i>
 					</span>
 				<?php endif; ?>
 			<?php endforeach; ?>
@@ -96,7 +98,7 @@ $formUrl = "./";
 		<?php if ( count( $searchQueryArgs['post__in'] ) <= 0 ) : ?>
 			<div class="not-find">
 				<p>sorry ! we could’nt find anything</p>
-				<img src="<?php echo get_stylesheet_directory_uri() . '/imgs/not-found.png' ?>">
+				<img src="<?php echo get_stylesheet_directory_uri() . '/assets/imgs/not-found.png' ?>">
 			</div>
 		<?php elseif ( $searchWpQuery->have_posts() ) : ?>
 			<div class="title">
@@ -119,7 +121,8 @@ $formUrl = "./";
 
 					?>
 
-					<a href="<?php echo $postLink; ?>" class="product-card">
+					<a href="<?php echo $postLink; ?>"
+					   class="product-card">
 						<?= wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, [ 'class' => '' ] ) ?>
 
 						<div class="product-content">

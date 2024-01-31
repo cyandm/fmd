@@ -15,7 +15,7 @@ if ( is_array( $brandTerm ) && count( $brandTerm ) > 0 ) {
 }
 
 $typeTerm = get_the_terms( $productId, 'product-cat' );
-if($typeTerm){
+if ( $typeTerm ) {
 	foreach ( $typeTerm as $tTerm ) {
 		if ( $tTerm->parent > 0 ) {
 			$parent = get_term( $tTerm->parent );
@@ -71,7 +71,7 @@ $related = get_field( 'related_group', $productId );
 
 /***************** Check cats for being moulding */
 
- $is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 'slug' ) ) : false;
+$is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 'slug' ) ) : false;
 
 
 
@@ -84,7 +84,8 @@ $related = get_field( 'related_group', $productId );
 <main class="single-product">
 	<section class="top-page container">
 		<div>
-			<a href="javascript:window.history.back();" class="primary-btn">
+			<a href="javascript:window.history.back();"
+			   class="primary-btn">
 				<i class="icon-arrow-long-left"></i>
 			</a>
 		</div>
@@ -96,11 +97,14 @@ $related = get_field( 'related_group', $productId );
 	<section class="product-info container">
 		<div class="product-details">
 			<div class="header-tabs">
-				<span data-tab="specification" class="active">Specification</span>
-				<span data-tab="description" class="">Description</span>
+				<span data-tab="specification"
+					  class="active">Specification</span>
+				<span data-tab="description"
+					  class="">Description</span>
 			</div>
 			<div class="content-tabs">
-				<div data-tab="specification" class="specification active">
+				<div data-tab="specification"
+					 class="specification active">
 					<table>
 						<tbody>
 							<?php foreach ( $specification as $item => $value ) : ?>
@@ -140,7 +144,8 @@ $related = get_field( 'related_group', $productId );
 					</table>
 				</div>
 
-				<div data-tab="description" class="description">
+				<div data-tab="description"
+					 class="description">
 					<h2>item describtion</h2>
 					<p>
 						<?php echo ! empty( get_field( 'product_desc' ) ) ? get_field( 'product_desc' ) : ''; ?>
@@ -166,7 +171,8 @@ $related = get_field( 'related_group', $productId );
 				</div>
 			</div>
 
-			<div class="product-thumbnails swiper" style="width: 100%;">
+			<div class="product-thumbnails swiper"
+				 style="width: 100%;">
 				<div class="swiper-wrapper">
 					<?php render_slides( $imgs ) ?>
 				</div>
@@ -178,12 +184,13 @@ $related = get_field( 'related_group', $productId );
 		<?php $phone_number_1 = get_option( 'cyn_phone_number_one' ); ?>
 		<div class="container">
 			<span>Price: </span>
-			<a href=<?= 'tel:' . isset( $phone_number_1 ) ? $phone_number_1 : ''; ?> class="secondary-btn">
+			<a href=<?= 'tel:' . isset( $phone_number_1 ) ? $phone_number_1 : ''; ?>
+			   class="secondary-btn">
 				<i class="icon-phone"></i>
 				call us now
 			</a>
 			<span>
-				we are here for you 24/7. call us now
+				Contact us to check availability and book
 			</span>
 		</div>
 	</section>
@@ -196,23 +203,28 @@ $related = get_field( 'related_group', $productId );
 
 			<div class="transitions-wrapper">
 				<div class="image-wrapper">
-					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/End_Cap_1.png' ?> " alt="">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/End_Cap_1.png' ?> "
+						 alt="">
 					<p>End Cap</p>
 				</div>
 				<div class="image-wrapper">
-					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Quarter_Round_1.png' ?> " alt="">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Quarter_Round_1.png' ?> "
+						 alt="">
 					<p>Quarter Round</p>
 				</div>
 				<div class="image-wrapper">
-					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Reducer_1.png' ?> " alt="">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Reducer_1.png' ?> "
+						 alt="">
 					<p>Reducer</p>
 				</div>
 				<div class="image-wrapper">
-					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Stair_Nose_1.png' ?> " alt="">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/Stair_Nose_1.png' ?> "
+						 alt="">
 					<p>Stair Nose</p>
 				</div>
 				<div class="image-wrapper">
-					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/T-Molding_1.png' ?> " alt="">
+					<img src=" <?php echo get_template_directory_uri() . '/assets/imgs/T-Molding_1.png' ?> "
+						 alt="">
 					<p>T-Molding</p>
 				</div>
 			</div>

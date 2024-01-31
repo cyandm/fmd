@@ -4,6 +4,11 @@ $phone_number_1 = get_option( 'cyn_phone_number_one' );
 $phone_number_2 = get_option( 'cyn_phone_number_two' );
 $address_text = get_option( 'cyn_address_text' );
 $address_url = get_option( 'cyn_address_url' );
+
+$instagram_url = get_option( 'cyn_instagram_url' );
+$youtube_url = get_option( 'cyn_youtube_url' );
+$facebook_url = get_option( 'cyn_facebook_url' );
+
 ?>
 <footer class="site-footer">
 
@@ -38,8 +43,24 @@ $address_url = get_option( 'cyn_address_url' );
 				?>
 			</div>
 			<div class="social-media">
-				<i class="icon-instagram"></i>
-				<i class="icon-telegram"></i>
+				<?php if ( $instagram_url ) : ?>
+					<a href="<?= $instagram_url ?>">
+						<i class="icon-instagram"></i>
+					</a>
+				<?php endif; ?>
+
+				<?php if ( $youtube_url ) : ?>
+					<a href="<?= $youtube_url ?>">
+						<i class="icon-youtube"></i>
+					</a>
+				<?php endif; ?>
+
+				<?php if ( $facebook_url ) : ?>
+					<a href="<?= $facebook_url ?>">
+						<i class="icon-facebook"></i>
+					</a>
+				<?php endif; ?>
+
 			</div>
 		</div>
 

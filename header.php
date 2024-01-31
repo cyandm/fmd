@@ -27,7 +27,7 @@
 				</form>
 
 				<div class="desktop-menu">
-					<?php wp_nav_menu( [ 'menu' => 'Header' ] ) ?>
+					<?php wp_nav_menu( [ 'theme_location' => 'header' ] ) ?>
 				</div>
 			</div>
 
@@ -40,7 +40,7 @@
 						<input class="" type="search" placeholder="search" value="<?php the_search_query(); ?>" name="s"
 							id="search" />
 					</form>
-					<?php wp_nav_menu( [ 'theme_location' => 'Header' ] ) ?>
+					<?php wp_nav_menu( [ 'theme_location' => 'header' ] ) ?>
 				</div>
 			</div>
 		</div>

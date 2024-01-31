@@ -15878,7 +15878,6 @@
     const contactUsForm = $("#contact-us-form");
     const contactUsFormSubmit = $("#contact-us-form #contact-us-form-submit");
     $(contactUsForm).on("submit", (e) => {
-      console.log("first");
       e.preventDefault();
       $(contactUsFormSubmit).addClass("pending");
       const formDataArray = $(contactUsForm).serializeArray();
@@ -15894,10 +15893,10 @@
           data: formData
         },
         success: (res) => {
-          console.warn(res);
           $(contactUsFormSubmit).removeClass("pending");
           $(contactUsFormSubmit).addClass("success");
           $(contactUsFormSubmit).text("Thank You, We'll Call You Soon");
+          e.target.reset();
           setTimeout(() => {
             $(contactUsFormSubmit).removeClass("success");
             $(contactUsFormSubmit).text("Send");
@@ -15989,9 +15988,11 @@
   if (document.querySelector("aside.sidebar-blog")) {
     blogCategoryHandler = document.querySelector(".mobile-category-handler");
     blogCategory = document.querySelector(".blog-opener");
-    blogCategoryHandler.addEventListener("click", () => {
-      blogCategory.classList.toggle("active");
-    });
+    if (blogCategory && blogCategoryHandler) {
+      blogCategoryHandler.addEventListener("click", () => {
+        blogCategory.classList.toggle("active");
+      });
+    }
   }
 
   // assets/js/components/button.js

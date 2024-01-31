@@ -14,11 +14,13 @@ $phone_number_1 = get_option( 'cyn_phone_number_one' );
 	<div class="changes-in-scroll container">
 		<div class="slide-1">
 			<h2 data-content="it was just an idea">it was just an idea</h2>
-			<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/about-us-sketch.png' ?>" alt="">
+			<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/about-us-sketch.png' ?>"
+				 alt="">
 		</div>
 		<div class="slide-2">
 			<h2 data-content="until we made it real">until we made it real</h2>
-			<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/about-us-real.png' ?>" alt="">
+			<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/about-us-real.png' ?>"
+				 alt="">
 		</div>
 	</div>
 
@@ -62,15 +64,16 @@ $phone_number_1 = get_option( 'cyn_phone_number_one' );
 		</div>
 	</section>
 	<section class="call-to-action">
-		<!-- @change start -->
-		<a href="<?= 'tel:' . $phone_number_1 ?>" class="secondary-btn">
-		<!-- @change end -->
-			
+
+		<a href="<?= 'tel:' . $phone_number_1 ?>"
+		   class="secondary-btn">
+
+
 			<i class="icon-phone"></i>
 			<span>call us now</span>
 		</a>
 
-		<span>we are here for you 24/7. Call us now</span>
+		<span>Contact us to check availability and book</span>
 	</section>
 
 	<section class="content-middle container">

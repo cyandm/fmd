@@ -30,7 +30,8 @@ if ( isset( $_GET['sp'] ) ) {
 								<?php echo get_the_title() ?>
 							</h3>
 						</div>
-						<a href="tel:<?= $phone_number_1 ?>" class="secondary-btn except-mobile">Call now</a>
+						<a href="tel:<?= $phone_number_1 ?>"
+						   class="secondary-btn except-mobile">Call now</a>
 					</header>
 
 					<main>
@@ -54,7 +55,8 @@ if ( isset( $_GET['sp'] ) ) {
 						</div>
 					</main>
 
-					<a href="tel:<?= $phone_number_1 ?>" class="only-mobile secondary-btn">Call now</a>
+					<a href="tel:<?= $phone_number_1 ?>"
+					   class="only-mobile secondary-btn">Call now</a>
 				</article>
 			<?php endwhile; ?>
 		</div>
@@ -71,7 +73,7 @@ if ( isset( $_GET['sp'] ) ) {
 	<?php else : ?>
 		<div class="">
 			<p>sorry ! we could’nt find anything</p>
-			<img src="<?php echo get_stylesheet_directory_uri() . '/imgs/not-found.png' ?>">
+			<img src="<?php echo get_stylesheet_directory_uri() . '/assets/imgs/not-found.png' ?>">
 		</div>
 	<?php endif; ?>
 </main>

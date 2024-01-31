@@ -96,6 +96,56 @@ if ( ! class_exists( 'cyn_customize' ) ) {
 				)
 			) );
 
+			//SocialMedia Section
+			$wp_customize->add_setting( 'cyn_instagram_url',
+				[ 
+					'type' => 'option'
+				]
+			);
+			$wp_customize->add_control( new WP_Customize_Upload_Control(
+				$wp_customize,
+				'cyn_instagram_url',
+				array(
+					'label' => 'Instagram URL',
+					'section' => 'basic_settings',
+					'type' => 'text',
+					'settings' => 'cyn_instagram_url'
+				)
+			) );
+
+			$wp_customize->add_setting( 'cyn_youtube_url',
+				[ 
+					'type' => 'option'
+				]
+			);
+			$wp_customize->add_control( new WP_Customize_Upload_Control(
+				$wp_customize,
+				'cyn_youtube_url',
+				array(
+					'label' => 'youtube URL',
+					'section' => 'basic_settings',
+					'type' => 'text',
+					'settings' => 'cyn_youtube_url'
+				)
+			) );
+
+			$wp_customize->add_setting( 'cyn_facebook_url',
+				[ 
+					'type' => 'option'
+				]
+			);
+			$wp_customize->add_control( new WP_Customize_Upload_Control(
+				$wp_customize,
+				'cyn_facebook_url',
+				array(
+					'label' => 'facebook URL',
+					'section' => 'basic_settings',
+					'type' => 'text',
+					'settings' => 'cyn_facebook_url'
+				)
+			) );
+
+
 
 		}
 
