@@ -5,13 +5,13 @@
 $product_cat_top_group_1 = get_field( 'category_on_top_1' );
 $product_cat_top_group_2 = get_field( 'category_on_top_2' );
 
-$product_cat_top_group = array_merge($product_cat_top_group_1 , $product_cat_top_group_2);
+$product_cat_top_group = array_merge( $product_cat_top_group_1, $product_cat_top_group_2 );
 
 
 $product_cat_middle_group_1 = get_field( 'category_on_middle_1' );
 $product_cat_middle_group_2 = get_field( 'category_on_middle_2' );
 
-$product_cat_middle_group = array_merge($product_cat_middle_group_1 , $product_cat_middle_group_2);
+$product_cat_middle_group = array_merge( $product_cat_middle_group_1, $product_cat_middle_group_2 );
 
 // @change end
 
@@ -53,16 +53,21 @@ $work_hours = [
 
 		<div class="subtract">
 			<div class="inner-subtract">
-				<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/Subtract.png' ?>" alt="">
+				<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/Subtract.png' ?>"
+					 alt="">
 
-				<div id="scroll-to-bottom" class="spinner">
+				<div id="scroll-to-bottom"
+					 class="spinner">
 					<svg viewBox="0 0 112 112">
-						<path id="curve" d="
+						<path id="curve"
+							  d="
 							M 20, 55
 							a 25,25 0 1,1 72,0
 							a 25,25 0 1,1 -72,0
-						" fill="transparent" />
-						<text width="500" fill="#fff">
+						"
+							  fill="transparent" />
+						<text width="500"
+							  fill="#fff">
 							<textPath xlink:href="#curve">
 								Explore our products
 							</textPath>
@@ -86,7 +91,8 @@ $work_hours = [
 
 					$product_cat_img_id = get_field( 'custom_thumbnail', $product_cat->taxonomy . '_' . $product_cat->term_id );
 					?>
-					<a href="<?= get_term_link( $product_cat ) ?>" class="product-cat-card">
+					<a href="<?= get_term_link( $product_cat ) ?>"
+					   class="product-cat-card">
 						<?= wp_get_attachment_image( $product_cat_img_id, 'thumbnail', false, [ 'class' => '' ] ); ?>
 						<div>
 							<p>
@@ -100,10 +106,11 @@ $work_hours = [
 	</section>
 
 	<?php if ( $product_cat ) : ?>
-		<section id="scroll-target" class="today-offer container">
+		<section id="scroll-target"
+				 class="today-offer container">
 			<div class="feature-image">
 				<div class="title-controller">
-					<h2>Monthly <span class="purple-text">Offer</span></h2>
+					<h2>Special <span class="purple-text">Offer</span></h2>
 				</div>
 				<div class="feature-image-controller cyn-slider-wrapper">
 
@@ -116,8 +123,10 @@ $work_hours = [
 					<?php endforeach; ?>
 				</div>
 				<div class="slider-navigation">
-					<i id="cyn-prev-slide" class="icon-arrow-left"></i>
-					<i id="cyn-next-slide" class="icon-arrow-right"></i>
+					<i id="cyn-prev-slide"
+					   class="icon-arrow-left"></i>
+					<i id="cyn-next-slide"
+					   class="icon-arrow-right"></i>
 				</div>
 			</div>
 			<div class="product-details">
@@ -160,7 +169,8 @@ $work_hours = [
 
 					<div class="cyn-slider-wrapper button-wrapper">
 						<?php foreach ( $feature_products as $product_ID ) : ?>
-							<a href=<?= get_permalink( $product_ID ) ?> class="primary-btn cyn-slide">View</a>
+							<a href=<?= get_permalink( $product_ID ) ?>
+							   class="primary-btn cyn-slide">View</a>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -202,7 +212,8 @@ $work_hours = [
 					Product Categories
 				</h2>
 
-				<a href="/products" class="primary-btn except-mobile"> View all</a>
+				<a href="/products"
+				   class="primary-btn except-mobile"> View all</a>
 			</div>
 
 			<div class="product-categories-wrapper">
@@ -218,7 +229,8 @@ $work_hours = [
 					] );
 				} ?>
 			</div>
-			<a href="/products" class="primary-btn only-mobile"> View all</a>
+			<a href="/products"
+			   class="primary-btn only-mobile"> View all</a>
 		</section>
 	<?php endif; ?>
 
@@ -229,7 +241,8 @@ $work_hours = [
 					Brands We Carry
 				</h2>
 
-				<a href="/brands" class="primary-btn except-mobile"> View All </a>
+				<a href="/brands"
+				   class="primary-btn except-mobile"> View All </a>
 			</div>
 
 			<?php if ( $brands_ltr ) : ?>
@@ -238,7 +251,8 @@ $work_hours = [
 						<div class="brand-wrapper">
 
 							<?php foreach ( $brands_ltr as $brand ) : ?>
-								<a href="<?= get_term_link( $brand ) ?>" class="ticker-item">
+								<a href="<?= get_term_link( $brand ) ?>"
+								   class="ticker-item">
 									<?= wp_get_attachment_image( get_field( 'custom_thumbnail', $brand->taxonomy . '_' . $brand->term_id ), 'full', false, [ 'class' => 'single-brand' ] ) ?>
 								</a>
 							<?php endforeach; ?>
@@ -249,12 +263,14 @@ $work_hours = [
 			<?php endif; ?>
 
 			<?php if ( $brands_rtl ) : ?>
-				<div dir="rtl" class="brand-ticker rtl">
+				<div dir="rtl"
+					 class="brand-ticker rtl">
 					<?php for ( $i = 0; $i < 2; $i++ ) : ?>
 						<div class="brand-wrapper">
 
 							<?php foreach ( $brands_rtl as $brand ) : ?>
-								<a href="<?= get_term_link( $brand ) ?>" class="ticker-item">
+								<a href="<?= get_term_link( $brand ) ?>"
+								   class="ticker-item">
 									<?= wp_get_attachment_image( get_field( 'custom_thumbnail', $brand->taxonomy . '_' . $brand->term_id ), 'full', false, [ 'class' => 'single-brand' ] ) ?>
 								</a>
 							<?php endforeach; ?>
@@ -264,7 +280,8 @@ $work_hours = [
 				</div>
 			<?php endif; ?>
 
-			<a href="/brands" class="primary-btn only-mobile"> View all</a>
+			<a href="/brands"
+			   class="primary-btn only-mobile"> View all</a>
 
 		</section>
 	<?php endif; ?>
@@ -279,14 +296,17 @@ $work_hours = [
 
 			<div class="content-container">
 				<div class="video-wrapper">
-					<video src="<?= $about_video_url ?>" poster="<?= $about_cover_img_url ?>" controls />
+					<video src="<?= $about_video_url ?>"
+						   poster="<?= $about_cover_img_url ?>"
+						   controls />
 				</div>
 				<div class="content-wrapper">
 					<h3>About Fmd Distributor</h3>
 					<p class="content">
 						<?= $about_content ?>
 					</p>
-					<a href=<?= $about_link ?> class="primary-btn">More</a>
+					<a href=<?= $about_link ?>
+					   class="primary-btn">More</a>
 				</div>
 			</div>
 		</section>
@@ -303,7 +323,8 @@ $work_hours = [
 				</h2>
 
 				<div class="shape-btn">
-					<a href="/blog" class="primary-btn except-mobile">view all</a>
+					<a href="/blog"
+					   class="primary-btn except-mobile">view all</a>
 				</div>
 			</div>
 
@@ -323,7 +344,8 @@ $work_hours = [
 				wp_reset_postdata();
 				?>
 			</div>
-			<a href="/blog" class="primary-btn only-mobile"> View all</a>
+			<a href="/blog"
+			   class="primary-btn only-mobile"> View all</a>
 
 		</section>
 	<?php endif; ?>
@@ -337,25 +359,37 @@ $work_hours = [
 		</div>
 		<div class="contact-form">
 
-			<form action="#" id="contact-us-form">
+			<form action="#"
+				  id="contact-us-form">
 				<label for="phone-number">
 					phone number
-					<input type="tel" name="phone-number" placeholder="phone number">
+					<input type="tel"
+						   name="phone-number"
+						   placeholder="phone number">
 				</label>
 				<label for="email">
 					email
-					<input type="email" name="email" placeholder="email">
+					<input type="email"
+						   name="email"
+						   placeholder="email">
 				</label>
 				<label for="describe">
 					what are you looking for?
-					<textarea name="describe" placeholder="describe" id="" rows="4"></textarea>
+					<textarea name="describe"
+							  placeholder="describe"
+							  id=""
+							  rows="4"></textarea>
 				</label>
 				<label for="checkbox">
-					<input type="checkbox" name="checkbox" id="">
+					<input type="checkbox"
+						   name="checkbox"
+						   id="">
 					i want you to inform me about new products and new offers
 				</label>
 
-				<button type="submit" id="contact-us-form-submit" class="primary-btn">
+				<button type="submit"
+						id="contact-us-form-submit"
+						class="primary-btn">
 					Send
 				</button>
 			</form>

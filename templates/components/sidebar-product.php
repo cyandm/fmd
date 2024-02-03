@@ -41,11 +41,12 @@ $mouldingCats = array(
 	'moulding'
 );
 $isMouldingCat = $thisTerm != false && in_array( $thisTerm->slug, $mouldingCats );
-$mouldingFilters = array(
-	"thickness",
-	"width",
-	"height"
-);
+
+// $mouldingFilters = array(
+// 	"thickness",
+// 	"width",
+// 	"height"
+// );
 
 
 function boxChecks( $items ) {
@@ -77,56 +78,57 @@ function boxChecks( $items ) {
 		</span>
 		<?php get_template_part( 'templates/components/search-form' ) ?>
 	</div>
+	<?php if ( ! $isMouldingCat ) : ?>
 
-	<form class="filter-container"
-		  id="filter-container"
-		  action="<?= $formUrl; ?>">
-		<div class="filter-actions">
-			<input type="submit"
-				   class="primary-btn"
-				   value="Apply Filter" />
-			<button type="button"
-					id="filter-actions-clear"
-					class="disable-btn">Clear</button>
-		</div>
+		<form class="filter-container"
+			  id="filter-container"
+			  action="<?= $formUrl; ?>">
+			<div class="filter-actions">
+				<input type="submit"
+					   class="primary-btn"
+					   value="Apply Filter" />
+				<button type="button"
+						id="filter-actions-clear"
+						class="disable-btn">Clear</button>
+			</div>
 
-		<?php if ( isset( $productTypes ) && count( $productTypes ) > 0 && ! $isMouldingCat ) : ?>
-			<div class="filter-wrapper">
-				<div class="title ">
-					<span>Types</span>
-					<i class="icon-arrow-down"></i>
-				</div>
+			<?php if ( isset( $productTypes ) && count( $productTypes ) > 0 && ! $isMouldingCat ) : ?>
+				<div class="filter-wrapper">
+					<div class="title ">
+						<span>Types</span>
+						<i class="icon-arrow-down"></i>
+					</div>
 
-				<div class="filter-item-container">
-					<div class="filter-item-wrapper">
-						<?php
-						foreach ( $productTypes as $key => $cat ) :
-							if ( $cat['count'] > 0 ) :
-								boxChecks( $cat );
-							endif;
-						endforeach;
-						?>
+					<div class="filter-item-container">
+						<div class="filter-item-wrapper">
+							<?php
+							foreach ( $productTypes as $key => $cat ) :
+								if ( $cat['count'] > 0 ) :
+									boxChecks( $cat );
+								endif;
+							endforeach;
+							?>
+						</div>
 					</div>
 				</div>
-			</div>
-		<?php endif; ?>
+			<?php endif; ?>
 
-		<?php if ( isset( $brandsCats ) ) : ?>
-			<div class="filter-wrapper">
-				<div class="title ">
-					<span>Brands</span>
-					<i class="icon-arrow-down"></i>
-				</div>
+			<?php if ( isset( $brandsCats ) ) : ?>
+				<div class="filter-wrapper">
+					<div class="title ">
+						<span>Brands</span>
+						<i class="icon-arrow-down"></i>
+					</div>
 
-				<div class="filter-item-container">
-					<div class="filter-item-wrapper">
-						<?php
-						foreach ( $brandsCats as $key => $cat ) :
-							if ( $cat['count'] > 0 ) :
-								if ( count( $_getTypes ) > 0 ) {
-									$queryArgs = array(
-										'post_type' => 'product',
-										'tax_query' => array(
+					<div class="filter-item-container">
+						<div class="filter-item-wrapper">
+							<?php
+							foreach ( $brandsCats as $key => $cat ) :
+								if ( $cat['count'] > 0 ) :
+									if ( count( $_getTypes ) > 0 ) {
+										$queryArgs = array(
+											'post_type' => 'product',
+											'tax_query' => array(
 												array(
 													'taxonomy' => 'filters',
 													'field' => "id",
@@ -138,52 +140,53 @@ function boxChecks( $items ) {
 													'terms' => $cat['id']
 												)
 											)
-									);
-									$query = new WP_Query( $queryArgs );
+										);
+										$query = new WP_Query( $queryArgs );
 
-									if ( $query->have_posts() ) :
+										if ( $query->have_posts() ) :
+											boxChecks( $cat );
+										endif;
+										wp_reset_postdata();
+									} else {
 										boxChecks( $cat );
-									endif;
-									wp_reset_postdata();
-								} else {
-									boxChecks( $cat );
-								}
-							endif;
-						endforeach;
-						?>
+									}
+								endif;
+							endforeach;
+							?>
+						</div>
 					</div>
 				</div>
-			</div>
-		<?php endif; ?>
+			<?php endif; ?>
 
-		<?php if ( isset( $filtersCats ) ) : ?>
-			<?php foreach ( $filtersCats as $filtersCat ) : ?>
-				<?php
-				$filtersId = $filtersCat['id'];
-				$parent = $filtersCat['parent'];
-				$filterSlug = $filtersCat['slug'];
 
-				if ( $isMouldingCat && ! in_array( $filterSlug, $mouldingFilters ) )
-					continue;
-				?>
-				<?php if ( $parent == 0 && $filterSlug != 'type' ) : ?>
-					<div class="filter-wrapper">
-						<div class="title">
-							<span>
-								<?= $filtersCat['name'] ?>
-							</span>
-							<i class="icon-arrow-down"></i>
-						</div>
+			<?php if ( isset( $filtersCats ) ) : ?>
+				<?php foreach ( $filtersCats as $filtersCat ) : ?>
+					<?php
+					$filtersId = $filtersCat['id'];
+					$parent = $filtersCat['parent'];
+					$filterSlug = $filtersCat['slug'];
 
-						<div class="filter-item-container">
-							<div class="filter-item-wrapper">
-								<?php
-								foreach ( $filtersCats as $key => $cat ) :
-									if ( $filtersId == $cat['parent'] && $cat['count'] > 0 ) :
-										if ( count( $_getTypes ) > 0 ) {
-											$queryArgs = array(
-												'post_type' => 'product',
-												'tax_query' => array(
+					if ( $isMouldingCat && ! in_array( $filterSlug, $mouldingFilters ) )
+						continue;
+					?>
+					<?php if ( $parent == 0 && $filterSlug != 'type' ) : ?>
+						<div class="filter-wrapper">
+							<div class="title">
+								<span>
+									<?= $filtersCat['name'] ?>
+								</span>
+								<i class="icon-arrow-down"></i>
+							</div>
+
+							<div class="filter-item-container">
+								<div class="filter-item-wrapper">
+									<?php
+									foreach ( $filtersCats as $key => $cat ) :
+										if ( $filtersId == $cat['parent'] && $cat['count'] > 0 ) :
+											if ( count( $_getTypes ) > 0 ) {
+												$queryArgs = array(
+													'post_type' => 'product',
+													'tax_query' => array(
 														array(
 															'taxonomy' => 'filters',
 															'field' => "id",
@@ -195,35 +198,37 @@ function boxChecks( $items ) {
 															'terms' => $cat['id']
 														)
 													)
-											);
-											$query = new WP_Query( $queryArgs );
+												);
+												$query = new WP_Query( $queryArgs );
 
-											if ( $query->have_posts() ) :
+												if ( $query->have_posts() ) :
+													boxChecks( $cat );
+												endif;
+												wp_reset_postdata();
+											} else {
 												boxChecks( $cat );
-											endif;
-											wp_reset_postdata();
-										} else {
-											boxChecks( $cat );
-										}
-									endif;
-								endforeach;
-								?>
+											}
+										endif;
+									endforeach;
+									?>
+								</div>
 							</div>
 						</div>
-					</div>
-				<?php endif; ?>
-			<?php endforeach; ?>
-		<?php endif; ?>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
 
-		<?php if ( is_search() ) : ?>
+			<?php if ( is_search() ) : ?>
+				<input type="hidden"
+					   name="s"
+					   value="<?php the_search_query(); ?>">
+			<?php endif; ?>
 			<input type="hidden"
-				   name="s"
-				   value="<?php the_search_query(); ?>">
-		<?php endif; ?>
-		<input type="hidden"
-			   name="filter"
-			   value="on">
-	</form>
+				   name="filter"
+				   value="on">
+		</form>
+
+	<?php endif; ?>
 
 </aside>
 
