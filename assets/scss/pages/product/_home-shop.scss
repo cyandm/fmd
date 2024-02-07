@@ -1,9 +1,10 @@
 main.home-shop {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 15rem);
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+	}
 }

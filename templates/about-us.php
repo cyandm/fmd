@@ -70,7 +70,7 @@ $phone_number_1 = get_option( 'cyn_phone_number_one' );
 
 
 			<i class="icon-phone"></i>
-			<span>call us now</span>
+			<span>Talk to an expert</span>
 		</a>
 
 		<span>Contact us to check availability and book</span>

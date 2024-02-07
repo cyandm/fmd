@@ -4,12 +4,14 @@
 $product_categories = [];
 $special_cat_terms = get_terms( [ 'taxonomy' => 'special-cat' ] );
 
-array_push( $product_categories, get_term_by( 'slug', 'moulding', 'product-cat' ) );
+array_push( $product_categories, get_term_by( 'slug', 'mouldings', 'product-cat' ) );
 array_push( $product_categories, get_term_by( 'slug', 'flooring', 'product-cat' ) );
 
 foreach ( $special_cat_terms as $term ) {
 	array_push( $product_categories, $term );
 }
+
+
 
 ?>
 

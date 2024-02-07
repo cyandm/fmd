@@ -187,7 +187,7 @@ $is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 's
 			<a href=<?= 'tel:' . isset( $phone_number_1 ) ? $phone_number_1 : ''; ?>
 			   class="secondary-btn">
 				<i class="icon-phone"></i>
-				call us now
+				Talk to an expert
 			</a>
 			<span>
 				Contact us to check availability and book

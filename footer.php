@@ -16,17 +16,17 @@ $facebook_url = get_option( 'cyn_facebook_url' );
 
 		<div class="menus">
 			<div class="us-menu">
-				<span> us</span>
+
 				<?php wp_nav_menu( [ 'theme_location' => 'footer-us' ] ) ?>
 			</div>
 			<div class="what-we-do-menu">
-				<span> what we do?</span>
+
 
 
 				<?php wp_nav_menu( [ 'theme_location' => 'footer-what-we-do' ] ) ?>
 			</div>
 			<div class="know-more-menu">
-				<span>know more</span>
+
 				<?php wp_nav_menu( [ 'theme_location' => 'footer-know-more' ] ) ?>
 			</div>
 		</div>
@@ -66,7 +66,7 @@ $facebook_url = get_option( 'cyn_facebook_url' );
 
 		<div>
 			<div class="phone-numbers">
-				Our Numbers
+
 				<div>
 					<?php
 					if ( $phone_number_1 ) : ?>
@@ -86,7 +86,7 @@ $facebook_url = get_option( 'cyn_facebook_url' );
 
 			</div>
 			<div class="address">
-				Our Address
+
 
 				<div>
 					<?php

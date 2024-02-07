@@ -11,7 +11,7 @@ $product_cat_top_group = array_merge( $product_cat_top_group_1, $product_cat_top
 $product_cat_middle_group_1 = get_field( 'category_on_middle_1' );
 $product_cat_middle_group_2 = get_field( 'category_on_middle_2' );
 
-$product_cat_middle_group = array_merge( $product_cat_middle_group_1, $product_cat_middle_group_2 );
+$product_cat_middle_group = array_merge( $product_cat_middle_group_2, $product_cat_middle_group_1 );
 
 // @change end
 
@@ -110,7 +110,7 @@ $work_hours = [
 				 class="today-offer container">
 			<div class="feature-image">
 				<div class="title-controller">
-					<h2>Special <span class="purple-text">Offer</span></h2>
+					<h2>Monthly <span class="purple-text">Specials</span></h2>
 				</div>
 				<div class="feature-image-controller cyn-slider-wrapper">
 
@@ -195,10 +195,8 @@ $work_hours = [
 		<div class="ticker">
 			<?php for ( $i = 0; $i < 5; $i++ ) : ?>
 				<div class="ticker-wrapper">
-					<div class="ticker-item">largest selection of finishing supplies</div>
-					<div class="ticker-item">Lowest Prices</div>
+					<div class="ticker-item"> largest selection of home improvement supplies</div>
 					<div class="ticker-item">Exceptional Customer Service</div>
-					<div class="ticker-item">Biggest Selection of Brands</div>
 					<div class="ticker-item">In Stock material</div>
 				</div>
 			<?php endfor; ?>
@@ -289,9 +287,9 @@ $work_hours = [
 	<?php if ( $about_content ) : ?>
 		<section class="about container">
 
-			<div class="title-controller">
+			<!-- <div class="title-controller">
 				<h2>About <span class="purple-text">Company</span></h2>
-			</div>
+			</div> -->
 
 
 			<div class="content-container">
@@ -301,7 +299,7 @@ $work_hours = [
 						   controls />
 				</div>
 				<div class="content-wrapper">
-					<h3>About Fmd Distributor</h3>
+					<h2>About <span class="purple-text">Fmd Distributor</span></h2>
 					<p class="content">
 						<?= $about_content ?>
 					</p>
