@@ -59,9 +59,10 @@ if ( ! empty( $gallery ) ) {
 	}
 }
 
-function render_slides( $imgs ) {
+function render_slides( $imgs, $is_moulding = false ) {
+	$class = $is_moulding !== false ? 'swiper-slide mouldings' : 'swiper-slide';
 	foreach ( $imgs as $imgID ) {
-		printf( '<div class="swiper-slide">%s</div>', wp_get_attachment_image( $imgID, [ '700', '' ] ) );
+		printf( '<div class="%s">%s</div>', $class, wp_get_attachment_image( $imgID, [ '700', '' ] ) );
 	}
 }
 
@@ -70,11 +71,7 @@ $related = get_field( 'related_group', $productId );
 
 
 /***************** Check cats for being moulding */
-
-$is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 'slug' ) ) : false;
-
-
-
+$is_moulding = $typeTerm ? array_search( 'mouldings', array_column( $typeTerm, 'slug' ) ) : false;
 
 
 ?>
@@ -146,7 +143,7 @@ $is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 's
 
 				<div data-tab="description"
 					 class="description">
-					<h2>item describtion</h2>
+					<h2>item description</h2>
 					<p>
 						<?php echo ! empty( get_field( 'product_desc' ) ) ? get_field( 'product_desc' ) : ''; ?>
 					</p>
@@ -162,7 +159,7 @@ $is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 's
 
 			<div class="product-slider swiper">
 				<div class="swiper-wrapper">
-					<?php render_slides( $imgs ) ?>
+					<?php render_slides( $imgs, $is_moulding ) ?>
 				</div>
 
 				<div class="slider-navigation">
@@ -174,7 +171,7 @@ $is_moulding = $typeTerm ? array_search( 'moulding', array_column( $typeTerm, 's
 			<div class="product-thumbnails swiper"
 				 style="width: 100%;">
 				<div class="swiper-wrapper">
-					<?php render_slides( $imgs ) ?>
+					<?php render_slides( $imgs, $is_moulding ) ?>
 				</div>
 			</div>
 		</div>

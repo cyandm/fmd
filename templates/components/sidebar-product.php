@@ -10,6 +10,7 @@ $filtersCats = $options->cyn_getProductTerms( false, false, 'filters' );
 $filterSlugs = array_column( $filtersCats, "slug", "id" );
 $typesCatId = array_search( "type", $filterSlugs );
 $productTypes = [];
+
 foreach ( $filtersCats as $key => $filter ) {
 	if ( $filter['parent'] == $typesCatId )
 		$productTypes[ $key ] = $filter;
@@ -38,16 +39,18 @@ $mouldingCats = array(
 	"casing",
 	"baseboard",
 	"crown-moulding",
-	'moulding'
+	'mouldings'
 );
 $isMouldingCat = $thisTerm != false && in_array( $thisTerm->slug, $mouldingCats );
 
-// $mouldingFilters = array(
-// 	"thickness",
-// 	"width",
-// 	"height"
-// );
+$mouldingFilters = array(
+	"thickness",
+	"width",
+	"height",
+	"material"
+);
 
+$formUrl = $isMouldingCat ? '/product-cat/mouldings' : $formUrl;
 
 function boxChecks( $items ) {
 	?>
@@ -79,7 +82,6 @@ function boxChecks( $items ) {
 		<?php get_template_part( 'templates/components/search-form' ) ?>
 	</div>
 	<?php if ( ! $isMouldingCat ) : ?>
-
 		<form class="filter-container"
 			  id="filter-container"
 			  action="<?= $formUrl; ?>">
@@ -227,7 +229,88 @@ function boxChecks( $items ) {
 				   name="filter"
 				   value="on">
 		</form>
+	<?php else : ?>
+		<form class="filter-container"
+			  id="filter-container"
+			  action="<?= $formUrl; ?>">
+			<div class="filter-actions">
+				<input type="submit"
+					   class="primary-btn"
+					   value="Apply Filter" />
+				<button type="button"
+						id="filter-actions-clear"
+						class="disable-btn">Clear</button>
+			</div>
 
+
+
+			<?php if ( isset( $filtersCats ) ) : ?>
+				<?php foreach ( $filtersCats as $filtersCat ) :
+					$filtersId = $filtersCat['id'];
+					$parent = $filtersCat['parent'];
+					$filterSlug = $filtersCat['slug'];
+
+					if ( $isMouldingCat && ! in_array( $filterSlug, $mouldingFilters ) )
+						continue;
+					?>
+					<?php if ( $parent == 0 && $filterSlug != 'type' ) : ?>
+						<div class="filter-wrapper">
+							<div class="title">
+								<span>
+									<?= $filtersCat['name'] ?>
+								</span>
+								<i class="icon-arrow-down"></i>
+							</div>
+
+							<div class="filter-item-container">
+								<div class="filter-item-wrapper">
+									<?php
+									foreach ( $filtersCats as $key => $cat ) :
+										if ( $filtersId == $cat['parent'] && $cat['count'] > 0 ) :
+											if ( count( $_getTypes ) > 0 ) {
+												$queryArgs = array(
+													'post_type' => 'product',
+													'tax_query' => array(
+														array(
+															'taxonomy' => 'filters',
+															'field' => "id",
+															'terms' => $_getTypes
+														),
+														array(
+															'taxonomy' => 'filters',
+															'field' => "id",
+															'terms' => $cat['id']
+														)
+													)
+												);
+												$query = new WP_Query( $queryArgs );
+
+												if ( $query->have_posts() ) :
+													boxChecks( $cat );
+												endif;
+												wp_reset_postdata();
+											} else {
+												boxChecks( $cat );
+											}
+										endif;
+									endforeach;
+									?>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
+
+			<?php if ( is_search() ) : ?>
+				<input type="hidden"
+					   name="s"
+					   value="<?php the_search_query(); ?>">
+			<?php endif; ?>
+			<input type="hidden"
+				   name="filter"
+				   value="on">
+		</form>
 	<?php endif; ?>
 
 </aside>

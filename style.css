@@ -1,13 +1,17 @@
 /*
  * Theme Name: FMD
- * Version: 2.2.1
+ * Version: 2.2.2
 */
 
-.logo img{
+.logo img {
 	max-width: 10rem;
-    max-height: 4rem;
+	max-height: 4rem;
 }
 
 main.archive-product .product-container .product-wrapper {
-grid-template-rows: repeat(3 , 1fr)
+	grid-template-rows: repeat(3, 1fr);
+}
+
+.product-card.mouldings img {
+	object-fit: contain;
 }
