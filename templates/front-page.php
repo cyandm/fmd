@@ -56,7 +56,8 @@ $work_hours = [
 				<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/Subtract.png' ?>"
 					 alt="">
 
-				<div id="scroll-to-bottom"
+				<a href="/home-shop">
+				<div 
 					 class="spinner">
 					<svg viewBox="0 0 112 112">
 						<path id="curve"
@@ -77,6 +78,7 @@ $work_hours = [
 
 					</i>
 				</div>
+					</a>
 			</div>
 		</div>
 
@@ -397,7 +399,7 @@ $work_hours = [
 
 	<section class="work-hours container">
 		<h2 class="title">
-			Work <span class="purple-text">hours</span>
+			Store <span class="purple-text">hours</span>
 		</h2>
 
 		<div class="work-hours-con">

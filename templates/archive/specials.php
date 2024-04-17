@@ -31,7 +31,7 @@ if ( isset( $_GET['sp'] ) ) {
 							</h3>
 						</div>
 						<a href="tel:<?= $phone_number_1 ?>"
-						   class="secondary-btn except-mobile">Call now</a>
+						   class="secondary-btn except-mobile">Talk to an expert</a>
 					</header>
 
 					<main>
@@ -56,7 +56,7 @@ if ( isset( $_GET['sp'] ) ) {
 					</main>
 
 					<a href="tel:<?= $phone_number_1 ?>"
-					   class="only-mobile secondary-btn">Call now</a>
+					   class="only-mobile secondary-btn">Talk to an expert</a>
 				</article>
 			<?php endwhile; ?>
 		</div>
