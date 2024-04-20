@@ -50,7 +50,7 @@ $mouldingFilters = array(
 	"material"
 );
 
-$formUrl = $isMouldingCat ? '/product-cat/mouldings' : $formUrl;
+$formUrl = $isMouldingCat ? $_SERVER['REQUEST_URI'] : $formUrl;
 
 function boxChecks( $items ) {
 	?>
