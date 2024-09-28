@@ -276,7 +276,7 @@ if ( ! class_exists( 'cyn_register' ) ) {
 		}
 
 		public function cyn_register_brand_post_type() {
-			$postType = "brand";
+			$postType = "brand_post_type";
 			$GLOBALS["brand-post-type"] = $postType;
 
 			$labels = [ 
@@ -318,7 +318,7 @@ if ( ! class_exists( 'cyn_register' ) ) {
 				'rewrite' => [ 'slug' => 'b_category' ],
 			];
 
-			register_taxonomy( 'b_category', [ 'brand' ], $args );
+			register_taxonomy( 'b_category', [ 'brand_post_type' ], $args );
 		}
 	}
 }
