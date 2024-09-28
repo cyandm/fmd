@@ -11,6 +11,8 @@ if ( ! class_exists( 'cyn_register' ) ) {
 			add_action( 'init', [ $this, 'cyn_register_product_filters' ] );
 			add_action( 'init', [ $this, 'cyn_register_special_cats' ] );
 			add_action( 'init', [ $this, 'cyn_register_contact_forms' ] );
+			add_action( 'init', [ $this, 'cyn_register_brand_post_type' ] );
+			add_action( 'init', [ $this, 'cyn_add_brand_cat_taxonomy' ] );
 
 			add_action( 'pre_get_posts', [ $this, 'cyn_archive_pre_get_posts' ] );
 		}
@@ -271,6 +273,52 @@ if ( ! class_exists( 'cyn_register' ) ) {
 			];
 
 			return register_post_type( $postType, $args );
+		}
+
+		public function cyn_register_brand_post_type() {
+			$postType = "brand";
+			$GLOBALS["brand-post-type"] = $postType;
+
+			$labels = [ 
+				'name' => 'Brands',
+				'singular_name' => 'brand'
+			];
+
+			$args = [ 
+				'labels' => $labels,
+				'description' => 'brand custom post type.',
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true,
+				'show_in_menu' => true,
+				'query_var' => true,
+				'rewrite' => array( 'slug' => 'brands' ),
+				'capability_type' => 'post',
+				'has_archive' => true,
+				'hierarchical' => false,
+				'menu_position' => 20,
+				'supports' => [ 'title', 'thumbnail' ],
+				'show_in_rest' => false
+			];
+
+			return register_post_type( $postType, $args );
+		}
+
+		function cyn_add_brand_cat_taxonomy() {
+			$labels = [ 
+				'name' => 'Brands category'
+			];
+
+			$args = [ 
+				'hierarchical' => true,
+				'labels' => $labels,
+				'show_ui' => true,
+				'show_admin_column' => true,
+				'query_var' => true,
+				'rewrite' => [ 'slug' => 'b_category' ],
+			];
+
+			register_taxonomy( 'b_category', [ 'brand' ], $args );
 		}
 	}
 }

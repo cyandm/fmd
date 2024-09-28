@@ -363,4 +363,23 @@ function cyn_acf_add_taxonomy( $name, $label, $taxonomy, $return_format = 'id', 
 		'bidirectional_target' => [],
 	];
 }
+
+function cyn_acf_add_link( $name, $label ) {
+	return [ 
+		'key' => 'filed_' . $name . '_key',
+		'label' => $label,
+		'name' => $name,
+		'aria-label' => $label,
+		'type' => 'link',
+		'instructions' => '',
+		'required' => 0,
+		'conditional_logic' => 0,
+		'wrapper' => array(
+			'width' => '',
+			'class' => '',
+			'id' => '',
+		),
+		'return_format' => 'array',
+	];
+}
 #endregion
