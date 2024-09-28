@@ -335,4 +335,32 @@ function cyn_acf_add_group( $name, $label, $sub_fields ) {
 		'sub_fields' => $sub_fields
 	];
 }
+
+function cyn_acf_add_taxonomy( $name, $label, $taxonomy, $return_format = 'id', $field_type = 'multi_select' ) {
+	return [ 
+		'key' => 'filed_' . $name . '_key',
+		'label' => $label,
+		'name' => $name,
+		'aria-label' => '',
+		'type' => 'taxonomy',
+		'instructions' => '',
+		'required' => 0,
+		'conditional_logic' => 0,
+		'wrapper' => array(
+			'width' => '',
+			'class' => '',
+			'id' => '',
+		),
+		'taxonomy' => $taxonomy,
+		'add_term' => 1,
+		'save_terms' => 0,
+		'load_terms' => 0,
+		'return_format' => $return_format,
+		'field_type' => $field_type,
+		'allow_null' => 1,
+		'bidirectional' => 0,
+		'multiple' => $field_type === 'multi_select' ? 1 : 0,
+		'bidirectional_target' => [],
+	];
+}
 #endregion

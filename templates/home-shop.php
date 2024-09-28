@@ -1,15 +1,11 @@
-<?php /* Template Name: Home Shop */?>
+<?php /* Template Name: Home Shop */ ?>
 
 <?php
-$product_categories = [];
-$special_cat_terms = get_terms( [ 'taxonomy' => 'special-cat' ] );
+$brand_categories = empty( get_field( 'brand-categories' ) ) ? [] : get_field( 'brand-categories' );
+$product_categories = empty( get_field( 'product-categories' ) ) ? [] : get_field( 'product-categories' );
 
-array_push( $product_categories, get_term_by( 'slug', 'mouldings', 'product-cat' ) );
-array_push( $product_categories, get_term_by( 'slug', 'flooring', 'product-cat' ) );
 
-foreach ( $special_cat_terms as $term ) {
-	array_push( $product_categories, $term );
-}
+$categories = array_merge( $brand_categories, $product_categories );
 
 
 
@@ -21,7 +17,7 @@ foreach ( $special_cat_terms as $term ) {
 <?php get_header() ?>
 
 <main class="home-shop container">
-	<?php foreach ( $product_categories as $cat ) {
+	<?php foreach ( $categories as $cat ) {
 		get_template_part( '/templates/components/card', null, [ 
 			'url' => get_term_link( $cat ),
 			'card_class' => 'product-category-item',

@@ -6,6 +6,28 @@ function cyn_register_acf() {
 		return;
 	}
 
-
+	cyn_register_acf_home_shop();
 }
 
+
+function cyn_register_acf_home_shop() {
+
+	$fields = [ 
+		cyn_acf_add_taxonomy( 'product-categories', 'product categories', 'product-cat', 'object' ),
+		cyn_acf_add_taxonomy( 'brand-categories', 'brand categories', 'brand', 'object' ),
+	];
+
+
+	$location = [ 
+		[ 
+			[ 
+				'param' => 'page_template',
+				'operator' => '==',
+				'value' => 'templates/home-shop.php'
+			],
+		],
+	];
+
+
+	cyn_register_acf_group( 'settings', $fields, $location );
+}
