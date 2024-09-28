@@ -96,27 +96,6 @@ function boxChecks( $items ) {
 						class="disable-btn">Clear</button>
 			</div>
 
-			<?php if ( isset( $productTypes ) && count( $productTypes ) > 0 && ! $isMouldingCat ) : ?>
-				<div class="filter-wrapper">
-					<div class="title ">
-						<span>Types</span>
-						<i class="icon-arrow-down"></i>
-					</div>
-
-					<div class="filter-item-container">
-						<div class="filter-item-wrapper">
-							<?php
-							foreach ( $productTypes as $key => $cat ) :
-								if ( $cat['count'] > 0 ) :
-									boxChecks( $cat );
-								endif;
-							endforeach;
-							?>
-						</div>
-					</div>
-				</div>
-			<?php endif; ?>
-
 			<?php if ( isset( $brandsCats ) ) : ?>
 				<div class="filter-wrapper">
 					<div class="title ">
