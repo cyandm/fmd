@@ -11,6 +11,8 @@ require_once( __DIR__ . '/inc/classes/cyn-theme-init.php' );
 require_once( __DIR__ . '/inc/classes/cyn-form.php' );
 
 require_once( __DIR__ . '/inc/functions/cyn-update-checker.php' );
+require_once( __DIR__ . '/inc/functions/cyn-acf-fields.php' );
+require_once( __DIR__ . '/inc/functions/cyn-acf.php' );
 
 /***************************** Instance Classes */
 $cyn_theme_init = new cyn_theme_init( false, '2.2.6' );
