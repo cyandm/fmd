@@ -74,27 +74,11 @@ $formUrl = "./";
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ) ?>
 
 <main class="search-page archive-product container">
-	<?php get_template_part( '/templates/components/sidebar', 'product', [ 
-		'title' => get_the_archive_title(),
-		'form-url' => $formUrl
-	] ); ?>
+
 
 	<div class="product-container">
 
-		<div class="filter-chips">
-			<?php foreach ( $allChips as $key => $chip ) : ?>
-				<?php if ( isset( $_GET[ 'cat-' . $chip['id'] ] ) ) : ?>
-					<span class="filter-item">
-						<span class="filter-title">
-							<?php echo $chip['name'] ?>
-						</span>
-						<i class="icon-close"
-						   style="cursor: pointer;"
-						   data-filter="<?php echo 'cat-' . $chip['id']; ?>"></i>
-					</span>
-				<?php endif; ?>
-			<?php endforeach; ?>
-		</div>
+
 		<?php if ( count( $searchQueryArgs['post__in'] ) <= 0 ) : ?>
 			<div class="not-find">
 				<p>sorry ! we could’nt find anything</p>
