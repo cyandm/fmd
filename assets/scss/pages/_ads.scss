@@ -1,0 +1,121 @@
+main.ads-page {
+  h2,
+  h3 {
+    font-weight: 500;
+  }
+  section {
+    margin-block: 40px;
+  }
+  .product-container {
+    .product-wrapper {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(4, 1fr);
+      .product-card img {
+        width: 100%;
+      }
+
+      @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  }
+  .content {
+    h1,
+    h2,
+    h3 {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 48px;
+      margin-block: 24px;
+    }
+
+    .flex-part {
+      display: flex;
+      align-items: center;
+      .ads-img {
+        width: 650px;
+        height: 650px;
+        aspect-ratio: 1/1;
+            @media (width<=1000px) {
+        width:100%;
+        
+      }
+      }
+      @media (width<=1000px) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  div.faq {
+    margin-block: 40px;
+    p.faq-tab {
+      padding-block: 20px;
+      border-bottom: 1px solid #454545;
+    }
+    div.tab {
+      .faq-content {
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        transition: all 0.2s ease-in;
+
+        ul {
+          list-style: none;
+          li {
+            margin-block: 5px;
+            font-size: 20px;
+            border: 0;
+            line-height: 30px;
+            padding: 0;
+
+            &.answer {
+              visibility: hidden;
+              height: 0;
+              opacity: 0;
+              transition: all 0.2s ease-in;
+              // clip-path: xywh(0 5px 100% 75% round 15% 0);
+              color: #454545;
+              font-size: 16px;
+            }
+            &.question::before {
+              transition: all 0.8s ease-in;
+
+              content: "\e915";
+              font-family: "cyan-icon";
+              font-size: 15px;
+              padding: 3px;
+              background-color: #9e3768;
+              color: #fff;
+              border-radius: 8px;
+              margin-right: 1%;
+            }
+          }
+          &.active {
+            padding-block: 10px;
+
+            li.answer {
+              height: auto;
+              visibility: visible;
+              opacity: 1;
+              // clip-path: xywh(0 5px 100% 75% round 15% 0);
+              padding: 10px 50px;
+            }
+            li.question::before {
+              content: "\e914";
+            }
+          }
+        }
+      }
+      &.active {
+        .faq-content {
+          visibility: visible;
+          opacity: 1;
+          height: auto;
+          padding: 20px;
+        }
+      }
+    }
+  }
+}

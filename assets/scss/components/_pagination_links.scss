@@ -1,0 +1,28 @@
+.pagination-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-block-start: 1rem;
+  justify-content: start;
+  align-items: center;
+  > * {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid;
+
+    &.current {
+      border-color: #9e3768;
+    }
+
+    &:has(i) {
+      background-color: #0f0f0f;
+      border-color: #0f0f0f;
+      color: #fff;
+    }
+  }
+}
