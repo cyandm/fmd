@@ -149,6 +149,9 @@ function boxChecks( $items ) {
 					$parent = $filtersCat['parent'];
 					$filterSlug = $filtersCat['slug'];
 
+					if ( $filterSlug === 'species' )
+						continue;
+
 					if ( $isMouldingCat && ! in_array( $filterSlug, $mouldingFilters ) )
 						continue;
 					?>
