@@ -1,21 +1,16 @@
 <?php
 
 /* Template Name: Front Page */
-// @change start
 $product_cat_top_group_1 = get_field( 'category_on_top_1' );
 $product_cat_top_group_2 = get_field( 'category_on_top_2' );
-
 $product_cat_top_group = array_merge( $product_cat_top_group_1, $product_cat_top_group_2 );
-
-
 $product_cat_middle_group_1 = get_field( 'category_on_middle_1' );
 $product_cat_middle_group_2 = get_field( 'category_on_middle_2' );
-
 $product_cat_middle_group = array_merge( $product_cat_middle_group_2, $product_cat_middle_group_1 );
 
-// @change end
 
-$brands_ltr = get_field( 'brands_ltr' );
+
+$brands = get_field( 'brands_ltr' );
 $brands_rtl = get_field( 'brands_rtl' );
 $blog_posts = new WP_Query( [ 'tag' => 'front-page-posts', 'posts_per_page' => '6' ] );
 
@@ -57,28 +52,27 @@ $work_hours = [
 					 alt="">
 
 				<a href="/home-shop">
-				<div 
-					 class="spinner">
-					<svg viewBox="0 0 112 112">
-						<path id="curve"
-							  d="
+					<div class="spinner">
+						<svg viewBox="0 0 112 112">
+							<path id="curve"
+								  d="
 							M 20, 55
 							a 25,25 0 1,1 72,0
 							a 25,25 0 1,1 -72,0
 						"
-							  fill="transparent" />
-						<text width="500"
-							  fill="#fff">
-							<textPath xlink:href="#curve">
-								Explore our products
-							</textPath>
-						</text>
-					</svg>
-					<i class="icon-arrow-down-right">
+								  fill="transparent" />
+							<text width="500"
+								  fill="#fff">
+								<textPath xlink:href="#curve">
+									Explore our products
+								</textPath>
+							</text>
+						</svg>
+						<i class="icon-arrow-down-right">
 
-					</i>
-				</div>
-					</a>
+						</i>
+					</div>
+				</a>
 			</div>
 		</div>
 
@@ -107,91 +101,7 @@ $work_hours = [
 		</div>
 	</section>
 
-	<?php if ( $product_cat ) : ?>
-		<section id="scroll-target"
-				 class="today-offer container">
-			<div class="feature-image">
-				<div class="title-controller">
-					<h2>Monthly <span class="purple-text">Specials</span></h2>
-				</div>
-				<div class="feature-image-controller cyn-slider-wrapper">
-
-					<?php foreach ( $feature_products as $product_ID ) : ?>
-						<div class="img-mask cyn-slide">
-							<a href=<?= get_permalink( $product_ID ) ?>>
-								<?= wp_get_attachment_image( get_field( 'product_gallery_group', $product_ID )['gallery_cover_img'], [ '680', '0' ], false, [ 'class' => 'image' ] ); ?>
-							</a>
-						</div>
-					<?php endforeach; ?>
-				</div>
-				<div class="slider-navigation">
-					<i id="cyn-prev-slide"
-					   class="icon-arrow-left"></i>
-					<i id="cyn-next-slide"
-					   class="icon-arrow-right"></i>
-				</div>
-			</div>
-			<div class="product-details">
-
-				<div class="product-content">
-
-					<div class="cyn-slider-wrapper header-wrapper">
-						<?php foreach ( $feature_products as $product_ID ) : ?>
-							<div class="cyn-slide">
-								<h3>
-									<?= get_the_title( $product_ID ) ?>
-								</h3>
-							</div>
-						<?php endforeach; ?>
-					</div>
-
-					<div class="cyn-slider-wrapper desc-wrapper">
-						<?php foreach ( $feature_products as $product_ID ) : ?>
-							<p class="cyn-slide">
-								<?= get_the_content( null, false, $product_ID ) ?>
-							</p>
-						<?php endforeach; ?>
-					</div>
-
-
-				</div>
-				<div class="product-controller">
-					<div class="product-info">
-						<span>only for a limited time</span>
-						<div class="cyn-slider-wrapper price-wrapper">
-							<?php foreach ( $feature_products as $product_ID ) : ?>
-								<span class="cyn-slide">
-									<span class="price">
-										<?= '$' . get_field( 'product_price', $product_ID ) ?>
-									</span>
-								</span>
-							<?php endforeach; ?>
-						</div>
-					</div>
-
-					<div class="cyn-slider-wrapper button-wrapper">
-						<?php foreach ( $feature_products as $product_ID ) : ?>
-							<a href=<?= get_permalink( $product_ID ) ?>
-							   class="primary-btn cyn-slide">View</a>
-						<?php endforeach; ?>
-					</div>
-				</div>
-
-				<div class="product-gallery">
-					<?php for ( $i = 1; $i < 5; $i++ ) : ?>
-						<div class="cyn-slider-wrapper product-gallery-item">
-							<?php foreach ( $feature_products as $product_ID ) {
-								$img_id = get_field( 'product_gallery_group', $product_ID )[ 'gallery_img_' . $i ];
-								echo $img_id ?
-									wp_get_attachment_image( $img_id, 'full', false, [ 'class' => 'cyn-slide' ] )
-									: '<img class="cyn-slide" src= ' . get_stylesheet_directory_uri() . '/assets/imgs/placeholder.png />';
-							} ?>
-						</div>
-					<?php endfor; ?>
-				</div>
-			</div>
-		</section>
-	<?php endif; ?>
+	<?php get_template_part( '/templates/components/front/special-monthly' ) ?>
 
 	<section>
 		<div class="ticker">
@@ -212,7 +122,7 @@ $work_hours = [
 					Product Categories
 				</h2>
 
-				<a href="/products"
+				<a href="/home-shop"
 				   class="primary-btn except-mobile"> View all</a>
 			</div>
 
@@ -234,7 +144,7 @@ $work_hours = [
 		</section>
 	<?php endif; ?>
 
-	<?php if ( $brands_ltr || $brands_rtl ) : ?>
+	<?php if ( $brands || $brands_rtl ) : ?>
 		<section class="brands ">
 			<div class="title-section container">
 				<h2 class="title">
@@ -245,12 +155,12 @@ $work_hours = [
 				   class="primary-btn except-mobile"> View All </a>
 			</div>
 
-			<?php if ( $brands_ltr ) : ?>
+			<?php if ( $brands ) : ?>
 				<div class="brand-ticker">
 					<?php for ( $i = 0; $i < 2; $i++ ) : ?>
 						<div class="brand-wrapper">
 
-							<?php foreach ( $brands_ltr as $brand ) : ?>
+							<?php foreach ( $brands as $brand ) : ?>
 								<a href="<?= get_term_link( $brand ) ?>"
 								   class="ticker-item">
 									<?= wp_get_attachment_image( get_field( 'custom_thumbnail', $brand->taxonomy . '_' . $brand->term_id ), 'full', false, [ 'class' => 'single-brand' ] ) ?>
@@ -298,7 +208,9 @@ $work_hours = [
 				<div class="video-wrapper">
 					<video src="<?= $about_video_url ?>"
 						   poster="<?= $about_cover_img_url ?>"
-						   controls />
+						   controls
+						   autoplay
+						   muted />
 				</div>
 				<div class="content-wrapper">
 					<h2>About <span class="purple-text">Fmd Distributor</span></h2>

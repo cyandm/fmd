@@ -13,6 +13,32 @@ if ( $is_door === false ) {
 
 <?php get_header() ?>
 
+<section class="brands specials-brand">
+	<?php if ( $gallery ) : ?>
+		<div class="brand-ticker">
+			<?php for ( $i = 0; $i < 4; $i++ ) : ?>
+				<div class="brand-wrapper">
+
+					<?php foreach ( $gallery as $brand_group ) :
+
+						$image = $brand_group['img'];
+						$link = $brand_group['link'];
+
+						if ( empty( $image ) || empty( $link ) )
+							continue;
+						?>
+						<a class="ticker-item"
+						   href="<?php echo $link['url'] ?>">
+							<?= wp_get_attachment_image( $image, 'full', false, [ 'class' => 'single-brand' ] ) ?>
+						</a>
+					<?php endforeach; ?>
+
+				</div>
+			<?php endfor; ?>
+		</div>
+	<?php endif; ?>
+</section>
+
 <main class="container">
 	<article class="specials-article">
 		<header class="title">
@@ -54,24 +80,5 @@ if ( $is_door === false ) {
 
 </main>
 
-<section class="brands specials-brand">
-	<?php if ( $gallery ) : ?>
-		<div class="brand-ticker">
-			<?php for ( $i = 0; $i < 4; $i++ ) : ?>
-				<div class="brand-wrapper">
 
-					<?php foreach ( $gallery as $image ) :
-						if ( $image === false )
-							continue;
-						?>
-						<div class="ticker-item">
-							<?= wp_get_attachment_image( $image, 'full', false, [ 'class' => 'single-brand' ] ) ?>
-						</div>
-					<?php endforeach; ?>
-
-				</div>
-			<?php endfor; ?>
-		</div>
-	<?php endif; ?>
-</section>
 <?php get_footer() ?>

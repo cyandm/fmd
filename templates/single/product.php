@@ -34,6 +34,10 @@ $specification['installation'] = get_field( 'product_installation', $productId )
 $specification['sqft / box'] = get_field( 'product_sqft_box', $productId );
 $specification['sqft / pallet'] = get_field( 'product_sqft_pallet', $productId );
 $specification['box / pallet'] = get_field( 'product_box_pallet', $productId );
+$specification['length'] = get_field( 'length', $productId );
+$specification['width'] = get_field( 'width', $productId );
+$specification['height'] = get_field( 'height', $productId );
+$specification['thickness'] = get_field( 'thickness', $productId );
 
 $filterTerm = get_the_terms( $productId, 'filters' );
 if ( is_array( $filterTerm ) ) {

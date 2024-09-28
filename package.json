@@ -1,6 +1,6 @@
 {
 	"name": "fmd",
-	"version": "2.2.2",
+	"version": "2.2.5",
 	"description": "",
 	"author": "",
 	"scripts": {
@@ -19,6 +19,6 @@
 		"swiper": "^10.2.0"
 	},
 	"devDependencies": {
-		"esbuild": "^0.19.5"
+		"esbuild": "^0.19.12"
 	}
 }

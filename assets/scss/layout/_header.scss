@@ -5,6 +5,11 @@ header.site-header {
 	position: relative;
 	z-index: 100;
 
+	.logo img {
+		max-width: 8rem;
+		height: auto;
+	}
+
 	&.no-border {
 		position: absolute;
 		width: 100%;
@@ -45,6 +50,12 @@ header.site-header {
 
 	ul {
 		list-style: none;
+
+		&.sub-menu {
+			& > li {
+				flex: 1 !important;
+			}
+		}
 	}
 
 	.desktop-menu {

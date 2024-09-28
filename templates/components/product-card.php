@@ -3,14 +3,14 @@ $featureImg = wp_get_attachment_image( get_post_thumbnail_id( $args['product'] )
 $coverImg = wp_get_attachment_image( get_field( 'gallery_cover_img' ), 'large', false, [ 'class' => '' ] );
 
 $product_cat = get_the_terms( get_the_ID(), 'product-cat' );
-$product_type = $product_type = $product_cat[0]->name;
-
+// $product_type = $product_cat[0]->name;
+// var_dump($product_cat)
 
 
 ?>
 
 <a href=<?= get_the_permalink( $args['product'] ); ?>
-   class="product-card <?= $product_type ? strtolower( $product_type ) : '' ?>">
+   class="product-card <?= $product_cat ? $product_cat[0]->name : '' ?>">
 	<?php if ( $featureImg ) : ?>
 		<?= $featureImg ?>
 	<?php elseif ( $coverImg ) : ?>

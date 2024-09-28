@@ -12,9 +12,43 @@ if ( isset( $_GET['sp'] ) ) {
 } else {
 	$wpQuery = $wp_query;
 }
+
+$term = get_queried_object();
+$gallery = get_field( 'gallery', $term->taxonomy . '_' . $term->term_id );
+
+
+
+
 ?>
 
+
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ); ?>
+
+<section class="brands specials-brand">
+	<?php if ( $gallery ) : ?>
+		<div class="brand-ticker">
+			<?php for ( $i = 0; $i < 4; $i++ ) : ?>
+				<div class="brand-wrapper">
+
+					<?php foreach ( $gallery as $brand_group ) :
+
+						$image = $brand_group['img'];
+						$link = $brand_group['link'];
+
+						if ( empty( $image ) || empty( $link ) )
+							continue;
+						?>
+						<a class="ticker-item"
+						   href="<?php echo $link['url'] ?>">
+							<?= wp_get_attachment_image( $image, 'full', false, [ 'class' => 'single-brand' ] ) ?>
+						</a>
+					<?php endforeach; ?>
+
+				</div>
+			<?php endfor; ?>
+		</div>
+	<?php endif; ?>
+</section>
 
 <main class="archive-specials container">
 	<?php if ( $wpQuery->have_posts() ) : ?>

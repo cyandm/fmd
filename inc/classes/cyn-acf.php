@@ -140,14 +140,42 @@ if ( ! class_exists( 'cyn_acf' ) ) {
 							'width' => '25'
 						]
 					],
+
 					[ 
-						'key' => 'product_price_key',
-						'label' => 'Product Price',
-						'name' => 'product_price',
-						'instructions' => 'ONLY FOR HOME-PAGE LAYOUT ',
-						'type' => 'number',
+						'key' => 'product_length_key',
+						'label' => 'Product Length',
+						'name' => 'length',
+						'type' => 'text',
 						'wrapper' => [ 
-							'width' => '100'
+							'width' => '50'
+						]
+					],
+
+					[ 
+						'key' => 'product_width_key',
+						'label' => 'Product Width',
+						'name' => 'width',
+						'type' => 'text',
+						'wrapper' => [ 
+							'width' => '50'
+						]
+					],
+					[ 
+						'key' => 'product_thickness_key',
+						'label' => 'Product Thickness',
+						'name' => 'thickness',
+						'type' => 'text',
+						'wrapper' => [ 
+							'width' => '50'
+						]
+					],
+					[ 
+						'key' => 'product_height_key',
+						'label' => 'Product Height',
+						'name' => 'height',
+						'type' => 'text',
+						'wrapper' => [ 
+							'width' => '50'
 						]
 					],
 

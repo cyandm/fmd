@@ -8,7 +8,7 @@ $recommend_blogs = new WP_Query( [
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 $all_posts = new WP_Query( [ 
 	'post_type' => 'post',
-	'posts_per_page' => '9',
+	'posts_per_page' => '12',
 	'paged' => $paged
 ] )
 
@@ -31,8 +31,10 @@ $all_posts = new WP_Query( [
 
 			<div class="slider-info">
 				<div class="slider-navigation">
-					<i id="cyn-prev-slide" class="icon-arrow-long-left"></i>
-					<i id="cyn-next-slide" class="icon-arrow-long-right"></i>
+					<i id="cyn-prev-slide"
+					   class="icon-arrow-long-left"></i>
+					<i id="cyn-next-slide"
+					   class="icon-arrow-long-right"></i>
 				</div>
 
 				<div class="post-info">
@@ -87,7 +89,8 @@ $all_posts = new WP_Query( [
 						<div class="cyn-slider-wrapper">
 							<?php while ( $recommend_blogs->have_posts() ) : ?>
 								<?php $recommend_blogs->the_post() ?>
-								<a href="<?= get_the_permalink() ?>" class="primary-btn cyn-slide">
+								<a href="<?= get_the_permalink() ?>"
+								   class="primary-btn cyn-slide">
 									<i class="icon-arrow-down-right"></i>
 								</a>
 							<?php endwhile; ?>

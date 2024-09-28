@@ -52,11 +52,13 @@ $mouldingFilters = array(
 
 $formUrl = $isMouldingCat ? $_SERVER['REQUEST_URI'] : $formUrl;
 
+
 function boxChecks( $items ) {
 	?>
-	<div class="filter-item">
+	<div class="filter-item"
+		 style="<?php echo strtolower( $items['name'] ) === 'parma' ? 'order:-1;' : '' ?>">
 		<span>
-			<?= $items['name'] ?>
+			<?= ucfirst( $items['name'] ) ?>
 		</span>
 		<?php $checked = isset( $_GET[ 'cat-' . $items['id'] ] ); ?>
 		<input name="<?= 'cat-' . $items['id'] ?>"
@@ -171,7 +173,8 @@ function boxChecks( $items ) {
 					if ( $isMouldingCat && ! in_array( $filterSlug, $mouldingFilters ) )
 						continue;
 					?>
-					<?php if ( $parent == 0 && $filterSlug != 'type' ) : ?>
+					<?php if ( $parent == 0 && $filterSlug != 'type' ) :
+						?>
 						<div class="filter-wrapper">
 							<div class="title">
 								<span>
@@ -205,6 +208,7 @@ function boxChecks( $items ) {
 
 												if ( $query->have_posts() ) :
 													boxChecks( $cat );
+
 												endif;
 												wp_reset_postdata();
 											} else {

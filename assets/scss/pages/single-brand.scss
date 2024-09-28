@@ -1,0 +1,16 @@
+.single-brand {
+	width: 12rem;
+	height: 6rem;
+	padding: 1rem 1rem;
+	-o-object-fit: contain;
+	object-fit: contain;
+	border-radius: 1.5rem;
+	background-color: #fdfdfd;
+	box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+	transition: 0.3s;
+}
+
+.brand-wrapper {
+	display: flex;
+	gap: 1rem;
+}

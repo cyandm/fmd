@@ -1,83 +1,88 @@
 const sidebarProduct = document.querySelector('aside.sidebar-products');
 
 if (sidebarProduct) {
-  const filterWrapperGroup = sidebarProduct.querySelectorAll('.filter-wrapper');
+	const filterWrapperGroup = sidebarProduct.querySelectorAll('.filter-wrapper');
 
-  filterWrapperGroup.forEach((el) => {
-    const title = el.querySelector('.title');
+	filterWrapperGroup.forEach((el) => {
+		const itemWrapper = el.querySelector('.filter-item-wrapper');
+		if (itemWrapper.innerText === '') {
+			el.remove();
+		}
 
-    title.addEventListener('click', (e) => {
-      e.preventDefault();
-      el.classList.toggle('active');
-    });
+		const title = el.querySelector('.title');
 
-    const checkedInput = el.querySelector('input[checked]');
-    checkedInput && el.classList.add('active');
-  });
+		title.addEventListener('click', (e) => {
+			e.preventDefault();
+			el.classList.toggle('active');
+		});
 
-  const viewFiltersBtn = document.querySelector('.view-filters');
-  const exitFilterBtn = document.querySelector('#exit');
+		const checkedInput = el.querySelector('input[checked]');
+		checkedInput && el.classList.add('active');
+	});
 
-  viewFiltersBtn.addEventListener('click', () => {
-    sidebarProduct.classList.toggle('active');
-  });
+	const viewFiltersBtn = document.querySelector('.view-filters');
+	const exitFilterBtn = document.querySelector('#exit');
 
-  exitFilterBtn.addEventListener('click', () => {
-    sidebarProduct.classList.toggle('active');
-  });
+	viewFiltersBtn.addEventListener('click', () => {
+		sidebarProduct.classList.toggle('active');
+	});
 
-  const filterChips = document.querySelectorAll(
-    '.filter-chips .filter-item .icon-close'
-  );
-  const filterContainer = sidebarProduct.querySelector('#filter-container');
-  const checkboxInps = sidebarProduct.querySelectorAll(
-    '.filter-item-wrapper .filter-item input[type=checkbox]'
-  );
-  const filterClear = filterContainer.querySelector('#filter-actions-clear');
-  const filterHidden = filterContainer.querySelector("input[name='filter']");
-  const submitFilter = filterContainer.querySelector("input[type='submit']");
+	exitFilterBtn.addEventListener('click', () => {
+		sidebarProduct.classList.toggle('active');
+	});
 
-  function setFilterVal() {
-    let filterVal = 'off';
+	const filterChips = document.querySelectorAll(
+		'.filter-chips .filter-item .icon-close'
+	);
+	const filterContainer = sidebarProduct.querySelector('#filter-container');
+	const checkboxInps = sidebarProduct.querySelectorAll(
+		'.filter-item-wrapper .filter-item input[type=checkbox]'
+	);
+	const filterClear = filterContainer.querySelector('#filter-actions-clear');
+	const filterHidden = filterContainer.querySelector("input[name='filter']");
+	const submitFilter = filterContainer.querySelector("input[type='submit']");
 
-    for (let i = 0; i < checkboxInps.length; i++) {
-      const element = checkboxInps[i];
-      if (element.checked == true) {
-        filterVal = 'on';
-        break;
-      }
-    }
+	function setFilterVal() {
+		let filterVal = 'off';
 
-    filterHidden.value = filterVal;
-  }
+		for (let i = 0; i < checkboxInps.length; i++) {
+			const element = checkboxInps[i];
+			if (element.checked == true) {
+				filterVal = 'on';
+				break;
+			}
+		}
 
-  if (filterChips) {
-    filterChips.forEach((el) => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = e.currentTarget;
-        const dataFilter = target.dataset['filter'];
-        const checkInp = document.querySelector(`input[name='${dataFilter}']`);
+		filterHidden.value = filterVal;
+	}
 
-        checkInp.removeAttribute('checked');
-        setFilterVal();
-        filterContainer.submit();
-      });
-    });
-  }
+	if (filterChips) {
+		filterChips.forEach((el) => {
+			el.addEventListener('click', (e) => {
+				e.preventDefault();
+				const target = e.currentTarget;
+				const dataFilter = target.dataset['filter'];
+				const checkInp = document.querySelector(`input[name='${dataFilter}']`);
 
-  filterClear.addEventListener('click', function (e) {
-    e.preventDefault();
-    checkboxInps.forEach((el) => {
-      el.checked = false;
-    });
-    filterHidden.value = 'off';
-    filterContainer.submit();
-  });
+				checkInp.removeAttribute('checked');
+				setFilterVal();
+				filterContainer.submit();
+			});
+		});
+	}
 
-  submitFilter.addEventListener('click', (e) => {
-    e.preventDefault();
-    setFilterVal();
-    filterContainer.submit();
-  });
+	filterClear.addEventListener('click', function (e) {
+		e.preventDefault();
+		checkboxInps.forEach((el) => {
+			el.checked = false;
+		});
+		filterHidden.value = 'off';
+		filterContainer.submit();
+	});
+
+	submitFilter.addEventListener('click', (e) => {
+		e.preventDefault();
+		setFilterVal();
+		filterContainer.submit();
+	});
 }

@@ -43,7 +43,7 @@ if ( ! class_exists( 'cyn_form' ) ) {
 
 
 			$sendEmail = wp_mail(
-				'amirtanazzoh@gmail.com',
+				[ 'sales@fmddistributor.com', "hooman@fmdcompanies.com" ],
 				'Contact Us',
 				$msgContent
 			);

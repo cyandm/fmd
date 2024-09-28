@@ -412,6 +412,42 @@ main.front-page {
 							}
 						}
 					}
+
+					.slogan-wrapper {
+						min-height: 1.8rem;
+						min-width: 15rem;
+						position: relative;
+						overflow: hidden;
+
+						span {
+							font-size: 1.5rem;
+							font-weight: 600;
+							line-height: 1.8rem;
+							display: -webkit-box;
+							-webkit-line-clamp: 1;
+							-webkit-box-orient: vertical;
+							overflow: hidden;
+						}
+
+						> div {
+							position: absolute;
+							translate: 0 102%;
+							transition: 0.4s;
+
+							span {
+								translate: 0 102%;
+								transition: 0.4s 0.4s;
+							}
+
+							&.active {
+								translate: 0;
+
+								span {
+									translate: 0;
+								}
+							}
+						}
+					}
 				}
 
 				.button-wrapper {
@@ -725,56 +761,55 @@ main.front-page {
 			}
 		}
 	}
+}
+.work-hours {
+	-webkit-margin-before: 2rem;
+	margin-block-start: 2rem;
 
-	.work-hours {
+	h2 {
+		font-size: 34px;
+		font-weight: 500;
+	}
+
+	.work-hours-con {
 		-webkit-margin-before: 2rem;
 		margin-block-start: 2rem;
+		display: flex;
+		align-items: center;
 
-		h2 {
-			font-size: 34px;
-			font-weight: 500;
+		@media (max-width: 700px) {
+			flex-direction: column;
 		}
 
-		.work-hours-con {
-			-webkit-margin-before: 2rem;
-			margin-block-start: 2rem;
-			display: flex;
-			align-items: center;
+		> * {
+			flex: 1;
+		}
 
-			@media (max-width: 700px) {
-				flex-direction: column;
+		.table-con {
+			table {
+				box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+				border-radius: 1rem;
+				width: 100%;
+				border-spacing: 0;
+				overflow: hidden;
 			}
 
-			> * {
-				flex: 1;
+			td {
+				padding: 0.75rem 2rem;
 			}
 
-			.table-con {
-				table {
-					box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
-					border-radius: 1rem;
-					width: 100%;
-					border-spacing: 0;
-					overflow: hidden;
+			tr {
+				transition: background-color 0.3s ease;
+				text-transform: capitalize;
+
+				&:nth-child(2n) {
+					background: #e6e6e6;
 				}
 
-				td {
-					padding: 0.75rem 2rem;
-				}
-
-				tr {
-					transition: background-color 0.3s ease;
-					text-transform: capitalize;
-
+				&:hover {
+					background: #d3d3d3;
 					&:nth-child(2n) {
-						background: #e6e6e6;
-					}
-
-					&:hover {
-						background: #d3d3d3;
-						&:nth-child(2n) {
-							background: #c2c2c2;
-						}
+						background: #c2c2c2;
 					}
 				}
 			}
