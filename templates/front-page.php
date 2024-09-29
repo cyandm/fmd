@@ -16,7 +16,7 @@ $brands = get_field( 'brands_special' );
 
 $brands_query = new WP_Query( [ 
 	'post_type' => 'brand_post_type',
-	'posts__in' => $brands,
+	'post__in' => $brands,
 ] );
 
 
@@ -159,7 +159,7 @@ $work_hours = [
 					Brands We Carry
 				</h2>
 
-				<a href="/brands"
+				<a href="/home-brands"
 				   class="primary-btn except-mobile"> View All </a>
 			</div>
 			<div class="brand-ticker">

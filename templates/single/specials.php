@@ -5,11 +5,12 @@ $categories = get_the_terms( $postId, 'special-cat' );
 
 $is_door = array_search( 'doors', array_column( $categories, 'slug' ) );
 
-$brands = get_field( 'brands_special', $term->taxonomy . '_' . $term->term_id );
+$brands = get_field( 'brands_special' );
 $brands_query = new WP_Query( [ 
 	'post_type' => 'brand_post_type',
-	'posts__in' => $brands,
+	'post__in' => $brands,
 ] );
+
 
 if ( $is_door === false ) {
 	wp_redirect( '/' );

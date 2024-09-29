@@ -18,7 +18,7 @@ $brands = get_field( 'brands_special', $term->taxonomy . '_' . $term->term_id );
 
 $brands_query = new WP_Query( [ 
 	'post_type' => 'brand_post_type',
-	'posts__in' => $brands,
+	'post__in' => $brands,
 ] );
 
 ?>
@@ -32,7 +32,7 @@ $brands_query = new WP_Query( [
 	<?php if ( $brands_query->have_posts() ) : ?>
 		<div class="brand-ticker">
 
-			<?php for ( $i = 0; $i < 4; $i++ ) : ?>
+			<?php for ( $i = 0; $i < 8; $i++ ) : ?>
 				<div class="brand-wrapper">
 					<?php while ( $brands_query->have_posts() ) :
 						$brands_query->the_post(); ?>

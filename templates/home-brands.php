@@ -4,7 +4,6 @@
 <?php
 $brand_cats = get_field( 'brand_categories' );
 
-
 ?>
 
 <?php get_header() ?>
@@ -20,10 +19,13 @@ $brand_cats = get_field( 'brand_categories' );
 				<?php
 				$brands_q = new WP_Query( [ 
 					'post_type' => 'brand_post_type',
+					'posts_per_page' => -1,
 					'tax_query' => [ 
-						'taxonomy' => 'b_categories',
-						'field' => 'term_id',
-						'terms' => [ $brand_cat->term_id ]
+						[ 
+							'taxonomy' => 'b_category',
+							'field' => 'term_id',
+							'terms' => [ $brand_cat->term_id ]
+						]
 					]
 				] );
 				?>
