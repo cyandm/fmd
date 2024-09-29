@@ -2427,7 +2427,7 @@ main.front-page .about .content-container {
   display: flex;
   gap: 1rem;
 }
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   main.front-page .about .content-container {
     flex-direction: column;
   }
