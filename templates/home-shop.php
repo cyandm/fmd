@@ -3,9 +3,10 @@
 <?php
 $brand_categories = empty( get_field( 'brand-categories' ) ) ? [] : get_field( 'brand-categories' );
 $product_categories = empty( get_field( 'product-categories' ) ) ? [] : get_field( 'product-categories' );
+$special_categories = empty( get_field( 'special-categories' ) ) ? [] : get_field( 'special-categories' );
 
 
-$categories = array_merge( $brand_categories, $product_categories );
+$categories = array_merge( $brand_categories, $product_categories, $special_categories );
 
 
 

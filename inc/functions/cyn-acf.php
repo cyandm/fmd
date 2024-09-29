@@ -18,6 +18,7 @@ function cyn_register_acf_home_shop() {
 	$fields = [ 
 		cyn_acf_add_taxonomy( 'product-categories', 'product categories', 'product-cat', 'object' ),
 		cyn_acf_add_taxonomy( 'brand-categories', 'brand categories', 'brand', 'object' ),
+		cyn_acf_add_taxonomy( 'special-categories', 'brand categories', 'special-cat', 'object' ),
 	];
 
 
