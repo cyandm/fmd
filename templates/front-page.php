@@ -10,12 +10,18 @@ $product_cat_middle_group = array_merge( $product_cat_middle_group_2, $product_c
 
 
 
-$brands = get_field( 'brands_ltr' );
-$brands_rtl = get_field( 'brands_rtl' );
+
+
+$brands = get_field( 'brands_special' );
+
+$brands_query = new WP_Query( [ 
+	'post_type' => 'brand_post_type',
+	'posts__in' => $brands,
+] );
+
+
 $blog_posts = new WP_Query( [ 'tag' => 'front-page-posts', 'posts_per_page' => '6' ] );
-
 $feature_products = get_field( 'feature_products' );
-
 
 $about_content = get_field( 'about_content' );
 $about_link = get_field( 'about_link' );
@@ -30,10 +36,10 @@ $work_hours = [
 	'friday' => '7am - 5:30pm',
 	'saturday' => '8am - 5pm',
 	'sunday' => 'closed',
-]
+];
 
 
-	?>
+?>
 
 
 
@@ -144,8 +150,10 @@ $work_hours = [
 		</section>
 	<?php endif; ?>
 
-	<?php if ( $brands || $brands_rtl ) : ?>
-		<section class="brands ">
+
+
+	<?php if ( $brands_query->have_posts() ) : ?>
+		<section class="brands">
 			<div class="title-section container">
 				<h2 class="title">
 					Brands We Carry
@@ -154,56 +162,28 @@ $work_hours = [
 				<a href="/brands"
 				   class="primary-btn except-mobile"> View All </a>
 			</div>
+			<div class="brand-ticker">
+				<?php for ( $i = 0; $i < 4; $i++ ) : ?>
+					<div class="brand-wrapper">
+						<?php while ( $brands_query->have_posts() ) :
+							$brands_query->the_post(); ?>
 
-			<?php if ( $brands ) : ?>
-				<div class="brand-ticker">
-					<?php for ( $i = 0; $i < 2; $i++ ) : ?>
-						<div class="brand-wrapper">
+							<a class="ticker-item"
+							   href="<?= get_field( 'link' )['url'] ?>">
+								<?php the_post_thumbnail( 'full', [ 'class' => 'single-brand' ] ) ?>
+							</a>
 
-							<?php foreach ( $brands as $brand ) : ?>
-								<a href="<?= get_term_link( $brand ) ?>"
-								   class="ticker-item">
-									<?= wp_get_attachment_image( get_field( 'custom_thumbnail', $brand->taxonomy . '_' . $brand->term_id ), 'full', false, [ 'class' => 'single-brand' ] ) ?>
-								</a>
-							<?php endforeach; ?>
+						<? endwhile; ?>
+					</div>
+				<?php endfor; ?>
+			</div>
 
-						</div>
-					<?php endfor; ?>
-				</div>
-			<?php endif; ?>
-
-			<?php if ( $brands_rtl ) : ?>
-				<div dir="rtl"
-					 class="brand-ticker rtl">
-					<?php for ( $i = 0; $i < 2; $i++ ) : ?>
-						<div class="brand-wrapper">
-
-							<?php foreach ( $brands_rtl as $brand ) : ?>
-								<a href="<?= get_term_link( $brand ) ?>"
-								   class="ticker-item">
-									<?= wp_get_attachment_image( get_field( 'custom_thumbnail', $brand->taxonomy . '_' . $brand->term_id ), 'full', false, [ 'class' => 'single-brand' ] ) ?>
-								</a>
-							<?php endforeach; ?>
-
-						</div>
-					<?php endfor; ?>
-				</div>
-			<?php endif; ?>
-
-			<a href="/brands"
-			   class="primary-btn only-mobile"> View all</a>
-
-		</section>
-	<?php endif; ?>
+		<?php endif; ?>
+	</section>
+	<?php wp_reset_postdata(); ?>
 
 	<?php if ( $about_content ) : ?>
 		<section class="about container">
-
-			<!-- <div class="title-controller">
-				<h2>About <span class="purple-text">Company</span></h2>
-			</div> -->
-
-
 			<div class="content-container">
 				<div class="video-wrapper">
 					<video src="<?= $about_video_url ?>"

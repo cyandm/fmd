@@ -9,6 +9,7 @@ function cyn_register_acf() {
 	cyn_register_acf_home_shop();
 	cyn_register_acf_brand();
 	cyn_register_acf_home_brand();
+	cyn_register_acf_select_brand();
 }
 
 
@@ -45,7 +46,7 @@ function cyn_register_acf_brand() {
 			[ 
 				'param' => 'post_type',
 				'operator' => '==',
-				'value' => 'brand'
+				'value' => 'brand_post_type'
 			],
 		],
 	];
@@ -72,5 +73,39 @@ function cyn_register_acf_home_brand() {
 	];
 
 
-	cyn_register_acf_group( 'settings 2', $fields, $location );
+	cyn_register_acf_group( 'settings', $fields, $location );
+}
+
+function cyn_register_acf_select_brand() {
+	$fields = [ 
+		cyn_acf_add_post_object( 'brands_special', 'brands', 'brand_post_type', '', 1 ),
+	];
+
+
+	$location = [ 
+		[ 
+			[ 
+				'param' => 'taxonomy',
+				'operator' => '==',
+				'value' => 'special-cat'
+			],
+		],
+		[ 
+			[ 
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'specials'
+			],
+		],
+		[ 
+			[ 
+				'param' => 'page_template',
+				'operator' => '==',
+				'value' => 'templates/front-page.php'
+			],
+		],
+	];
+
+
+	cyn_register_acf_group( 'settings', $fields, $location );
 }

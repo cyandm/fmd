@@ -14,10 +14,12 @@ if ( isset( $_GET['sp'] ) ) {
 }
 
 $term = get_queried_object();
-$gallery = get_field( 'gallery', $term->taxonomy . '_' . $term->term_id );
+$brands = get_field( 'brands_special', $term->taxonomy . '_' . $term->term_id );
 
-
-
+$brands_query = new WP_Query( [ 
+	'post_type' => 'brand_post_type',
+	'posts__in' => $brands,
+] );
 
 ?>
 
@@ -25,29 +27,29 @@ $gallery = get_field( 'gallery', $term->taxonomy . '_' . $term->term_id );
 <?php get_header( null, [ 'border' => true, 'preloader' => false ] ); ?>
 
 <section class="brands specials-brand">
-	<?php if ( $gallery ) : ?>
+
+
+	<?php if ( $brands_query->have_posts() ) : ?>
 		<div class="brand-ticker">
+
 			<?php for ( $i = 0; $i < 4; $i++ ) : ?>
 				<div class="brand-wrapper">
+					<?php while ( $brands_query->have_posts() ) :
+						$brands_query->the_post(); ?>
 
-					<?php foreach ( $gallery as $brand_group ) :
-
-						$image = $brand_group['img'];
-						$link = $brand_group['link'];
-
-						if ( empty( $image ) || empty( $link ) )
-							continue;
-						?>
 						<a class="ticker-item"
-						   href="<?php echo $link['url'] ?>">
-							<?= wp_get_attachment_image( $image, 'full', false, [ 'class' => 'single-brand' ] ) ?>
+						   href="<?= get_field( 'link' )['url'] ?>">
+							<?php the_post_thumbnail( 'full', [ 'class' => 'single-brand' ] ) ?>
 						</a>
-					<?php endforeach; ?>
 
+					<? endwhile; ?>
 				</div>
 			<?php endfor; ?>
 		</div>
+
 	<?php endif; ?>
+	<?php wp_reset_postdata(); ?>
+
 </section>
 
 <main class="archive-specials container">

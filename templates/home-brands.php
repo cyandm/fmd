@@ -2,7 +2,7 @@
 
 
 <?php
-$brand_cat = get_field( 'brand_categories' );
+$brand_cats = get_field( 'brand_categories' );
 
 
 ?>
@@ -10,7 +10,7 @@ $brand_cat = get_field( 'brand_categories' );
 <?php get_header() ?>
 
 <main class="brands container">
-	<?php foreach ( $brand_cat as $index => $brand_cat ) : ?>
+	<?php foreach ( $brand_cats as $index => $brand_cat ) : ?>
 		<section>
 			<h2>
 				<?php echo $brand_cat->name ?>
@@ -19,7 +19,7 @@ $brand_cat = get_field( 'brand_categories' );
 			<div>
 				<?php
 				$brands_q = new WP_Query( [ 
-					'post_type' => 'brand',
+					'post_type' => 'brand_post_type',
 					'tax_query' => [ 
 						'taxonomy' => 'b_categories',
 						'field' => 'term_id',
