@@ -177,7 +177,10 @@ $work_hours = [
 					</div>
 				<?php endfor; ?>
 			</div>
-
+		<div class="container">
+			<a href="/home-brands"
+				class="primary-btn only-mobile"> View All </a>
+		</div>
 		<?php endif; ?>
 	</section>
 	<?php wp_reset_postdata(); ?>
