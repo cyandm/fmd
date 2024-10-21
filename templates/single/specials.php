@@ -5,7 +5,7 @@ $categories = get_the_terms( $postId, 'special-cat' );
 
 $is_door = array_search( 'doors', array_column( $categories, 'slug' ) );
 
-$brands = get_field( 'brands_special' );
+$brands = get_field( 'brands_special');
 $brands_query = new WP_Query( [ 
 	'post_type' => 'brand_post_type',
 	'post__in' => $brands,

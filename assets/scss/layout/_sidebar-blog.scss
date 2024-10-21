@@ -1,4 +1,6 @@
 aside.sidebar-blog {
+  min-width: 17.5rem;
+
   /*Modules*/
   .sidebar-title {
     font-size: 1rem;
@@ -8,8 +10,6 @@ aside.sidebar-blog {
       display: none;
     }
   }
-
-  min-width: 17.5rem;
 
   .categories-container {
     display: flex;

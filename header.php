@@ -8,8 +8,17 @@
 		<meta name="viewport"
 			  content="width=device-width, initial-scale=1.0">
 		<?php wp_head(); ?>
+	<meta name="google-site-verification" content="dEyW29CdxLgQBx0hgdZVI4W_wfDoYPGccqMFH0cophM" />
 	</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLFC5JP3PQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-ZLFC5JP3PQ');
+</script>
 	<body>
 
 		<header class="site-header <?= ( $args && ! $args['border'] ) ? 'no-border' : '' ?>">

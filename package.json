@@ -1,6 +1,6 @@
 {
 	"name": "fmd",
-	"version": "2.2.6",
+	"version": "2.2.7",
 	"description": "",
 	"author": "",
 	"scripts": {
@@ -14,9 +14,11 @@
 	},
 	"license": "ISC",
 	"dependencies": {
+		"@fancyapps/ui": "^5.0.36",
 		"gsap": "^3.12.2",
 		"jquery": "^3.7.1",
-		"swiper": "^10.2.0"
+		"photoswipe": "^5.4.4",
+		"swiper": "^10.3.1"
 	},
 	"devDependencies": {
 		"esbuild": "^0.19.12"
