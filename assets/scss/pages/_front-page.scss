@@ -1,15 +1,6 @@
 main.front-page {
   background-color: #fdfdfd;
   overflow: hidden;
-  .hero-image {
-    width: 100vw;
-    -o-object-fit: cover;
-    object-fit: cover;
-    height: max(500px, 50vw);
-    position: absolute;
-    z-index: 0;
-    left: 0;
-  }
 
   .hero-container {
     position: relative;
@@ -22,6 +13,28 @@ main.front-page {
 
     .swiper-slide {
       transition: all 0.8s ease-in-out;
+    }
+
+    .hero-image {
+      width: 100vw;
+      -o-object-fit: cover;
+      object-fit: cover;
+      height: max(500px, 50vw);
+      position: absolute;
+      z-index: 0;
+      left: 0;
+
+      &.desktop-hero-image {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+
+      &.mobile-hero-image {
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
     }
 
     .hero-heading {

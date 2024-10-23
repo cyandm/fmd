@@ -8,10 +8,10 @@ const heroSlider = new Swiper(".hero-slider", {
   spaceBetween: 30,
   effect: "fade",
   loop: true,
-  autoplay: {
-    delay: 4000,
-    disableOnInteraction: false,
-  },
+  // autoplay: {
+  //   delay: 4000,
+  //   disableOnInteraction: false,
+  // },
 });
 
 /* Scroll to bottom */

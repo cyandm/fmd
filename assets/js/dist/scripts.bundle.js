@@ -13770,11 +13770,11 @@
     slidesPerView: 1,
     spaceBetween: 30,
     effect: "fade",
-    loop: true,
-    autoplay: {
-      delay: 4e3,
-      disableOnInteraction: false
-    }
+    loop: true
+    // autoplay: {
+    //   delay: 4000,
+    //   disableOnInteraction: false,
+    // },
   });
   var scrollToBottom = document.querySelector("#scroll-to-bottom");
   var scrollTarget = document.querySelector("#scroll-target");

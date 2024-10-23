@@ -57,13 +57,25 @@ $work_hours = [
 			for ($quantitySlider = 1; $quantitySlider <= 6; $quantitySlider++):
 				if ($hero_slider_group['image_' . $quantitySlider]):
 					$slider_img_id = $hero_slider_group['image_' . $quantitySlider];
+					$mobile_slider_img_id = $hero_slider_group['m_image_' . $quantitySlider];
 					$slider_title = $hero_slider_group['title_' . $quantitySlider];
 			?>
 
 					<div class="swiper-slide">
 
+						<?php
+						$class_check = 'hero-image ';
+						if (isset($mobile_slider_img_id[1])) {
+							$class_check .= 'desktop-hero-image';
+						} ?>
 
-						<?php echo wp_get_attachment_image($slider_img_id, 'full', '', ['class' => 'hero-image', 'srcset' => wp_get_attachment_url($slider_img_id), 'full']); ?>
+						<?php echo wp_get_attachment_image($slider_img_id, 'full', '', ['class' => $class_check, 'srcset' => wp_get_attachment_url($slider_img_id), 'full']); ?>
+
+						<?php if ($mobile_slider_img_id): ?>
+
+							<?php echo wp_get_attachment_image($mobile_slider_img_id, 'full', '', ['class' => 'hero-image mobile-hero-image', 'srcset' => wp_get_attachment_url($mobile_slider_img_id), 'full']); ?>
+
+						<?php endif ?>
 
 						<?php if ($slider_title): ?>
 

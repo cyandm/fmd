@@ -15,7 +15,7 @@ require_once( __DIR__ . '/inc/functions/cyn-acf-fields.php' );
 require_once( __DIR__ . '/inc/functions/cyn-acf.php' );
 
 /***************************** Instance Classes */
-$cyn_theme_init = new cyn_theme_init( true, '2.2.7' );
+$cyn_theme_init = new cyn_theme_init( false, '2.2.7' );
 $cyn_customize = new cyn_customize;
 $cyn_register = new cyn_register;
 $cyn_admin = new cyn_admin;
