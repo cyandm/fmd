@@ -1,18 +1,18 @@
 /* Hero slider */
 
-import Swiper from "swiper/bundle";
+// import Swiper from "swiper/bundle";
 
-const heroSlider = new Swiper(".hero-slider", {
-  direction: "horizontal",
-  slidesPerView: 1,
-  spaceBetween: 30,
-  effect: "fade",
-  loop: true,
-  // autoplay: {
-  //   delay: 4000,
-  //   disableOnInteraction: false,
-  // },
-});
+// const heroSlider = new Swiper(".hero-slider", {
+//   direction: "horizontal",
+//   slidesPerView: 1,
+//   spaceBetween: 30,
+//   effect: "fade",
+//   loop: true,
+//   // autoplay: {
+//   //   delay: 4000,
+//   //   disableOnInteraction: false,
+//   // },
+// });
 
 /* Scroll to bottom */
 

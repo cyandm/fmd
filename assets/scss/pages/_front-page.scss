@@ -1,6 +1,7 @@
 main.front-page {
   background-color: #fdfdfd;
   overflow: hidden;
+  padding-block-start: 130px !important;
 
   .hero-container {
     position: relative;
@@ -8,33 +9,60 @@ main.front-page {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: max(500px, 50.5vw);
+    // height: max(500px, 50.5vw);
     text-align: center;
+    -webkit-margin-after: 4rem;
+    margin-block-end: 4rem;
 
-    .swiper-slide {
-      transition: all 0.8s ease-in-out;
+    // .swiper-slide {
+    //   transition: all 0.8s ease-in-out;
+    // }
+
+    .hero-items {
+      width: 100%;
+      position: relative;
+      .hero-img-second {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      &:hover {
+        .hero-img-first {
+          opacity: 0;
+        }
+
+        .hero-img-second {
+          opacity: 1;
+        }
+      }
     }
 
     .hero-image {
-      width: 100vw;
+      width: 100%;
+      // width: 100vw;
       -o-object-fit: cover;
       object-fit: cover;
-      height: max(500px, 50vw);
-      position: absolute;
-      z-index: 0;
-      left: 0;
+      height: auto;
+      border-radius: 1.5rem;
+      transition: all 0.5s ease-in-out;
+      // height: max(500px, 50vw);
+      // position: absolute;
+      // z-index: 0;
+      // left: 0;
 
-      &.desktop-hero-image {
-        @media (max-width: 768px) {
-          display: none;
-        }
-      }
+      // &.desktop-hero-image {
+      //   @media (max-width: 768px) {
+      //     display: none;
+      //   }
+      // }
 
-      &.mobile-hero-image {
-        @media (min-width: 768px) {
-          display: none;
-        }
-      }
+      // &.mobile-hero-image {
+      //   @media (min-width: 768px) {
+      //     display: none;
+      //   }
+      // }
     }
 
     .hero-heading {
@@ -250,8 +278,8 @@ main.front-page {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.25rem;
-    -webkit-margin-before: -6rem;
-    margin-block-start: -6rem;
+    // -webkit-margin-before: -6rem;
+    // margin-block-start: -6rem;
     scroll-margin-top: 4rem;
 
     h2 {
@@ -798,6 +826,14 @@ main.front-page {
           grid-row: auto;
         }
       }
+    }
+  }
+
+  .hero-slider,
+  section > .ticker,
+  .today-offer {
+    @media (max-width: 768px) {
+      display: none;
     }
   }
 }

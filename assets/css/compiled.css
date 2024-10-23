@@ -897,6 +897,14 @@ header.site-header.no-border .container {
   border: none;
   box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.34);
 }
+header.site-header.no-absolute {
+  position: relative !important;
+  width: 100%;
+}
+header.site-header.no-absolute .container {
+  border: none;
+  box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.34);
+}
 header.site-header .container {
   display: flex;
   position: relative;
@@ -1850,6 +1858,7 @@ article.specials-article .only-mobile {
 main.front-page {
   background-color: #fdfdfd;
   overflow: hidden;
+  padding-block-start: 130px !important;
 }
 main.front-page .hero-container {
   position: relative;
@@ -1857,30 +1866,33 @@ main.front-page .hero-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: max(500px, 50.5vw);
   text-align: center;
+  -webkit-margin-after: 4rem;
+  margin-block-end: 4rem;
 }
-main.front-page .hero-container .swiper-slide {
-  transition: all 0.8s ease-in-out;
+main.front-page .hero-container .hero-items {
+  width: 100%;
+  position: relative;
 }
-main.front-page .hero-container .hero-image {
-  width: 100vw;
-  -o-object-fit: cover;
-  object-fit: cover;
-  height: max(500px, 50vw);
+main.front-page .hero-container .hero-items .hero-img-second {
+  opacity: 0;
   position: absolute;
-  z-index: 0;
+  top: 0;
   left: 0;
 }
-@media (max-width: 768px) {
-  main.front-page .hero-container .hero-image.desktop-hero-image {
-    display: none;
-  }
+main.front-page .hero-container .hero-items:hover .hero-img-first {
+  opacity: 0;
 }
-@media (min-width: 768px) {
-  main.front-page .hero-container .hero-image.mobile-hero-image {
-    display: none;
-  }
+main.front-page .hero-container .hero-items:hover .hero-img-second {
+  opacity: 1;
+}
+main.front-page .hero-container .hero-image {
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: auto;
+  border-radius: 1.5rem;
+  transition: all 0.5s ease-in-out;
 }
 main.front-page .hero-container .hero-heading {
   height: 100%;
@@ -2078,8 +2090,6 @@ main.front-page .today-offer {
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.25rem;
-  -webkit-margin-before: -6rem;
-  margin-block-start: -6rem;
   scroll-margin-top: 4rem;
 }
 main.front-page .today-offer h2 {
@@ -2552,6 +2562,13 @@ main.front-page .blog .blog-wrapper *:nth-child(6) {
   main.front-page .blog .blog-wrapper > * {
     grid-column: 1/3;
     grid-row: auto;
+  }
+}
+@media (max-width: 768px) {
+  main.front-page .hero-slider,
+  main.front-page section > .ticker,
+  main.front-page .today-offer {
+    display: none;
   }
 }
 

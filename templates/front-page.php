@@ -49,54 +49,73 @@ $work_hours = [
 
 <main class="front-page">
 
-	<div class="hero-slider swiper hero-container">
+	<?php if ($hero_slider_group['image_1'] && $hero_slider_group['image_2'] && $hero_slider_group['hero-link']): ?>
 
-		<div class="swiper-wrapper">
+		<section class="hero-slider hero-container container">
+
+			<a href="<?php echo $hero_slider_group['hero-link'] ?>" class="hero-items">
+				<?php echo wp_get_attachment_image($hero_slider_group['image_1'], 'full', '', ['class' => 'hero-image hero-img-first', 'srcset' => wp_get_attachment_url($hero_slider_group['image_1']), 'full']); ?>
+
+				<?php echo wp_get_attachment_image($hero_slider_group['image_2'], 'full', '', ['class' => 'hero-image hero-img-second', 'srcset' => wp_get_attachment_url($hero_slider_group['image_2']), 'full']); ?>
+			</a>
+
+			<!-- <div class="swiper-wrapper">
 
 			<?php
-			for ($quantitySlider = 1; $quantitySlider <= 6; $quantitySlider++):
-				if ($hero_slider_group['image_' . $quantitySlider]):
-					$slider_img_id = $hero_slider_group['image_' . $quantitySlider];
-					$mobile_slider_img_id = $hero_slider_group['m_image_' . $quantitySlider];
-					$slider_title = $hero_slider_group['title_' . $quantitySlider];
+			//for ($quantitySlider = 1; $quantitySlider <= 6; $quantitySlider++):
+			//if ($hero_slider_group['image_' . $quantitySlider]):
+			//$slider_img_id = $hero_slider_group['image_' . $quantitySlider];
+			//$mobile_slider_img_id = $hero_slider_group['m_image_' . $quantitySlider];
+			//$slider_title = $hero_slider_group['title_' . $quantitySlider];
 			?>
 
 					<div class="swiper-slide">
 
 						<?php
-						$class_check = 'hero-image ';
-						if (isset($mobile_slider_img_id[1])) {
-							$class_check .= 'desktop-hero-image';
-						} ?>
+						//$class_check = 'hero-image ';
+						//if (isset($mobile_slider_img_id[1])) {
+						//$class_check .= 'desktop-hero-image';
+						//} 
+						?>
 
-						<?php echo wp_get_attachment_image($slider_img_id, 'full', '', ['class' => $class_check, 'srcset' => wp_get_attachment_url($slider_img_id), 'full']); ?>
+						<?php //echo wp_get_attachment_image($slider_img_id, 'full', '', ['class' => $class_check, 'srcset' => wp_get_attachment_url($slider_img_id), 'full']); 
+						?>
 
-						<?php if ($mobile_slider_img_id): ?>
+						<?php //if ($mobile_slider_img_id): 
+						?>
 
-							<?php echo wp_get_attachment_image($mobile_slider_img_id, 'full', '', ['class' => 'hero-image mobile-hero-image', 'srcset' => wp_get_attachment_url($mobile_slider_img_id), 'full']); ?>
+							<?php //echo wp_get_attachment_image($mobile_slider_img_id, 'full', '', ['class' => 'hero-image mobile-hero-image', 'srcset' => wp_get_attachment_url($mobile_slider_img_id), 'full']); 
+							?>
 
-						<?php endif ?>
+						<?php //endif 
+						?>
 
-						<?php if ($slider_title): ?>
+						<?php //if ($slider_title): 
+						?>
 
 							<div class="container hero-heading">
-								<?php echo $slider_title ?>
+								<?php //echo $slider_title 
+								?>
 							</div>
 
-						<?php endif ?>
+						<?php //endif 
+						?>
 
 					</div>
 
-				<?php endif ?>
+				<?php //endif 
+				?>
 
-			<?php endfor ?>
+			<?php //endfor 
+			?>
 
-		</div>
+		</div> -->
 
-		<div class="container subtract-parent">
+			<!-- <div class="container subtract-parent">
 			<div class="subtract">
 				<div class="inner-subtract">
-					<img src="<?= get_stylesheet_directory_uri() . '/assets/imgs/Subtract.png' ?>"
+					<img src="<? //= get_stylesheet_directory_uri() . '/assets/imgs/Subtract.png' 
+								?>"
 						alt="">
 
 					<a href="/home-shop">
@@ -124,38 +143,41 @@ $work_hours = [
 				</div>
 			</div>
 
-		</div>
+		</div> -->
 
-	</div>
+		</section>
+
+	<?php endif ?>
 
 
-
-
-
-	<section class="container product-cat-section">
+	<!-- <section class="container product-cat-section">
 		<div class="product-cat-group">
 
 			<?php
-			if ($product_cat_top_group) :
+			//if ($product_cat_top_group) :
 
-				foreach ($product_cat_top_group as $product_cat) :
+			//foreach ($product_cat_top_group as $product_cat) :
 
-					$product_cat_img_id = get_field('custom_thumbnail', $product_cat->taxonomy . '_' . $product_cat->term_id);
+			//$product_cat_img_id = get_field('custom_thumbnail', $product_cat->taxonomy . '_' . $product_cat->term_id);
 			?>
-					<a href="<?= get_term_link($product_cat) ?>"
+					<a href="<? //= get_term_link($product_cat) 
+								?>"
 						class="product-cat-card">
-						<?= wp_get_attachment_image($product_cat_img_id, 'thumbnail', false, ['class' => '']); ?>
+						<? //= wp_get_attachment_image($product_cat_img_id, 'thumbnail', false, ['class' => '']); 
+						?>
 						<div>
 							<p>
-								<?= $product_cat->name ?>
+								<? //= $product_cat->name 
+								?>
 							</p>
 							<i class="icon-arrow-top-right"></i>
 						</div>
 					</a>
-			<?php endforeach;
-			endif; ?>
+			<?php //endforeach;
+			//endif; 
+			?>
 		</div>
-	</section>
+	</section> -->
 
 	<?php get_template_part('/templates/components/front/special-monthly') ?>
 
