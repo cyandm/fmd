@@ -761,6 +761,17 @@ main.front-page {
     }
   }
 
+  .contact-us {
+    flex-direction: row-reverse;
+    > div {
+      flex: 1;
+    }
+
+    @media (width <= 1000px) {
+      flex-direction: column;
+    }
+  }
+
   .blog {
     .title-section {
       position: relative;
@@ -829,9 +840,7 @@ main.front-page {
     }
   }
 
-  .hero-slider,
-  section > .ticker,
-  .today-offer {
+  .hero-slider {
     @media (max-width: 768px) {
       display: none;
     }

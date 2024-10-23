@@ -4,9 +4,9 @@ const faq_tab = document.querySelectorAll(".faq-tab");
 
 faq_ask?.forEach((event) => {
   event.addEventListener("click", () => {
-      // event.classList.remove("active");
-      event.parentElement.classList.toggle("active");
-   });
+    // event.classList.remove("active");
+    event.parentElement.classList.toggle("active");
+  });
 });
 faq_tab?.forEach((e) => {
   e.addEventListener("click", () => {

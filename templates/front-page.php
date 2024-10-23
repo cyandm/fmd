@@ -179,20 +179,6 @@ $work_hours = [
 		</div>
 	</section> -->
 
-	<?php get_template_part('/templates/components/front/special-monthly') ?>
-
-	<section>
-		<div class="ticker">
-			<?php for ($i = 0; $i < 5; $i++) : ?>
-				<div class="ticker-wrapper">
-					<div class="ticker-item"> largest selection of home improvement supplies</div>
-					<div class="ticker-item">Exceptional Customer Service</div>
-					<div class="ticker-item">In Stock material</div>
-				</div>
-			<?php endfor; ?>
-		</div>
-	</section>
-
 	<?php if ($product_cat_middle_group) : ?>
 		<section class="product-categories container">
 			<div class="title-section">
@@ -201,7 +187,7 @@ $work_hours = [
 				</h2>
 
 				<a href="/home-shop"
-					class="primary-btn except-mobile"> View all</a>
+					class="primary-btn except-mobile"> View All</a>
 			</div>
 
 			<div class="product-categories-wrapper">
@@ -222,7 +208,19 @@ $work_hours = [
 		</section>
 	<?php endif; ?>
 
+	<section>
+		<div class="ticker">
+			<?php for ($i = 0; $i < 5; $i++) : ?>
+				<div class="ticker-wrapper">
+					<div class="ticker-item"> largest selection of home improvement supplies</div>
+					<div class="ticker-item">Exceptional Customer Service</div>
+					<div class="ticker-item">In Stock material</div>
+				</div>
+			<?php endfor; ?>
+		</div>
+	</section>
 
+	<?php get_template_part('/templates/components/front/special-monthly') ?>
 
 	<?php if ($brands_query->have_posts()) : ?>
 		<section class="brands">
@@ -291,7 +289,7 @@ $work_hours = [
 
 					<div class="shape-btn">
 						<a href="/blog"
-							class="primary-btn except-mobile">view all</a>
+							class="primary-btn except-mobile">view All</a>
 					</div>
 				</div>
 
